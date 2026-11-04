@@ -10,6 +10,12 @@ Cecil-IA Labs · 4 de novembro de 2026
 
 Quad-Dimensional DataMatrix explora um catálogo com quatro coordenadas lógicas: posição horizontal, posição vertical, estado temporal e dimension hexadecimal. Um GIF indexado transporta a sequência correspondente. Inglês é o idioma padrão; português é a alternativa.
 
+## Demonstração do conceito
+
+![Demonstração do app Quad-Dimensional DataMatrix](docs/media/quad-dimensional-datamatrix-poc.gif)
+
+[Assistir ou baixar WebM](docs/media/quad-dimensional-datamatrix-poc.webm) · [Notas da mídia e reprodução](docs/media/README.pt.md)
+
 ## Perfil de trabalho
 
 | Propriedade | Perfil atual de discussão |

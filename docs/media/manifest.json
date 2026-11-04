@@ -1,0 +1,50 @@
+{
+  "title": "Quad-Dimensional DataMatrix concept demonstration",
+  "source": {
+    "filename": "PoC.mp4",
+    "bytes": 1969460,
+    "sha256": "e828a4c56c27e4565cb30d59800442e200eaf398cf6136a4e6b3ebe326ccb658",
+    "duration_seconds": 36.3083,
+    "width": 1920,
+    "height": 1080
+  },
+  "crop": {
+    "x": 472,
+    "y": 124,
+    "width": 960,
+    "height": 900
+  },
+  "processing": {
+    "toolkit": "Cecil-IA Labs FFmpeg",
+    "toolkit_version": "2.0.0",
+    "ffmpeg_version": "6.1.1",
+    "conversion_script": "skills/ffmpeg-conversion/scripts/run.mjs",
+    "temporal_trim": false
+  },
+  "outputs": {
+    "gif": {
+      "file": "quad-dimensional-datamatrix-poc.gif",
+      "bytes": 4002370,
+      "sha256": "f7437a84b78dc6e1a810551b0a8ef6234a08824b4ed55ca86d49102675d70aea",
+      "duration_seconds": 36.51,
+      "width": 960,
+      "height": 900,
+      "codec": "gif",
+      "frame_count": 292,
+      "nominal_fps": 8,
+      "loop": 0,
+      "max_palette_entries": 256
+    },
+    "webm": {
+      "file": "quad-dimensional-datamatrix-poc.webm",
+      "bytes": 909184,
+      "sha256": "1aed5f460aa2520c1bfb79b1cb455215e6acee7e8b69e0ce93e4285dead7da8f",
+      "duration_seconds": 36.5,
+      "width": 960,
+      "height": 900,
+      "codec": "vp9",
+      "frame_count": 292,
+      "nominal_fps": 8
+    }
+  }
+}

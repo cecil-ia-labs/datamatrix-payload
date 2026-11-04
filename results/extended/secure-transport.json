@@ -1,0 +1,18 @@
+{
+  "payload_bytes": 2048,
+  "nonce_bytes": 12,
+  "tag_bytes": 16,
+  "header_bytes": 41,
+  "packet_bytes": 2117,
+  "uncoded_symbols": 3388,
+  "rs_blocks": 148,
+  "coded_symbols": 4588,
+  "module_pixels": 4,
+  "matrix_side": 128,
+  "exact_authenticated_roundtrip": true,
+  "tampered_ciphertext": true,
+  "tampered_aad": true,
+  "wrong_key": true,
+  "scope": "Known geometry; no channel distortion; symmetric AES-GCM, not HPKE",
+  "key_handling": "Fresh random key and nonce held only in memory; no secret saved"
+}

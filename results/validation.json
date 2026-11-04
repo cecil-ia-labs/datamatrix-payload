@@ -1,0 +1,16 @@
+{
+  "bibliographic_entries": 21,
+  "numbered_equations": 45,
+  "cited_entries": 21,
+  "unreferenced_entries": [],
+  "baseline_json_reproduced": true,
+  "pdf_pages": 19,
+  "pdf_bytes": 453195,
+  "pdf_nonempty_pages": 19,
+  "pdf_links": 79,
+  "latex_final_pass_warnings": 0,
+  "behavioral_tests": 8,
+  "extended_json_reproduced": true,
+  "visual_pdf_review": "All 19 pages rendered; contact sheet and full-size quantum/reference pages inspected",
+  "publication_binary_validation": "PDF and figures regenerated from sources and parsed successfully before GitHub upload"
+}

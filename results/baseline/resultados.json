@@ -1,0 +1,1787 @@
+{
+  "date": "2026-11-04",
+  "seed": 20261104,
+  "environment": {
+    "numpy": "2.3.5",
+    "Pillow": "13.0.0",
+    "scipy": "1.17.0"
+  },
+  "limitations": [
+    "Simulações digitais; nenhuma captura óptica real.",
+    "Geometria, alinhamento, paleta nominal e dimensão conhecidos.",
+    "Sem FEC; SHA-256 detecta corrupção e não a corrige.",
+    "Distância RGB e ruído artificial não modelam uma câmera completa.",
+    "Resultados de JPEG dependem do encoder, alinhamento e parâmetros.",
+    "Uma realização de ruído por condição; resultados não são estimativas universais."
+  ],
+  "source_images": [
+    {
+      "file": "128x128-32-colors.png",
+      "width": 128,
+      "height": 128,
+      "pixels": 16384,
+      "file_bytes": 7797,
+      "png_index_bit_depth": 8,
+      "palette_entries": 32,
+      "unique_colors": 32,
+      "packed_indices_bytes": 10240,
+      "palette_bytes": 96,
+      "zlib_packed_plus_palette_bytes": 8732,
+      "marginal_entropy_bits_per_pixel": 4.691384411524028,
+      "minimum_rgb_distance": 19.82422760159901,
+      "exact_index_and_rgb_roundtrip": true,
+      "original_sha256": "809564a0c81e67cfa31addc4a236bf3579ca2929785adfa481a9f90dd2e28bbe"
+    },
+    {
+      "file": "64x64-32-colors.png",
+      "width": 64,
+      "height": 64,
+      "pixels": 4096,
+      "file_bytes": 2148,
+      "png_index_bit_depth": 8,
+      "palette_entries": 32,
+      "unique_colors": 32,
+      "packed_indices_bytes": 2560,
+      "palette_bytes": 96,
+      "zlib_packed_plus_palette_bytes": 2320,
+      "marginal_entropy_bits_per_pixel": 4.600040678432716,
+      "minimum_rgb_distance": 15.620499351813308,
+      "exact_index_and_rgb_roundtrip": true,
+      "original_sha256": "60b33036fcb241fa437ee57e46e12bb5995c4e246bc40ec4b511d2feb536c57b"
+    }
+  ],
+  "picture_palette_tests": [
+    {
+      "file": "128x128-32-colors.png",
+      "palette": "paleta_fotografia",
+      "case": "PNG_exato",
+      "symbols": 16384,
+      "symbol_errors": 0,
+      "symbol_error_rate": 0.0
+    },
+    {
+      "file": "128x128-32-colors.png",
+      "palette": "paleta_fotografia",
+      "case": "JPEG_95_444",
+      "symbols": 16384,
+      "symbol_errors": 45,
+      "symbol_error_rate": 0.00274658203125
+    },
+    {
+      "file": "128x128-32-colors.png",
+      "palette": "paleta_fotografia",
+      "case": "JPEG_95_420",
+      "symbols": 16384,
+      "symbol_errors": 4681,
+      "symbol_error_rate": 0.28570556640625
+    },
+    {
+      "file": "128x128-32-colors.png",
+      "palette": "paleta_fotografia",
+      "case": "AWGN_4",
+      "symbols": 16384,
+      "symbol_errors": 19,
+      "symbol_error_rate": 0.00115966796875
+    },
+    {
+      "file": "128x128-32-colors.png",
+      "palette": "paleta_fotografia",
+      "case": "AWGN_8",
+      "symbols": 16384,
+      "symbol_errors": 1029,
+      "symbol_error_rate": 0.06280517578125
+    },
+    {
+      "file": "128x128-32-colors.png",
+      "palette": "paleta_transporte32",
+      "case": "PNG_exato",
+      "symbols": 16384,
+      "symbol_errors": 0,
+      "symbol_error_rate": 0.0
+    },
+    {
+      "file": "128x128-32-colors.png",
+      "palette": "paleta_transporte32",
+      "case": "JPEG_95_444",
+      "symbols": 16384,
+      "symbol_errors": 0,
+      "symbol_error_rate": 0.0
+    },
+    {
+      "file": "128x128-32-colors.png",
+      "palette": "paleta_transporte32",
+      "case": "JPEG_95_420",
+      "symbols": 16384,
+      "symbol_errors": 7787,
+      "symbol_error_rate": 0.47528076171875
+    },
+    {
+      "file": "128x128-32-colors.png",
+      "palette": "paleta_transporte32",
+      "case": "AWGN_4",
+      "symbols": 16384,
+      "symbol_errors": 0,
+      "symbol_error_rate": 0.0
+    },
+    {
+      "file": "128x128-32-colors.png",
+      "palette": "paleta_transporte32",
+      "case": "AWGN_8",
+      "symbols": 16384,
+      "symbol_errors": 0,
+      "symbol_error_rate": 0.0
+    },
+    {
+      "file": "64x64-32-colors.png",
+      "palette": "paleta_fotografia",
+      "case": "PNG_exato",
+      "symbols": 4096,
+      "symbol_errors": 0,
+      "symbol_error_rate": 0.0
+    },
+    {
+      "file": "64x64-32-colors.png",
+      "palette": "paleta_fotografia",
+      "case": "JPEG_95_444",
+      "symbols": 4096,
+      "symbol_errors": 107,
+      "symbol_error_rate": 0.026123046875
+    },
+    {
+      "file": "64x64-32-colors.png",
+      "palette": "paleta_fotografia",
+      "case": "JPEG_95_420",
+      "symbols": 4096,
+      "symbol_errors": 972,
+      "symbol_error_rate": 0.2373046875
+    },
+    {
+      "file": "64x64-32-colors.png",
+      "palette": "paleta_fotografia",
+      "case": "AWGN_4",
+      "symbols": 4096,
+      "symbol_errors": 58,
+      "symbol_error_rate": 0.01416015625
+    },
+    {
+      "file": "64x64-32-colors.png",
+      "palette": "paleta_fotografia",
+      "case": "AWGN_8",
+      "symbols": 4096,
+      "symbol_errors": 640,
+      "symbol_error_rate": 0.15625
+    },
+    {
+      "file": "64x64-32-colors.png",
+      "palette": "paleta_transporte32",
+      "case": "PNG_exato",
+      "symbols": 4096,
+      "symbol_errors": 0,
+      "symbol_error_rate": 0.0
+    },
+    {
+      "file": "64x64-32-colors.png",
+      "palette": "paleta_transporte32",
+      "case": "JPEG_95_444",
+      "symbols": 4096,
+      "symbol_errors": 0,
+      "symbol_error_rate": 0.0
+    },
+    {
+      "file": "64x64-32-colors.png",
+      "palette": "paleta_transporte32",
+      "case": "JPEG_95_420",
+      "symbols": 4096,
+      "symbol_errors": 1906,
+      "symbol_error_rate": 0.46533203125
+    },
+    {
+      "file": "64x64-32-colors.png",
+      "palette": "paleta_transporte32",
+      "case": "AWGN_4",
+      "symbols": 4096,
+      "symbol_errors": 0,
+      "symbol_error_rate": 0.0
+    },
+    {
+      "file": "64x64-32-colors.png",
+      "palette": "paleta_transporte32",
+      "case": "AWGN_8",
+      "symbols": 4096,
+      "symbol_errors": 0,
+      "symbol_error_rate": 0.0
+    }
+  ],
+  "transport_tests": [
+    {
+      "file": "128x128-32-colors.png",
+      "module_pixels": 1,
+      "case": "PNG_exato",
+      "payload_bytes": 7797,
+      "header_bytes": 41,
+      "symbols": 12541,
+      "symbol_errors": 0,
+      "symbol_error_rate": 0.0,
+      "bit_errors": 0,
+      "bit_error_rate": 0.0,
+      "sha256_valid_and_bytes_equal": true
+    },
+    {
+      "file": "128x128-32-colors.png",
+      "module_pixels": 1,
+      "case": "JPEG_95_444",
+      "payload_bytes": 7797,
+      "header_bytes": 41,
+      "symbols": 12541,
+      "symbol_errors": 0,
+      "symbol_error_rate": 0.0,
+      "bit_errors": 0,
+      "bit_error_rate": 0.0,
+      "sha256_valid_and_bytes_equal": true
+    },
+    {
+      "file": "128x128-32-colors.png",
+      "module_pixels": 1,
+      "case": "JPEG_95_420",
+      "payload_bytes": 7797,
+      "header_bytes": 41,
+      "symbols": 12541,
+      "symbol_errors": 9297,
+      "symbol_error_rate": 0.741328442707918,
+      "bit_errors": 19720,
+      "bit_error_rate": 0.3144884777928395,
+      "sha256_valid_and_bytes_equal": false
+    },
+    {
+      "file": "128x128-32-colors.png",
+      "module_pixels": 1,
+      "case": "JPEG_75_444",
+      "payload_bytes": 7797,
+      "header_bytes": 41,
+      "symbols": 12541,
+      "symbol_errors": 438,
+      "symbol_error_rate": 0.03492544454190256,
+      "bit_errors": 565,
+      "bit_error_rate": 0.009010445737979428,
+      "sha256_valid_and_bytes_equal": false
+    },
+    {
+      "file": "128x128-32-colors.png",
+      "module_pixels": 1,
+      "case": "JPEG_75_420",
+      "payload_bytes": 7797,
+      "header_bytes": 41,
+      "symbols": 12541,
+      "symbol_errors": 9530,
+      "symbol_error_rate": 0.7599075033888845,
+      "bit_errors": 19989,
+      "bit_error_rate": 0.318778406825612,
+      "sha256_valid_and_bytes_equal": false
+    },
+    {
+      "file": "128x128-32-colors.png",
+      "module_pixels": 1,
+      "case": "AWGN_8",
+      "payload_bytes": 7797,
+      "header_bytes": 41,
+      "symbols": 12541,
+      "symbol_errors": 0,
+      "symbol_error_rate": 0.0,
+      "bit_errors": 0,
+      "bit_error_rate": 0.0,
+      "sha256_valid_and_bytes_equal": true
+    },
+    {
+      "file": "128x128-32-colors.png",
+      "module_pixels": 1,
+      "case": "AWGN_16",
+      "payload_bytes": 7797,
+      "header_bytes": 41,
+      "symbols": 12541,
+      "symbol_errors": 156,
+      "symbol_error_rate": 0.012439199425883103,
+      "bit_errors": 207,
+      "bit_error_rate": 0.003301172155330516,
+      "sha256_valid_and_bytes_equal": false
+    },
+    {
+      "file": "128x128-32-colors.png",
+      "module_pixels": 1,
+      "case": "blur_0.6px",
+      "payload_bytes": 7797,
+      "header_bytes": 41,
+      "symbols": 12541,
+      "symbol_errors": 10147,
+      "symbol_error_rate": 0.8091061318874093,
+      "bit_errors": 17033,
+      "bit_error_rate": 0.27163703053982935,
+      "sha256_valid_and_bytes_equal": false
+    },
+    {
+      "file": "128x128-32-colors.png",
+      "module_pixels": 2,
+      "case": "PNG_exato",
+      "payload_bytes": 7797,
+      "header_bytes": 41,
+      "symbols": 12541,
+      "symbol_errors": 0,
+      "symbol_error_rate": 0.0,
+      "bit_errors": 0,
+      "bit_error_rate": 0.0,
+      "sha256_valid_and_bytes_equal": true
+    },
+    {
+      "file": "128x128-32-colors.png",
+      "module_pixels": 2,
+      "case": "JPEG_95_444",
+      "payload_bytes": 7797,
+      "header_bytes": 41,
+      "symbols": 12541,
+      "symbol_errors": 0,
+      "symbol_error_rate": 0.0,
+      "bit_errors": 0,
+      "bit_error_rate": 0.0,
+      "sha256_valid_and_bytes_equal": true
+    },
+    {
+      "file": "128x128-32-colors.png",
+      "module_pixels": 2,
+      "case": "JPEG_95_420",
+      "payload_bytes": 7797,
+      "header_bytes": 41,
+      "symbols": 12541,
+      "symbol_errors": 4256,
+      "symbol_error_rate": 0.3393668766446057,
+      "bit_errors": 6364,
+      "bit_error_rate": 0.10149110916194881,
+      "sha256_valid_and_bytes_equal": false
+    },
+    {
+      "file": "128x128-32-colors.png",
+      "module_pixels": 2,
+      "case": "JPEG_75_444",
+      "payload_bytes": 7797,
+      "header_bytes": 41,
+      "symbols": 12541,
+      "symbol_errors": 0,
+      "symbol_error_rate": 0.0,
+      "bit_errors": 0,
+      "bit_error_rate": 0.0,
+      "sha256_valid_and_bytes_equal": true
+    },
+    {
+      "file": "128x128-32-colors.png",
+      "module_pixels": 2,
+      "case": "JPEG_75_420",
+      "payload_bytes": 7797,
+      "header_bytes": 41,
+      "symbols": 12541,
+      "symbol_errors": 4544,
+      "symbol_error_rate": 0.3623315525077745,
+      "bit_errors": 6894,
+      "bit_error_rate": 0.10994338569492065,
+      "sha256_valid_and_bytes_equal": false
+    },
+    {
+      "file": "128x128-32-colors.png",
+      "module_pixels": 2,
+      "case": "AWGN_8",
+      "payload_bytes": 7797,
+      "header_bytes": 41,
+      "symbols": 12541,
+      "symbol_errors": 0,
+      "symbol_error_rate": 0.0,
+      "bit_errors": 0,
+      "bit_error_rate": 0.0,
+      "sha256_valid_and_bytes_equal": true
+    },
+    {
+      "file": "128x128-32-colors.png",
+      "module_pixels": 2,
+      "case": "AWGN_16",
+      "payload_bytes": 7797,
+      "header_bytes": 41,
+      "symbols": 12541,
+      "symbol_errors": 0,
+      "symbol_error_rate": 0.0,
+      "bit_errors": 0,
+      "bit_error_rate": 0.0,
+      "sha256_valid_and_bytes_equal": true
+    },
+    {
+      "file": "128x128-32-colors.png",
+      "module_pixels": 2,
+      "case": "blur_0.6px",
+      "payload_bytes": 7797,
+      "header_bytes": 41,
+      "symbols": 12541,
+      "symbol_errors": 4870,
+      "symbol_error_rate": 0.38832628976955585,
+      "bit_errors": 5669,
+      "bit_error_rate": 0.09040746351965553,
+      "sha256_valid_and_bytes_equal": false
+    },
+    {
+      "file": "128x128-32-colors.png",
+      "module_pixels": 4,
+      "case": "PNG_exato",
+      "payload_bytes": 7797,
+      "header_bytes": 41,
+      "symbols": 12541,
+      "symbol_errors": 0,
+      "symbol_error_rate": 0.0,
+      "bit_errors": 0,
+      "bit_error_rate": 0.0,
+      "sha256_valid_and_bytes_equal": true
+    },
+    {
+      "file": "128x128-32-colors.png",
+      "module_pixels": 4,
+      "case": "JPEG_95_444",
+      "payload_bytes": 7797,
+      "header_bytes": 41,
+      "symbols": 12541,
+      "symbol_errors": 0,
+      "symbol_error_rate": 0.0,
+      "bit_errors": 0,
+      "bit_error_rate": 0.0,
+      "sha256_valid_and_bytes_equal": true
+    },
+    {
+      "file": "128x128-32-colors.png",
+      "module_pixels": 4,
+      "case": "JPEG_95_420",
+      "payload_bytes": 7797,
+      "header_bytes": 41,
+      "symbols": 12541,
+      "symbol_errors": 0,
+      "symbol_error_rate": 0.0,
+      "bit_errors": 0,
+      "bit_error_rate": 0.0,
+      "sha256_valid_and_bytes_equal": true
+    },
+    {
+      "file": "128x128-32-colors.png",
+      "module_pixels": 4,
+      "case": "JPEG_75_444",
+      "payload_bytes": 7797,
+      "header_bytes": 41,
+      "symbols": 12541,
+      "symbol_errors": 0,
+      "symbol_error_rate": 0.0,
+      "bit_errors": 0,
+      "bit_error_rate": 0.0,
+      "sha256_valid_and_bytes_equal": true
+    },
+    {
+      "file": "128x128-32-colors.png",
+      "module_pixels": 4,
+      "case": "JPEG_75_420",
+      "payload_bytes": 7797,
+      "header_bytes": 41,
+      "symbols": 12541,
+      "symbol_errors": 0,
+      "symbol_error_rate": 0.0,
+      "bit_errors": 0,
+      "bit_error_rate": 0.0,
+      "sha256_valid_and_bytes_equal": true
+    },
+    {
+      "file": "128x128-32-colors.png",
+      "module_pixels": 4,
+      "case": "AWGN_8",
+      "payload_bytes": 7797,
+      "header_bytes": 41,
+      "symbols": 12541,
+      "symbol_errors": 0,
+      "symbol_error_rate": 0.0,
+      "bit_errors": 0,
+      "bit_error_rate": 0.0,
+      "sha256_valid_and_bytes_equal": true
+    },
+    {
+      "file": "128x128-32-colors.png",
+      "module_pixels": 4,
+      "case": "AWGN_16",
+      "payload_bytes": 7797,
+      "header_bytes": 41,
+      "symbols": 12541,
+      "symbol_errors": 0,
+      "symbol_error_rate": 0.0,
+      "bit_errors": 0,
+      "bit_error_rate": 0.0,
+      "sha256_valid_and_bytes_equal": true
+    },
+    {
+      "file": "128x128-32-colors.png",
+      "module_pixels": 4,
+      "case": "blur_0.6px",
+      "payload_bytes": 7797,
+      "header_bytes": 41,
+      "symbols": 12541,
+      "symbol_errors": 0,
+      "symbol_error_rate": 0.0,
+      "bit_errors": 0,
+      "bit_error_rate": 0.0,
+      "sha256_valid_and_bytes_equal": true
+    },
+    {
+      "file": "64x64-32-colors.png",
+      "module_pixels": 1,
+      "case": "PNG_exato",
+      "payload_bytes": 2148,
+      "header_bytes": 41,
+      "symbols": 3503,
+      "symbol_errors": 0,
+      "symbol_error_rate": 0.0,
+      "bit_errors": 0,
+      "bit_error_rate": 0.0,
+      "sha256_valid_and_bytes_equal": true
+    },
+    {
+      "file": "64x64-32-colors.png",
+      "module_pixels": 1,
+      "case": "JPEG_95_444",
+      "payload_bytes": 2148,
+      "header_bytes": 41,
+      "symbols": 3503,
+      "symbol_errors": 0,
+      "symbol_error_rate": 0.0,
+      "bit_errors": 0,
+      "bit_error_rate": 0.0,
+      "sha256_valid_and_bytes_equal": true
+    },
+    {
+      "file": "64x64-32-colors.png",
+      "module_pixels": 1,
+      "case": "JPEG_95_420",
+      "payload_bytes": 2148,
+      "header_bytes": 41,
+      "symbols": 3503,
+      "symbol_errors": 2554,
+      "symbol_error_rate": 0.7290893519840137,
+      "bit_errors": 5434,
+      "bit_error_rate": 0.3102483585498144,
+      "sha256_valid_and_bytes_equal": false
+    },
+    {
+      "file": "64x64-32-colors.png",
+      "module_pixels": 1,
+      "case": "JPEG_75_444",
+      "payload_bytes": 2148,
+      "header_bytes": 41,
+      "symbols": 3503,
+      "symbol_errors": 132,
+      "symbol_error_rate": 0.03768198686839851,
+      "bit_errors": 176,
+      "bit_error_rate": 0.010048529831572938,
+      "sha256_valid_and_bytes_equal": false
+    },
+    {
+      "file": "64x64-32-colors.png",
+      "module_pixels": 1,
+      "case": "JPEG_75_420",
+      "payload_bytes": 2148,
+      "header_bytes": 41,
+      "symbols": 3503,
+      "symbol_errors": 2634,
+      "symbol_error_rate": 0.7519269197830432,
+      "bit_errors": 5557,
+      "bit_error_rate": 0.317270910648016,
+      "sha256_valid_and_bytes_equal": false
+    },
+    {
+      "file": "64x64-32-colors.png",
+      "module_pixels": 1,
+      "case": "AWGN_8",
+      "payload_bytes": 2148,
+      "header_bytes": 41,
+      "symbols": 3503,
+      "symbol_errors": 0,
+      "symbol_error_rate": 0.0,
+      "bit_errors": 0,
+      "bit_error_rate": 0.0,
+      "sha256_valid_and_bytes_equal": true
+    },
+    {
+      "file": "64x64-32-colors.png",
+      "module_pixels": 1,
+      "case": "AWGN_16",
+      "payload_bytes": 2148,
+      "header_bytes": 41,
+      "symbols": 3503,
+      "symbol_errors": 41,
+      "symbol_error_rate": 0.011704253497002569,
+      "bit_errors": 51,
+      "bit_error_rate": 0.002911789894376249,
+      "sha256_valid_and_bytes_equal": false
+    },
+    {
+      "file": "64x64-32-colors.png",
+      "module_pixels": 1,
+      "case": "blur_0.6px",
+      "payload_bytes": 2148,
+      "header_bytes": 41,
+      "symbols": 3503,
+      "symbol_errors": 2808,
+      "symbol_error_rate": 0.8015986297459321,
+      "bit_errors": 4728,
+      "bit_error_rate": 0.26994005138452754,
+      "sha256_valid_and_bytes_equal": false
+    },
+    {
+      "file": "64x64-32-colors.png",
+      "module_pixels": 2,
+      "case": "PNG_exato",
+      "payload_bytes": 2148,
+      "header_bytes": 41,
+      "symbols": 3503,
+      "symbol_errors": 0,
+      "symbol_error_rate": 0.0,
+      "bit_errors": 0,
+      "bit_error_rate": 0.0,
+      "sha256_valid_and_bytes_equal": true
+    },
+    {
+      "file": "64x64-32-colors.png",
+      "module_pixels": 2,
+      "case": "JPEG_95_444",
+      "payload_bytes": 2148,
+      "header_bytes": 41,
+      "symbols": 3503,
+      "symbol_errors": 0,
+      "symbol_error_rate": 0.0,
+      "bit_errors": 0,
+      "bit_error_rate": 0.0,
+      "sha256_valid_and_bytes_equal": true
+    },
+    {
+      "file": "64x64-32-colors.png",
+      "module_pixels": 2,
+      "case": "JPEG_95_420",
+      "payload_bytes": 2148,
+      "header_bytes": 41,
+      "symbols": 3503,
+      "symbol_errors": 1206,
+      "symbol_error_rate": 0.34427633457036827,
+      "bit_errors": 1814,
+      "bit_error_rate": 0.10356836996859835,
+      "sha256_valid_and_bytes_equal": false
+    },
+    {
+      "file": "64x64-32-colors.png",
+      "module_pixels": 2,
+      "case": "JPEG_75_444",
+      "payload_bytes": 2148,
+      "header_bytes": 41,
+      "symbols": 3503,
+      "symbol_errors": 0,
+      "symbol_error_rate": 0.0,
+      "bit_errors": 0,
+      "bit_error_rate": 0.0,
+      "sha256_valid_and_bytes_equal": true
+    },
+    {
+      "file": "64x64-32-colors.png",
+      "module_pixels": 2,
+      "case": "JPEG_75_420",
+      "payload_bytes": 2148,
+      "header_bytes": 41,
+      "symbols": 3503,
+      "symbol_errors": 1278,
+      "symbol_error_rate": 0.3648301455894947,
+      "bit_errors": 1971,
+      "bit_error_rate": 0.11253211532971738,
+      "sha256_valid_and_bytes_equal": false
+    },
+    {
+      "file": "64x64-32-colors.png",
+      "module_pixels": 2,
+      "case": "AWGN_8",
+      "payload_bytes": 2148,
+      "header_bytes": 41,
+      "symbols": 3503,
+      "symbol_errors": 0,
+      "symbol_error_rate": 0.0,
+      "bit_errors": 0,
+      "bit_error_rate": 0.0,
+      "sha256_valid_and_bytes_equal": true
+    },
+    {
+      "file": "64x64-32-colors.png",
+      "module_pixels": 2,
+      "case": "AWGN_16",
+      "payload_bytes": 2148,
+      "header_bytes": 41,
+      "symbols": 3503,
+      "symbol_errors": 0,
+      "symbol_error_rate": 0.0,
+      "bit_errors": 0,
+      "bit_error_rate": 0.0,
+      "sha256_valid_and_bytes_equal": true
+    },
+    {
+      "file": "64x64-32-colors.png",
+      "module_pixels": 2,
+      "case": "blur_0.6px",
+      "payload_bytes": 2148,
+      "header_bytes": 41,
+      "symbols": 3503,
+      "symbol_errors": 1376,
+      "symbol_error_rate": 0.3928061661433057,
+      "bit_errors": 1619,
+      "bit_error_rate": 0.09243505566657151,
+      "sha256_valid_and_bytes_equal": false
+    },
+    {
+      "file": "64x64-32-colors.png",
+      "module_pixels": 4,
+      "case": "PNG_exato",
+      "payload_bytes": 2148,
+      "header_bytes": 41,
+      "symbols": 3503,
+      "symbol_errors": 0,
+      "symbol_error_rate": 0.0,
+      "bit_errors": 0,
+      "bit_error_rate": 0.0,
+      "sha256_valid_and_bytes_equal": true
+    },
+    {
+      "file": "64x64-32-colors.png",
+      "module_pixels": 4,
+      "case": "JPEG_95_444",
+      "payload_bytes": 2148,
+      "header_bytes": 41,
+      "symbols": 3503,
+      "symbol_errors": 0,
+      "symbol_error_rate": 0.0,
+      "bit_errors": 0,
+      "bit_error_rate": 0.0,
+      "sha256_valid_and_bytes_equal": true
+    },
+    {
+      "file": "64x64-32-colors.png",
+      "module_pixels": 4,
+      "case": "JPEG_95_420",
+      "payload_bytes": 2148,
+      "header_bytes": 41,
+      "symbols": 3503,
+      "symbol_errors": 0,
+      "symbol_error_rate": 0.0,
+      "bit_errors": 0,
+      "bit_error_rate": 0.0,
+      "sha256_valid_and_bytes_equal": true
+    },
+    {
+      "file": "64x64-32-colors.png",
+      "module_pixels": 4,
+      "case": "JPEG_75_444",
+      "payload_bytes": 2148,
+      "header_bytes": 41,
+      "symbols": 3503,
+      "symbol_errors": 0,
+      "symbol_error_rate": 0.0,
+      "bit_errors": 0,
+      "bit_error_rate": 0.0,
+      "sha256_valid_and_bytes_equal": true
+    },
+    {
+      "file": "64x64-32-colors.png",
+      "module_pixels": 4,
+      "case": "JPEG_75_420",
+      "payload_bytes": 2148,
+      "header_bytes": 41,
+      "symbols": 3503,
+      "symbol_errors": 0,
+      "symbol_error_rate": 0.0,
+      "bit_errors": 0,
+      "bit_error_rate": 0.0,
+      "sha256_valid_and_bytes_equal": true
+    },
+    {
+      "file": "64x64-32-colors.png",
+      "module_pixels": 4,
+      "case": "AWGN_8",
+      "payload_bytes": 2148,
+      "header_bytes": 41,
+      "symbols": 3503,
+      "symbol_errors": 0,
+      "symbol_error_rate": 0.0,
+      "bit_errors": 0,
+      "bit_error_rate": 0.0,
+      "sha256_valid_and_bytes_equal": true
+    },
+    {
+      "file": "64x64-32-colors.png",
+      "module_pixels": 4,
+      "case": "AWGN_16",
+      "payload_bytes": 2148,
+      "header_bytes": 41,
+      "symbols": 3503,
+      "symbol_errors": 0,
+      "symbol_error_rate": 0.0,
+      "bit_errors": 0,
+      "bit_error_rate": 0.0,
+      "sha256_valid_and_bytes_equal": true
+    },
+    {
+      "file": "64x64-32-colors.png",
+      "module_pixels": 4,
+      "case": "blur_0.6px",
+      "payload_bytes": 2148,
+      "header_bytes": 41,
+      "symbols": 3503,
+      "symbol_errors": 0,
+      "symbol_error_rate": 0.0,
+      "bit_errors": 0,
+      "bit_error_rate": 0.0,
+      "sha256_valid_and_bytes_equal": true
+    }
+  ],
+  "calibration_tests": [
+    {
+      "file": "128x128-32-colors.png",
+      "calibration": "sem_pilotos",
+      "module_pixels": 4,
+      "symbols": 12541,
+      "symbol_errors": 2178,
+      "symbol_error_rate": 0.1736703612152141,
+      "sha256_valid_and_bytes_equal": false
+    },
+    {
+      "file": "128x128-32-colors.png",
+      "calibration": "com_pilotos",
+      "module_pixels": 4,
+      "symbols": 12541,
+      "symbol_errors": 0,
+      "symbol_error_rate": 0.0,
+      "sha256_valid_and_bytes_equal": true
+    },
+    {
+      "file": "64x64-32-colors.png",
+      "calibration": "sem_pilotos",
+      "module_pixels": 4,
+      "symbols": 3503,
+      "symbol_errors": 602,
+      "symbol_error_rate": 0.17185269768769626,
+      "sha256_valid_and_bytes_equal": false
+    },
+    {
+      "file": "64x64-32-colors.png",
+      "calibration": "com_pilotos",
+      "module_pixels": 4,
+      "symbols": 3503,
+      "symbol_errors": 0,
+      "symbol_error_rate": 0.0,
+      "sha256_valid_and_bytes_equal": true
+    }
+  ],
+  "constellation_tests": [
+    {
+      "colors": 8,
+      "module_pixels": 1,
+      "case": "JPEG_95_444",
+      "symbols": 16384,
+      "symbol_errors": 0,
+      "symbol_error_rate": 0.0,
+      "minimum_rgb_distance": 255.0
+    },
+    {
+      "colors": 8,
+      "module_pixels": 1,
+      "case": "JPEG_95_420",
+      "symbols": 16384,
+      "symbol_errors": 10457,
+      "symbol_error_rate": 0.63824462890625,
+      "minimum_rgb_distance": 255.0
+    },
+    {
+      "colors": 8,
+      "module_pixels": 1,
+      "case": "AWGN_16",
+      "symbols": 16384,
+      "symbol_errors": 0,
+      "symbol_error_rate": 0.0,
+      "minimum_rgb_distance": 255.0
+    },
+    {
+      "colors": 8,
+      "module_pixels": 1,
+      "case": "blur_0.6px",
+      "symbols": 16384,
+      "symbol_errors": 1357,
+      "symbol_error_rate": 0.08282470703125,
+      "minimum_rgb_distance": 255.0
+    },
+    {
+      "colors": 8,
+      "module_pixels": 2,
+      "case": "JPEG_95_444",
+      "symbols": 16384,
+      "symbol_errors": 0,
+      "symbol_error_rate": 0.0,
+      "minimum_rgb_distance": 255.0
+    },
+    {
+      "colors": 8,
+      "module_pixels": 2,
+      "case": "JPEG_95_420",
+      "symbols": 16384,
+      "symbol_errors": 728,
+      "symbol_error_rate": 0.04443359375,
+      "minimum_rgb_distance": 255.0
+    },
+    {
+      "colors": 8,
+      "module_pixels": 2,
+      "case": "AWGN_16",
+      "symbols": 16384,
+      "symbol_errors": 0,
+      "symbol_error_rate": 0.0,
+      "minimum_rgb_distance": 255.0
+    },
+    {
+      "colors": 8,
+      "module_pixels": 2,
+      "case": "blur_0.6px",
+      "symbols": 16384,
+      "symbol_errors": 0,
+      "symbol_error_rate": 0.0,
+      "minimum_rgb_distance": 255.0
+    },
+    {
+      "colors": 8,
+      "module_pixels": 4,
+      "case": "JPEG_95_444",
+      "symbols": 16384,
+      "symbol_errors": 0,
+      "symbol_error_rate": 0.0,
+      "minimum_rgb_distance": 255.0
+    },
+    {
+      "colors": 8,
+      "module_pixels": 4,
+      "case": "JPEG_95_420",
+      "symbols": 16384,
+      "symbol_errors": 0,
+      "symbol_error_rate": 0.0,
+      "minimum_rgb_distance": 255.0
+    },
+    {
+      "colors": 8,
+      "module_pixels": 4,
+      "case": "AWGN_16",
+      "symbols": 16384,
+      "symbol_errors": 0,
+      "symbol_error_rate": 0.0,
+      "minimum_rgb_distance": 255.0
+    },
+    {
+      "colors": 8,
+      "module_pixels": 4,
+      "case": "blur_0.6px",
+      "symbols": 16384,
+      "symbol_errors": 0,
+      "symbol_error_rate": 0.0,
+      "minimum_rgb_distance": 255.0
+    },
+    {
+      "colors": 16,
+      "module_pixels": 1,
+      "case": "JPEG_95_444",
+      "symbols": 16384,
+      "symbol_errors": 0,
+      "symbol_error_rate": 0.0,
+      "minimum_rgb_distance": 85.0
+    },
+    {
+      "colors": 16,
+      "module_pixels": 1,
+      "case": "JPEG_95_420",
+      "symbols": 16384,
+      "symbol_errors": 13347,
+      "symbol_error_rate": 0.81463623046875,
+      "minimum_rgb_distance": 85.0
+    },
+    {
+      "colors": 16,
+      "module_pixels": 1,
+      "case": "AWGN_16",
+      "symbols": 16384,
+      "symbol_errors": 101,
+      "symbol_error_rate": 0.00616455078125,
+      "minimum_rgb_distance": 85.0
+    },
+    {
+      "colors": 16,
+      "module_pixels": 1,
+      "case": "blur_0.6px",
+      "symbols": 16384,
+      "symbol_errors": 9396,
+      "symbol_error_rate": 0.573486328125,
+      "minimum_rgb_distance": 85.0
+    },
+    {
+      "colors": 16,
+      "module_pixels": 2,
+      "case": "JPEG_95_444",
+      "symbols": 16384,
+      "symbol_errors": 0,
+      "symbol_error_rate": 0.0,
+      "minimum_rgb_distance": 85.0
+    },
+    {
+      "colors": 16,
+      "module_pixels": 2,
+      "case": "JPEG_95_420",
+      "symbols": 16384,
+      "symbol_errors": 7188,
+      "symbol_error_rate": 0.438720703125,
+      "minimum_rgb_distance": 85.0
+    },
+    {
+      "colors": 16,
+      "module_pixels": 2,
+      "case": "AWGN_16",
+      "symbols": 16384,
+      "symbol_errors": 0,
+      "symbol_error_rate": 0.0,
+      "minimum_rgb_distance": 85.0
+    },
+    {
+      "colors": 16,
+      "module_pixels": 2,
+      "case": "blur_0.6px",
+      "symbols": 16384,
+      "symbol_errors": 3490,
+      "symbol_error_rate": 0.2130126953125,
+      "minimum_rgb_distance": 85.0
+    },
+    {
+      "colors": 16,
+      "module_pixels": 4,
+      "case": "JPEG_95_444",
+      "symbols": 16384,
+      "symbol_errors": 0,
+      "symbol_error_rate": 0.0,
+      "minimum_rgb_distance": 85.0
+    },
+    {
+      "colors": 16,
+      "module_pixels": 4,
+      "case": "JPEG_95_420",
+      "symbols": 16384,
+      "symbol_errors": 0,
+      "symbol_error_rate": 0.0,
+      "minimum_rgb_distance": 85.0
+    },
+    {
+      "colors": 16,
+      "module_pixels": 4,
+      "case": "AWGN_16",
+      "symbols": 16384,
+      "symbol_errors": 0,
+      "symbol_error_rate": 0.0,
+      "minimum_rgb_distance": 85.0
+    },
+    {
+      "colors": 16,
+      "module_pixels": 4,
+      "case": "blur_0.6px",
+      "symbols": 16384,
+      "symbol_errors": 0,
+      "symbol_error_rate": 0.0,
+      "minimum_rgb_distance": 85.0
+    },
+    {
+      "colors": 32,
+      "module_pixels": 1,
+      "case": "JPEG_95_444",
+      "symbols": 16384,
+      "symbol_errors": 0,
+      "symbol_error_rate": 0.0,
+      "minimum_rgb_distance": 85.0
+    },
+    {
+      "colors": 32,
+      "module_pixels": 1,
+      "case": "JPEG_95_420",
+      "symbols": 16384,
+      "symbol_errors": 12430,
+      "symbol_error_rate": 0.7586669921875,
+      "minimum_rgb_distance": 85.0
+    },
+    {
+      "colors": 32,
+      "module_pixels": 1,
+      "case": "AWGN_16",
+      "symbols": 16384,
+      "symbol_errors": 209,
+      "symbol_error_rate": 0.01275634765625,
+      "minimum_rgb_distance": 85.0
+    },
+    {
+      "colors": 32,
+      "module_pixels": 1,
+      "case": "blur_0.6px",
+      "symbols": 16384,
+      "symbol_errors": 13119,
+      "symbol_error_rate": 0.80072021484375,
+      "minimum_rgb_distance": 85.0
+    },
+    {
+      "colors": 32,
+      "module_pixels": 2,
+      "case": "JPEG_95_444",
+      "symbols": 16384,
+      "symbol_errors": 0,
+      "symbol_error_rate": 0.0,
+      "minimum_rgb_distance": 85.0
+    },
+    {
+      "colors": 32,
+      "module_pixels": 2,
+      "case": "JPEG_95_420",
+      "symbols": 16384,
+      "symbol_errors": 5674,
+      "symbol_error_rate": 0.3463134765625,
+      "minimum_rgb_distance": 85.0
+    },
+    {
+      "colors": 32,
+      "module_pixels": 2,
+      "case": "AWGN_16",
+      "symbols": 16384,
+      "symbol_errors": 0,
+      "symbol_error_rate": 0.0,
+      "minimum_rgb_distance": 85.0
+    },
+    {
+      "colors": 32,
+      "module_pixels": 2,
+      "case": "blur_0.6px",
+      "symbols": 16384,
+      "symbol_errors": 6151,
+      "symbol_error_rate": 0.37542724609375,
+      "minimum_rgb_distance": 85.0
+    },
+    {
+      "colors": 32,
+      "module_pixels": 4,
+      "case": "JPEG_95_444",
+      "symbols": 16384,
+      "symbol_errors": 0,
+      "symbol_error_rate": 0.0,
+      "minimum_rgb_distance": 85.0
+    },
+    {
+      "colors": 32,
+      "module_pixels": 4,
+      "case": "JPEG_95_420",
+      "symbols": 16384,
+      "symbol_errors": 0,
+      "symbol_error_rate": 0.0,
+      "minimum_rgb_distance": 85.0
+    },
+    {
+      "colors": 32,
+      "module_pixels": 4,
+      "case": "AWGN_16",
+      "symbols": 16384,
+      "symbol_errors": 0,
+      "symbol_error_rate": 0.0,
+      "minimum_rgb_distance": 85.0
+    },
+    {
+      "colors": 32,
+      "module_pixels": 4,
+      "case": "blur_0.6px",
+      "symbols": 16384,
+      "symbol_errors": 0,
+      "symbol_error_rate": 0.0,
+      "minimum_rgb_distance": 85.0
+    },
+    {
+      "colors": 64,
+      "module_pixels": 1,
+      "case": "JPEG_95_444",
+      "symbols": 16384,
+      "symbol_errors": 0,
+      "symbol_error_rate": 0.0,
+      "minimum_rgb_distance": 85.0
+    },
+    {
+      "colors": 64,
+      "module_pixels": 1,
+      "case": "JPEG_95_420",
+      "symbols": 16384,
+      "symbol_errors": 14336,
+      "symbol_error_rate": 0.875,
+      "minimum_rgb_distance": 85.0
+    },
+    {
+      "colors": 64,
+      "module_pixels": 1,
+      "case": "AWGN_16",
+      "symbols": 16384,
+      "symbol_errors": 288,
+      "symbol_error_rate": 0.017578125,
+      "minimum_rgb_distance": 85.0
+    },
+    {
+      "colors": 64,
+      "module_pixels": 1,
+      "case": "blur_0.6px",
+      "symbols": 16384,
+      "symbol_errors": 14867,
+      "symbol_error_rate": 0.90740966796875,
+      "minimum_rgb_distance": 85.0
+    },
+    {
+      "colors": 64,
+      "module_pixels": 2,
+      "case": "JPEG_95_444",
+      "symbols": 16384,
+      "symbol_errors": 0,
+      "symbol_error_rate": 0.0,
+      "minimum_rgb_distance": 85.0
+    },
+    {
+      "colors": 64,
+      "module_pixels": 2,
+      "case": "JPEG_95_420",
+      "symbols": 16384,
+      "symbol_errors": 10159,
+      "symbol_error_rate": 0.62005615234375,
+      "minimum_rgb_distance": 85.0
+    },
+    {
+      "colors": 64,
+      "module_pixels": 2,
+      "case": "AWGN_16",
+      "symbols": 16384,
+      "symbol_errors": 0,
+      "symbol_error_rate": 0.0,
+      "minimum_rgb_distance": 85.0
+    },
+    {
+      "colors": 64,
+      "module_pixels": 2,
+      "case": "blur_0.6px",
+      "symbols": 16384,
+      "symbol_errors": 8388,
+      "symbol_error_rate": 0.511962890625,
+      "minimum_rgb_distance": 85.0
+    },
+    {
+      "colors": 64,
+      "module_pixels": 4,
+      "case": "JPEG_95_444",
+      "symbols": 16384,
+      "symbol_errors": 0,
+      "symbol_error_rate": 0.0,
+      "minimum_rgb_distance": 85.0
+    },
+    {
+      "colors": 64,
+      "module_pixels": 4,
+      "case": "JPEG_95_420",
+      "symbols": 16384,
+      "symbol_errors": 0,
+      "symbol_error_rate": 0.0,
+      "minimum_rgb_distance": 85.0
+    },
+    {
+      "colors": 64,
+      "module_pixels": 4,
+      "case": "AWGN_16",
+      "symbols": 16384,
+      "symbol_errors": 0,
+      "symbol_error_rate": 0.0,
+      "minimum_rgb_distance": 85.0
+    },
+    {
+      "colors": 64,
+      "module_pixels": 4,
+      "case": "blur_0.6px",
+      "symbols": 16384,
+      "symbol_errors": 0,
+      "symbol_error_rate": 0.0,
+      "minimum_rgb_distance": 85.0
+    },
+    {
+      "colors": 128,
+      "module_pixels": 1,
+      "case": "JPEG_95_444",
+      "symbols": 16384,
+      "symbol_errors": 0,
+      "symbol_error_rate": 0.0,
+      "minimum_rgb_distance": 36.0
+    },
+    {
+      "colors": 128,
+      "module_pixels": 1,
+      "case": "JPEG_95_420",
+      "symbols": 16384,
+      "symbol_errors": 15363,
+      "symbol_error_rate": 0.93768310546875,
+      "minimum_rgb_distance": 36.0
+    },
+    {
+      "colors": 128,
+      "module_pixels": 1,
+      "case": "AWGN_16",
+      "symbols": 16384,
+      "symbol_errors": 3874,
+      "symbol_error_rate": 0.2364501953125,
+      "minimum_rgb_distance": 36.0
+    },
+    {
+      "colors": 128,
+      "module_pixels": 1,
+      "case": "blur_0.6px",
+      "symbols": 16384,
+      "symbol_errors": 15625,
+      "symbol_error_rate": 0.95367431640625,
+      "minimum_rgb_distance": 36.0
+    },
+    {
+      "colors": 128,
+      "module_pixels": 2,
+      "case": "JPEG_95_444",
+      "symbols": 16384,
+      "symbol_errors": 0,
+      "symbol_error_rate": 0.0,
+      "minimum_rgb_distance": 36.0
+    },
+    {
+      "colors": 128,
+      "module_pixels": 2,
+      "case": "JPEG_95_420",
+      "symbols": 16384,
+      "symbol_errors": 13227,
+      "symbol_error_rate": 0.80731201171875,
+      "minimum_rgb_distance": 36.0
+    },
+    {
+      "colors": 128,
+      "module_pixels": 2,
+      "case": "AWGN_16",
+      "symbols": 16384,
+      "symbol_errors": 345,
+      "symbol_error_rate": 0.02105712890625,
+      "minimum_rgb_distance": 36.0
+    },
+    {
+      "colors": 128,
+      "module_pixels": 2,
+      "case": "blur_0.6px",
+      "symbols": 16384,
+      "symbol_errors": 12363,
+      "symbol_error_rate": 0.75457763671875,
+      "minimum_rgb_distance": 36.0
+    },
+    {
+      "colors": 128,
+      "module_pixels": 4,
+      "case": "JPEG_95_444",
+      "symbols": 16384,
+      "symbol_errors": 0,
+      "symbol_error_rate": 0.0,
+      "minimum_rgb_distance": 36.0
+    },
+    {
+      "colors": 128,
+      "module_pixels": 4,
+      "case": "JPEG_95_420",
+      "symbols": 16384,
+      "symbol_errors": 0,
+      "symbol_error_rate": 0.0,
+      "minimum_rgb_distance": 36.0
+    },
+    {
+      "colors": 128,
+      "module_pixels": 4,
+      "case": "AWGN_16",
+      "symbols": 16384,
+      "symbol_errors": 377,
+      "symbol_error_rate": 0.02301025390625,
+      "minimum_rgb_distance": 36.0
+    },
+    {
+      "colors": 128,
+      "module_pixels": 4,
+      "case": "blur_0.6px",
+      "symbols": 16384,
+      "symbol_errors": 0,
+      "symbol_error_rate": 0.0,
+      "minimum_rgb_distance": 36.0
+    },
+    {
+      "colors": 256,
+      "module_pixels": 1,
+      "case": "JPEG_95_444",
+      "symbols": 16384,
+      "symbol_errors": 0,
+      "symbol_error_rate": 0.0,
+      "minimum_rgb_distance": 36.0
+    },
+    {
+      "colors": 256,
+      "module_pixels": 1,
+      "case": "JPEG_95_420",
+      "symbols": 16384,
+      "symbol_errors": 15364,
+      "symbol_error_rate": 0.937744140625,
+      "minimum_rgb_distance": 36.0
+    },
+    {
+      "colors": 256,
+      "module_pixels": 1,
+      "case": "AWGN_16",
+      "symbols": 16384,
+      "symbol_errors": 6595,
+      "symbol_error_rate": 0.40252685546875,
+      "minimum_rgb_distance": 36.0
+    },
+    {
+      "colors": 256,
+      "module_pixels": 1,
+      "case": "blur_0.6px",
+      "symbols": 16384,
+      "symbol_errors": 16019,
+      "symbol_error_rate": 0.97772216796875,
+      "minimum_rgb_distance": 36.0
+    },
+    {
+      "colors": 256,
+      "module_pixels": 2,
+      "case": "JPEG_95_444",
+      "symbols": 16384,
+      "symbol_errors": 0,
+      "symbol_error_rate": 0.0,
+      "minimum_rgb_distance": 36.0
+    },
+    {
+      "colors": 256,
+      "module_pixels": 2,
+      "case": "JPEG_95_420",
+      "symbols": 16384,
+      "symbol_errors": 13009,
+      "symbol_error_rate": 0.79400634765625,
+      "minimum_rgb_distance": 36.0
+    },
+    {
+      "colors": 256,
+      "module_pixels": 2,
+      "case": "AWGN_16",
+      "symbols": 16384,
+      "symbol_errors": 658,
+      "symbol_error_rate": 0.0401611328125,
+      "minimum_rgb_distance": 36.0
+    },
+    {
+      "colors": 256,
+      "module_pixels": 2,
+      "case": "blur_0.6px",
+      "symbols": 16384,
+      "symbol_errors": 14352,
+      "symbol_error_rate": 0.8759765625,
+      "minimum_rgb_distance": 36.0
+    },
+    {
+      "colors": 256,
+      "module_pixels": 4,
+      "case": "JPEG_95_444",
+      "symbols": 16384,
+      "symbol_errors": 0,
+      "symbol_error_rate": 0.0,
+      "minimum_rgb_distance": 36.0
+    },
+    {
+      "colors": 256,
+      "module_pixels": 4,
+      "case": "JPEG_95_420",
+      "symbols": 16384,
+      "symbol_errors": 0,
+      "symbol_error_rate": 0.0,
+      "minimum_rgb_distance": 36.0
+    },
+    {
+      "colors": 256,
+      "module_pixels": 4,
+      "case": "AWGN_16",
+      "symbols": 16384,
+      "symbol_errors": 671,
+      "symbol_error_rate": 0.04095458984375,
+      "minimum_rgb_distance": 36.0
+    },
+    {
+      "colors": 256,
+      "module_pixels": 4,
+      "case": "blur_0.6px",
+      "symbols": 16384,
+      "symbol_errors": 0,
+      "symbol_error_rate": 0.0,
+      "minimum_rgb_distance": 36.0
+    }
+  ],
+  "capacity_calculations": [
+    {
+      "colors": 2,
+      "module_pixels": 1,
+      "cells": 33177600,
+      "ideal_bytes": 4147200.0,
+      "ideal_MB": 4.1472,
+      "illustrative_bytes_rate_0.8_utilization_0.9": 2985984.0
+    },
+    {
+      "colors": 2,
+      "module_pixels": 2,
+      "cells": 8294400,
+      "ideal_bytes": 1036800.0,
+      "ideal_MB": 1.0368,
+      "illustrative_bytes_rate_0.8_utilization_0.9": 746496.0
+    },
+    {
+      "colors": 2,
+      "module_pixels": 4,
+      "cells": 2073600,
+      "ideal_bytes": 259200.0,
+      "ideal_MB": 0.2592,
+      "illustrative_bytes_rate_0.8_utilization_0.9": 186624.0
+    },
+    {
+      "colors": 2,
+      "module_pixels": 8,
+      "cells": 518400,
+      "ideal_bytes": 64800.0,
+      "ideal_MB": 0.0648,
+      "illustrative_bytes_rate_0.8_utilization_0.9": 46656.0
+    },
+    {
+      "colors": 8,
+      "module_pixels": 1,
+      "cells": 33177600,
+      "ideal_bytes": 12441600.0,
+      "ideal_MB": 12.4416,
+      "illustrative_bytes_rate_0.8_utilization_0.9": 8957952.0
+    },
+    {
+      "colors": 8,
+      "module_pixels": 2,
+      "cells": 8294400,
+      "ideal_bytes": 3110400.0,
+      "ideal_MB": 3.1104,
+      "illustrative_bytes_rate_0.8_utilization_0.9": 2239488.0
+    },
+    {
+      "colors": 8,
+      "module_pixels": 4,
+      "cells": 2073600,
+      "ideal_bytes": 777600.0,
+      "ideal_MB": 0.7776,
+      "illustrative_bytes_rate_0.8_utilization_0.9": 559872.0
+    },
+    {
+      "colors": 8,
+      "module_pixels": 8,
+      "cells": 518400,
+      "ideal_bytes": 194400.0,
+      "ideal_MB": 0.1944,
+      "illustrative_bytes_rate_0.8_utilization_0.9": 139968.0
+    },
+    {
+      "colors": 16,
+      "module_pixels": 1,
+      "cells": 33177600,
+      "ideal_bytes": 16588800.0,
+      "ideal_MB": 16.5888,
+      "illustrative_bytes_rate_0.8_utilization_0.9": 11943936.0
+    },
+    {
+      "colors": 16,
+      "module_pixels": 2,
+      "cells": 8294400,
+      "ideal_bytes": 4147200.0,
+      "ideal_MB": 4.1472,
+      "illustrative_bytes_rate_0.8_utilization_0.9": 2985984.0
+    },
+    {
+      "colors": 16,
+      "module_pixels": 4,
+      "cells": 2073600,
+      "ideal_bytes": 1036800.0,
+      "ideal_MB": 1.0368,
+      "illustrative_bytes_rate_0.8_utilization_0.9": 746496.0
+    },
+    {
+      "colors": 16,
+      "module_pixels": 8,
+      "cells": 518400,
+      "ideal_bytes": 259200.0,
+      "ideal_MB": 0.2592,
+      "illustrative_bytes_rate_0.8_utilization_0.9": 186624.0
+    },
+    {
+      "colors": 32,
+      "module_pixels": 1,
+      "cells": 33177600,
+      "ideal_bytes": 20736000.0,
+      "ideal_MB": 20.736,
+      "illustrative_bytes_rate_0.8_utilization_0.9": 14929920.0
+    },
+    {
+      "colors": 32,
+      "module_pixels": 2,
+      "cells": 8294400,
+      "ideal_bytes": 5184000.0,
+      "ideal_MB": 5.184,
+      "illustrative_bytes_rate_0.8_utilization_0.9": 3732480.0
+    },
+    {
+      "colors": 32,
+      "module_pixels": 4,
+      "cells": 2073600,
+      "ideal_bytes": 1296000.0,
+      "ideal_MB": 1.296,
+      "illustrative_bytes_rate_0.8_utilization_0.9": 933120.0
+    },
+    {
+      "colors": 32,
+      "module_pixels": 8,
+      "cells": 518400,
+      "ideal_bytes": 324000.0,
+      "ideal_MB": 0.324,
+      "illustrative_bytes_rate_0.8_utilization_0.9": 233280.0
+    },
+    {
+      "colors": 64,
+      "module_pixels": 1,
+      "cells": 33177600,
+      "ideal_bytes": 24883200.0,
+      "ideal_MB": 24.8832,
+      "illustrative_bytes_rate_0.8_utilization_0.9": 17915904.0
+    },
+    {
+      "colors": 64,
+      "module_pixels": 2,
+      "cells": 8294400,
+      "ideal_bytes": 6220800.0,
+      "ideal_MB": 6.2208,
+      "illustrative_bytes_rate_0.8_utilization_0.9": 4478976.0
+    },
+    {
+      "colors": 64,
+      "module_pixels": 4,
+      "cells": 2073600,
+      "ideal_bytes": 1555200.0,
+      "ideal_MB": 1.5552,
+      "illustrative_bytes_rate_0.8_utilization_0.9": 1119744.0
+    },
+    {
+      "colors": 64,
+      "module_pixels": 8,
+      "cells": 518400,
+      "ideal_bytes": 388800.0,
+      "ideal_MB": 0.3888,
+      "illustrative_bytes_rate_0.8_utilization_0.9": 279936.0
+    },
+    {
+      "colors": 128,
+      "module_pixels": 1,
+      "cells": 33177600,
+      "ideal_bytes": 29030400.0,
+      "ideal_MB": 29.0304,
+      "illustrative_bytes_rate_0.8_utilization_0.9": 20901888.0
+    },
+    {
+      "colors": 128,
+      "module_pixels": 2,
+      "cells": 8294400,
+      "ideal_bytes": 7257600.0,
+      "ideal_MB": 7.2576,
+      "illustrative_bytes_rate_0.8_utilization_0.9": 5225472.0
+    },
+    {
+      "colors": 128,
+      "module_pixels": 4,
+      "cells": 2073600,
+      "ideal_bytes": 1814400.0,
+      "ideal_MB": 1.8144,
+      "illustrative_bytes_rate_0.8_utilization_0.9": 1306368.0
+    },
+    {
+      "colors": 128,
+      "module_pixels": 8,
+      "cells": 518400,
+      "ideal_bytes": 453600.0,
+      "ideal_MB": 0.4536,
+      "illustrative_bytes_rate_0.8_utilization_0.9": 326592.0
+    },
+    {
+      "colors": 129,
+      "module_pixels": 1,
+      "cells": 33177600,
+      "ideal_bytes": 29076961.673691317,
+      "ideal_MB": 29.07696167369132,
+      "illustrative_bytes_rate_0.8_utilization_0.9": 20935412.40505775
+    },
+    {
+      "colors": 129,
+      "module_pixels": 2,
+      "cells": 8294400,
+      "ideal_bytes": 7269240.418422829,
+      "ideal_MB": 7.26924041842283,
+      "illustrative_bytes_rate_0.8_utilization_0.9": 5233853.101264438
+    },
+    {
+      "colors": 129,
+      "module_pixels": 4,
+      "cells": 2073600,
+      "ideal_bytes": 1817310.1046057073,
+      "ideal_MB": 1.8173101046057074,
+      "illustrative_bytes_rate_0.8_utilization_0.9": 1308463.2753161094
+    },
+    {
+      "colors": 129,
+      "module_pixels": 8,
+      "cells": 518400,
+      "ideal_bytes": 454327.52615142683,
+      "ideal_MB": 0.45432752615142685,
+      "illustrative_bytes_rate_0.8_utilization_0.9": 327115.81882902735
+    },
+    {
+      "colors": 256,
+      "module_pixels": 1,
+      "cells": 33177600,
+      "ideal_bytes": 33177600.0,
+      "ideal_MB": 33.1776,
+      "illustrative_bytes_rate_0.8_utilization_0.9": 23887872.0
+    },
+    {
+      "colors": 256,
+      "module_pixels": 2,
+      "cells": 8294400,
+      "ideal_bytes": 8294400.0,
+      "ideal_MB": 8.2944,
+      "illustrative_bytes_rate_0.8_utilization_0.9": 5971968.0
+    },
+    {
+      "colors": 256,
+      "module_pixels": 4,
+      "cells": 2073600,
+      "ideal_bytes": 2073600.0,
+      "ideal_MB": 2.0736,
+      "illustrative_bytes_rate_0.8_utilization_0.9": 1492992.0
+    },
+    {
+      "colors": 256,
+      "module_pixels": 8,
+      "cells": 518400,
+      "ideal_bytes": 518400.0,
+      "ideal_MB": 0.5184,
+      "illustrative_bytes_rate_0.8_utilization_0.9": 373248.0
+    }
+  ]
+}

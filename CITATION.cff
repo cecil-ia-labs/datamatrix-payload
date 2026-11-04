@@ -1,0 +1,16 @@
+cff-version: 1.2.0
+message: "Cite este manuscrito e seu autor ao utilizar os resultados."
+type: article
+title: "datamatrix-payload: capacidade, geometria de cores e transporte visual autenticado"
+authors:
+  - family-names: "De Luca"
+    given-names: "Juninho"
+version: 0.1.0
+date-released: 2026-11-04
+abstract: "Estudo matemático e experimental de payloads em matrizes multicoloridas, com constelações RGB, hexadecimal, canal, calibração, códigos de apagamento e criptografia autenticada."
+keywords:
+  - visual communication
+  - multicolor barcode
+  - information theory
+  - Reed-Solomon
+  - authenticated encryption

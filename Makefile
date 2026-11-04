@@ -1,24 +1,19 @@
 PYTHON ?= python3
 
-.PHONY: test experiments tables paper markdown all
+.PHONY: test viewer-test case-study paper verify all
 test:
 	PYTHONPATH=src $(PYTHON) -m unittest discover -s tests -v
 
-experiments:
-	$(PYTHON) experiments/extended.py
+viewer-test:
+	node tests/test_viewer.cjs
 
-tables:
-	$(PYTHON) experiments/build_tables.py
+case-study:
+	PYTHONPATH=src $(PYTHON) experiments/case_study.py
 
-paper: tables
-	cd paper && pdflatex -interaction=nonstopmode -halt-on-error main.tex
-	cd paper && bibtex main
-	cd paper && pdflatex -interaction=nonstopmode -halt-on-error main.tex
-	cd paper && pdflatex -interaction=nonstopmode -halt-on-error main.tex
-	cp paper/main.pdf paper/datamatrix-payload-paper-v0.1.pdf
-	cp paper/main.pdf output/pdf/datamatrix-payload-paper-v0.1.pdf
+paper:
+	$(PYTHON) scripts/build_papers.py
 
-markdown:
-	$(PYTHON) experiments/build_markdown.py
+verify:
+	$(PYTHON) scripts/verify_repository.py
 
-all: test experiments paper markdown
+all: test case-study paper verify

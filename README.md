@@ -1,79 +1,94 @@
-# datamatrix-payload
+# Quad-Dimensional DataMatrix
 
-Pesquisa de Juninho De Luca, Cecil-IA Labs, sobre payloads binários em matrizes multicoloridas: capacidade, notação hexadecimal, geometria de cores, canal, calibração, redundância e transporte autenticado.
+**Request for Discussion (RfD), version 0.2.0.**
 
-O projeto contém um manuscrito matemático em português, abstract em inglês, referências primárias, código e resultados reproduzíveis. O nome é um identificador do projeto; o protótipo usa uma matriz visual própria, com geometria conhecida.
+**João Paulo De Luca Jr · Jorge Luiz Espanhol**
 
-## Paper
+Cecil-IA Labs · 4 November 2026
 
-- [PDF](paper/datamatrix-payload-paper-v0.1.pdf)
-- [Texto para leitura no GitHub](paper/paper.md)
-- [Fonte LaTeX](paper/main.tex)
-- [Referências BibTeX](paper/references.bib)
-- [Referências técnicas comentadas](docs/technical-references.md)
-- [Evidência, hipóteses e limites](docs/evidence.md)
+[Português](README.pt.md) · [English paper](paper/quad-dimensional-datamatrix.en.pdf) · [Portuguese paper](paper/quad-dimensional-datamatrix.pt.pdf)
 
-## Resultados desta versão
+Quad-Dimensional DataMatrix explores a catalogue with four logical coordinates: horizontal position, vertical position, temporal state, and hexadecimal dimension. An indexed GIF carries the corresponding sequence. English is the default language; Portuguese is the alternative.
 
-| Experimento | Evidência |
+## Working profile
+
+| Property | Current discussion profile |
 |---|---|
-| Benchmark anterior com dois PNGs de 32 cores | 144 condições digitais reproduzidas com o mesmo JSON |
-| Extensão sintética | 648 quadros em 54 condições, com 12 realizações por condição |
-| RS(31,23), GF(32), apagamentos conhecidos | 900 blocos com 0–8 apagamentos recuperados; 100 com 9 recusados |
-| AES-256-GCM através da matriz sem perturbação | 2.048 bytes recuperados; ciphertext/AAD alterados e chave diferente rejeitados |
-| Substituição fixa com 128 cores | Tabela recuperada a partir de 128 pares conhecidos |
+| Container | Indexed GIF |
+| Stored frame | 256 × 256 pixels |
+| Effective matrix | 64 × 64 modules |
+| Module | 4 × 4 identical indexed pixels |
+| Palette | Up to 64 distinct hexadecimal entries |
+| Sequence | Up to 64 frames |
+| Transport example | 8 frames per second |
+| App interaction example | One state per minute; click to pause and copy |
 
-Essas medições caracterizam simulações digitais. O decodificador RS implementado interpola apagamentos informados ao programa. Captura óptica, localização automática da grade, correção de erros desconhecidos e HPKE são próximos desenvolvimentos. Os testes de confidencialidade usam AES-GCM simétrico da biblioteca `cryptography`.
+The public mapping is:
 
-## GIF temporal: estudo com 16 frames
+**dimension ↔ palette index ↔ hexadecimal value**
 
-Extensão temporal discutida por **Juninho De Luca e Jorge**. O [estudo de caso](experiments/gif-temporal-16/README.md) distribui dados em 16 frames de 128 × 128 módulos, com uma paleta RGB diferente por frame e dois segundos nominais por ciclo.
+The prototype uses complete frames and power-of-two palettes. Its colour values are written exclusively as six-digit hexadecimal entries such as `#12ABEF`.
 
-| Paleta | Payload recuperado | GIF |
-|---|---:|---|
-| 32 cores | 160 KiB | [Animação de 16 frames](experiments/gif-temporal-16/datamatrix-16frames-32cores.gif) |
-| 64 cores | 192 KiB | [Animação de 16 frames](experiments/gif-temporal-16/datamatrix-16frames-64cores.gif) |
+## Catalogue and payload
 
-Os dois payloads foram recuperados byte a byte, com SHA-256 idêntico ao original. O diretório inclui o encoder/decoder, os resultados em JSON e as referências. Para reproduzir a partir da raiz, com as dependências instaladas:
+For the maximum profile:
+
+$$|\Omega|=64\cdot64\cdot64\cdot64=16{,}777{,}216.$$
+
+This counts candidate four-coordinate tuples. At an eight-second nominal cycle, it gives **2,097,152 candidate tuples per second**. There are 262,144 selected modules per cycle; each selects one of 64 entries and carries six bits.
+
+| Quantity | Maximum profile at 8 fps |
+|---|---:|
+| Candidate catalogue entries | 16,777,216 |
+| Selected modules per cycle | 262,144 |
+| Raw payload per frame | 3 KiB |
+| Raw payload per 64-frame cycle | 192 KiB |
+| Nominal raw payload rate | 24 KiB/s |
+
+See [the mathematical model](docs/model.md) for the derivation and [Scope and Limitations](docs/scope-and-limitations.md) for the interpretation.
+
+## State selection in the app
+
+The sequence resides in the **app**. A user, service, or website consumes a selected state. The app can advance at one state per minute, independently of the transport example. Clicking the matrix pauses the displayed state and copies its hexadecimal code.
+
+The [local viewer](examples/index.html) implements this interaction in English and Portuguese. It starts at one state per minute and includes faster study cadences. The demonstration copies the complete state payload as hexadecimal text.
+
+From the repository root:
 
 ```bash
-python3 experiments/gif-temporal-16/gif_temporal_16.py
+python3 -m http.server 8000 --bind 127.0.0.1
 ```
 
-## Reprodução
+Open `http://localhost:8000/examples/`. [Interaction model](docs/app-state-flow.md).
 
-Python 3.11 ou superior. Para reproduzir o ambiente registrado, usar Python 3.12.14 e `requirements.lock.txt`.
+## Reproduce the case study
+
+Python 3.11 or newer. The recorded environment uses Python 3.12.14.
 
 ```bash
 python3 -m venv .venv
 .venv/bin/pip install -r requirements.lock.txt
 .venv/bin/pip install --no-deps -e .
 make PYTHON=.venv/bin/python test
-make PYTHON=.venv/bin/python experiments
-make PYTHON=.venv/bin/python tables
+make PYTHON=.venv/bin/python case-study
 make PYTHON=.venv/bin/python paper
-make markdown
+make PYTHON=.venv/bin/python verify
 ```
 
-A compilação do paper requer LaTeX com `pdflatex`, `bibtex`, Babel português, Latin Modern, AMS e os pacotes indicados no preâmbulo. A versão Markdown requer Pandoc com citeproc.
+PDF builds additionally require Pandoc, `pdflatex`, and the LaTeX packages used by the generated sources.
 
-Para repetir apenas o benchmark com as imagens originais, colocar cópias locais na pasta ignorada `input/`, conferir os SHA-256 em `results/source-fixtures.json` e executar:
+The [16-state GIF](examples/quad-dimensional-datamatrix-16-states.gif) contains **48 KiB** of synthetic payload in a 256 × 256 pixel animation. The decoder recovers the original hexadecimal payload exactly. [Machine-readable results](results/hex-gif-case-study.json).
 
-```bash
-python3 experiments/baseline.py --inputs input --out tmp/baseline-reproduction
-```
+The app event checks can be run with `make viewer-test` (Node.js).
 
-Os dados pessoais de entrada não fazem parte do repositório. A extensão sintética não depende deles. Sementes, versões e métricas são registradas em `results/extended/`; as chaves e os nonces AES-GCM são novos e ficam apenas em memória. A demonstração criptográfica é experimental e não fornece um protocolo cliente-servidor completo.
+Tests also exercise the 64-frame boundary, repeated states, palette order, truncated input, inconsistent modules, one-frame-per-minute timing, catalogue addresses, and Unicode scalar mappings.
 
-## Organização
+## Discussion and papers
 
-| Caminho | Conteúdo |
-|---|---|
-| `src/datamatrix_payload/` | Empacotamento, RGB/hex, renderização, leitura e RS por apagamentos |
-| `experiments/` | Benchmark anterior, ensaios sintéticos e geração automática de tabelas |
-| `results/` | JSON, CSV, parâmetros e hashes das fixtures opcionais |
-| `paper/` | Fonte, bibliografia, tabelas, figuras e versão Markdown |
-| `tests/` | Verificações de comportamento e fronteiras de decodificação |
-| `docs/` | Referências técnicas, evidência e roteiro de investigação |
+- [English manuscript](paper/quad-dimensional-datamatrix.en.md) and [PDF](paper/quad-dimensional-datamatrix.en.pdf).
+- [Portuguese manuscript](paper/quad-dimensional-datamatrix.pt.md) and [PDF](paper/quad-dimensional-datamatrix.pt.pdf).
+- [Open questions](docs/discussion.md), including the proposed one-to-one Unicode-to-hexadecimal mapping.
+- [Technical references](docs/technical-references.md).
+- [Scope and Limitations](docs/scope-and-limitations.md).
 
-Concepção e direção: **Juninho De Luca**. Redação, implementação e execução assistidas por ChatGPT/Codex, OpenAI, conforme declaração no manuscrito. A versão 0.1 é um manuscrito privado de pesquisa. A licença do repositório consta em [LICENSE](LICENSE).
+The text and code are discussion material. A later stage may propose a specification. The authors' names and contribution record are provided in [CITATION.cff](CITATION.cff). Implementation and editorial assistance by ChatGPT/Codex is acknowledged in both papers. The repository retains its [license](LICENSE).

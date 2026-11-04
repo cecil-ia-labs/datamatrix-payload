@@ -3,11 +3,12 @@ requires = ["setuptools>=68"]
 build-backend = "setuptools.build_meta"
 
 [project]
-name = "datamatrix-payload"
-version = "0.1.0"
-description = "Reproducible research on multicolor visual payload channels"
+name = "quad-dimensional-datamatrix"
+version = "0.2.0"
+description = "Quad-Dimensional DataMatrix: a request for discussion on hexadecimal indexed-GIF states"
 requires-python = ">=3.11"
-dependencies = ["numpy>=2.0", "Pillow>=11", "scipy>=1.13", "matplotlib>=3.9", "cryptography>=43"]
+authors = [{name = "João Paulo De Luca Jr"}, {name = "Jorge Luiz Espanhol"}]
+dependencies = ["numpy>=2.0", "Pillow>=11"]
 
 [tool.setuptools.packages.find]
 where = ["src"]

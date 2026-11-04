@@ -1,5 +1,0 @@
-file,calibration,module_pixels,symbols,symbol_errors,symbol_error_rate,sha256_valid_and_bytes_equal
-128x128-32-colors.png,sem_pilotos,4,12541,2178,0.1736703612152141,False
-128x128-32-colors.png,com_pilotos,4,12541,0,0.0,True
-64x64-32-colors.png,sem_pilotos,4,3503,602,0.17185269768769626,False
-64x64-32-colors.png,com_pilotos,4,3503,0,0.0,True

@@ -1,7 +1,0 @@
-{
-  "scope": "Optional private fixtures, not distributed in repository",
-  "sha256": {
-    "64x64-32-colors.png": "60b33036fcb241fa437ee57e46e12bb5995c4e246bc40ec4b511d2feb536c57b",
-    "128x128-32-colors.png": "809564a0c81e67cfa31addc4a236bf3579ca2929785adfa481a9f90dd2e28bbe"
-  }
-}

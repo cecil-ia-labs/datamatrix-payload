@@ -100,6 +100,8 @@ make PYTHON=.venv/bin/python verify
 
 The build checks that `pandoc` and `pdflatex` are on `PATH` before generating files. It builds both languages, writes compilation logs to `output/pdf/`, and copies the resulting PDFs to `paper/`.
 
+In a Git checkout, verification scans files listed in the Git index, including staged additions. Untracked local backups such as `.initial/`, virtual environments, and editor files are outside this scan. In a source archive without Git metadata, verification scans visible files and skips hidden directories and build/cache directories.
+
 ## Discussion and papers
 
 - [English manuscript](paper/quad-dimensional-datamatrix.en.md) and [PDF](paper/quad-dimensional-datamatrix.en.pdf).

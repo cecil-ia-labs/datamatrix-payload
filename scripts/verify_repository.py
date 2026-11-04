@@ -1,6 +1,7 @@
 """Check the current RfD tree, both PDF editions, links, and hex-GIF evidence."""
 from __future__ import annotations
 import json
+import os
 import re
 import subprocess
 from pathlib import Path
@@ -11,9 +12,29 @@ AUTHORS=("João Paulo De Luca Jr","Jorge Luiz Espanhol")
 TITLE="Quad-Dimensional DataMatrix"
 
 def public_files():
-    return sorted(p for p in ROOT.rglob("*") if p.is_file()
-                  and not any(part in IGNORE or part.endswith(".egg-info")
-                              for part in p.relative_to(ROOT).parts))
+    """Scan tracked checkout files, or visible source files in an archive."""
+    if (ROOT / ".git").exists():
+        try:
+            tracked = subprocess.check_output(
+                ["git", "ls-files", "--cached", "-z", "--"], cwd=ROOT
+            )
+        except FileNotFoundError:
+            raise SystemExit("Git is required to list files in a repository checkout.")
+        paths = {ROOT / os.fsdecode(name) for name in tracked.split(b"\0") if name}
+        return sorted(path for path in paths if path.is_file())
+
+    files = []
+    for directory, subdirectories, names in os.walk(ROOT):
+        subdirectories[:] = [
+            name for name in subdirectories
+            if not name.startswith(".") and name not in IGNORE
+            and not name.endswith(".egg-info")
+        ]
+        files.extend(
+            path for name in names
+            if not name.startswith(".") and (path := Path(directory) / name).is_file()
+        )
+    return sorted(files)
 
 def main():
     files=public_files()

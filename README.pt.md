@@ -100,6 +100,8 @@ make PYTHON=.venv/bin/python verify
 
 A compilação verifica se `pandoc` e `pdflatex` estão no `PATH` antes de gerar arquivos. Compila os dois idiomas, grava os logs em `output/pdf/` e copia os PDFs resultantes para `paper/`.
 
+Em um checkout Git, a verificação examina os arquivos listados no índice do Git, incluindo novas adições ao staging. Backups locais não versionados, como `.initial/`, ambientes virtuais e arquivos do editor ficam fora dessa varredura. Em um arquivo-fonte distribuído sem metadados Git, a verificação examina os arquivos visíveis e ignora diretórios ocultos e de compilação/cache.
+
 ## Discussão e papers
 
 - [Manuscrito em inglês](paper/quad-dimensional-datamatrix.en.md) e [PDF](paper/quad-dimensional-datamatrix.en.pdf).

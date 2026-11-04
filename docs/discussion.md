@@ -12,7 +12,7 @@ The RfD invites discussion of the following choices. The working prototype suppl
 | Sequence ownership | How is the app-held sequence provisioned, renewed, and associated with a receiving service? |
 | Selection | Should a click freeze until explicit resume, until consumption, or until a new challenge? |
 | Cadence | Which use cases need 8 fps, one state per minute, or a user-driven advance? |
-| Clipboard | What is the service-facing code length and what should be copied for each use case? |
+| Clipboard | The viewer uses a six-character selected color. Should selection use the first module, the last, explicit coordinates, or coordinates declared in the matrix header? |
 | Authentication | How should a selected state be bound to a session, a challenge, or an acceptance window? |
 | Framing | Where should payload length, version, state identity, and integrity data live? |
 | Evidence | Which later experiments would decide between candidate mappings? |

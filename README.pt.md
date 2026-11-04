@@ -51,7 +51,7 @@ O [modelo matemático](docs/pt/model.md) apresenta a dedução e a seção [Esco
 
 A sequência fica no **app**. Um usuário, serviço ou site consome um estado selecionado. O app pode avançar um estado por minuto, independentemente do exemplo de transporte. Ao clicar na matriz, o estado exibido é pausado e seu código hexadecimal é copiado.
 
-O [visualizador local](examples/index.html) implementa essa interação em inglês e português. Inicia com um estado por minuto e oferece cadências mais rápidas para estudo. A demonstração copia o payload completo do estado como texto hexadecimal.
+O [visualizador local](examples/index.html) implementa essa interação em inglês e português. Inicia com um estado por minuto e oferece cadências mais rápidas para estudo. A demonstração copia a cor de um módulo selecionado como seis caracteres hexadecimais maiúsculos. Uma borda de 2,5 segundos destaca a cor; clicar no círculo receptor cola o código e confirma a correspondência. Origem do código oferece o primeiro módulo, o último ou coordenadas explícitas. A limpeza da área de transferência é tentada após 30 segundos, conforme a permissão do navegador e a conferência do conteúdo atual.
 
 A partir da raiz do repositório:
 

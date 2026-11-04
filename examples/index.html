@@ -9,19 +9,46 @@
 <main>
   <header><span class="eyebrow">QUAD-DIMENSIONAL DATAMATRIX</span><button id="language" type="button">Português</button></header>
   <h1 data-i18n="title">Choose a state.</h1>
-  <p class="intro" data-i18n="intro">Click the matrix to pause the sequence and copy its hexadecimal code.</p>
+  <p class="intro" data-i18n="intro">Pause the matrix, copy a color, and try it on the receiving side.</p>
   <section class="workspace">
     <div class="matrix-panel">
-      <button id="matrix" type="button" aria-label="Pause and copy the current state"><img id="state-image" alt="Quad-Dimensional DataMatrix state" width="256" height="256"></button>
+      <span class="step" data-i18n="selectStep">01 · Select</span>
+      <div id="matrix-frame"><button id="matrix" type="button" aria-label="Pause and copy a six-character color"><img id="state-image" alt="Quad-Dimensional DataMatrix state" width="256" height="256"></button></div>
       <div class="state-line"><span id="state-label"></span><span id="mode-label"></span></div>
-    </div>
-    <div class="controls">
+      <p id="status" role="status" aria-live="polite"></p>
+      <div id="manual-copy" hidden>
+        <label for="code" data-i18n="manualCode">Copy this code</label>
+        <input id="code" readonly maxlength="6" spellcheck="false" autocomplete="off">
+      </div>
       <label for="period" data-i18n="cadence">State cadence</label>
       <select id="period"><option value="60000" data-i18n="minute">One state per minute</option><option value="1000" data-i18n="second">One state per second</option><option value="125" data-i18n="fast">Eight states per second</option></select>
       <div class="buttons"><button id="resume" type="button" data-i18n="resume">Resume</button><button id="next" type="button" data-i18n="next">Next state</button></div>
-      <p id="status" role="status" aria-live="polite"></p>
-      <label for="code" data-i18n="code">Selected hexadecimal code</label>
-      <textarea id="code" rows="7" readonly spellcheck="false"></textarea>
+      <details class="source-settings">
+        <summary data-i18n="codeSource">Code source</summary>
+        <label for="source" data-i18n="module">Selected module</label>
+        <select id="source"><option value="first" data-i18n="first">First module · (0, 0)</option><option value="last" data-i18n="last">Last module · (63, 63)</option><option value="coordinates" data-i18n="coordinates">Choose coordinates</option></select>
+        <div id="coordinates" class="coordinates" hidden>
+          <label for="source-x">X<input id="source-x" type="number" min="0" max="63" step="1" value="0" inputmode="numeric"></label>
+          <label for="source-y">Y<input id="source-y" type="number" min="0" max="63" step="1" value="0" inputmode="numeric"></label>
+        </div>
+      </details>
+    </div>
+    <div class="receiver-panel">
+      <span class="step" data-i18n="receiveStep">02 · Receive</span>
+      <h2 data-i18n="receiveTitle">Paste the color.</h2>
+      <p class="receiver-intro" data-i18n="receiveIntro">Click or tap the circle to read the copied code.</p>
+      <button id="paste-target" type="button" aria-label="Paste the copied color"><span id="target-symbol" aria-hidden="true">↘</span></button>
+      <output id="received-code" aria-live="polite">—</output>
+      <p id="paste-status" role="status" aria-live="polite"></p>
+      <div id="manual-paste" hidden>
+        <label for="paste-code" data-i18n="pasteCode">Paste or enter six hexadecimal characters</label>
+        <input id="paste-code" maxlength="7" placeholder="F519DA" spellcheck="false" autocomplete="off" autocapitalize="characters" aria-describedby="paste-status">
+      </div>
+      <div class="clipboard-note">
+        <span class="small-label" data-i18n="clipboard">Clipboard</span>
+        <p id="clipboard-status" role="status" aria-live="polite"></p>
+        <button id="clear-clipboard" type="button" hidden data-i18n="clearNow">Clear copied code</button>
+      </div>
       <p class="note" data-i18n="note">Public study sequence · Request for Discussion</p>
     </div>
   </section>

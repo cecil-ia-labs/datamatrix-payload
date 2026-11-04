@@ -51,7 +51,7 @@ See [the mathematical model](docs/model.md) for the derivation and [Scope and Li
 
 The sequence resides in the **app**. A user, service, or website consumes a selected state. The app can advance at one state per minute, independently of the transport example. Clicking the matrix pauses the displayed state and copies its hexadecimal code.
 
-The [local viewer](examples/index.html) implements this interaction in English and Portuguese. It starts at one state per minute and includes faster study cadences. The demonstration copies the complete state payload as hexadecimal text.
+The [local viewer](examples/index.html) implements this interaction in English and Portuguese. It starts at one state per minute and includes faster study cadences. The demonstration copies a selected module's color as six uppercase hexadecimal characters. A 2.5-second outline shows the color; clicking the receiver circle pastes it and confirms a match. Code source offers the first module, the last module, or explicit coordinates. Clipboard cleanup is attempted after 30 seconds, subject to browser permission and a check of the current contents.
 
 From the repository root:
 

@@ -12,7 +12,7 @@ O RfD convida à discussão das escolhas abaixo. O protótipo fornece exemplos, 
 | Posse da sequência | Como a sequência mantida no app é provisionada, renovada e associada ao serviço receptor? |
 | Seleção | O clique deve congelar até a retomada explícita, até o consumo ou até um novo desafio? |
 | Cadência | Quais casos precisam de 8 fps, um estado por minuto ou avanço comandado pelo usuário? |
-| Área de transferência | Qual será o tamanho do código oferecido ao serviço e o que deve ser copiado em cada caso? |
+| Área de transferência | O visualizador usa uma cor selecionada de seis caracteres. A seleção deve usar o primeiro módulo, o último, coordenadas explícitas ou coordenadas declaradas no cabeçalho da matriz? |
 | Autenticação | Como associar o estado selecionado a uma sessão, desafio ou janela de aceitação? |
 | Enquadramento | Onde ficam comprimento do payload, versão, identidade do estado e dados de integridade? |
 | Evidência | Quais experimentos posteriores permitiriam decidir entre os mapeamentos candidatos? |

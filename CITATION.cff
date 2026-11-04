@@ -1,16 +1,32 @@
-cff-version: 1.2.0
+---
+cff-version: "1.2.0"
 message: "Please cite both authors when discussing or building on this RfD."
-type: article
+type: software
 title: "Quad-Dimensional DataMatrix: Request for Discussion"
 authors:
   - family-names: "De Luca Jr"
     given-names: "João Paulo"
   - family-names: "Espanhol"
     given-names: "Jorge Luiz"
-version: 0.2.0
-date-released: 2026-11-04
+version: "0.2.0"
+date-released: "2026-11-04"
 repository-code: "https://github.com/cecil-ia-labs/datamatrix-payload"
-abstract: "An exploratory four-coordinate catalogue and hexadecimal indexed-GIF transport model, with a 256 by 256 pixel working profile, 64 by 64 effective modules, up to 64 entries and up to 64 frames. English is the default language; Portuguese is the alternative."
+abstract: >-
+  An exploratory four-coordinate catalogue and hexadecimal indexed-GIF
+  transport model, with a 256 by 256 pixel working profile, 64 by 64 effective
+  modules, up to 64 entries and up to 64 frames. English is the default
+  language; Portuguese is the alternative.
+preferred-citation:
+  type: report
+  title: "Quad-Dimensional DataMatrix: Request for Discussion"
+  authors:
+    - family-names: "De Luca Jr"
+      given-names: "João Paulo"
+    - family-names: "Espanhol"
+      given-names: "Jorge Luiz"
+  year: 2026
+  version: "0.2.0"
+  url: "https://github.com/cecil-ia-labs/datamatrix-payload"
 keywords:
   - datamatrix
   - data encoding

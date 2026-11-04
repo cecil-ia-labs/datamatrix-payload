@@ -9,7 +9,7 @@
   "language_default": "en",
   "language_alternative": "pt",
   "seed": 20261104,
-  "python": "3.14.4",
+  "python": "3.12.14",
   "numpy": "2.3.5",
   "Pillow": "13.0.0",
   "profile": {
@@ -1154,7 +1154,19 @@
     "sequence_location": "application",
     "default_state_period_ms": 60000,
     "selection": "pause the displayed state and copy its hexadecimal code",
-    "copied_code": "full state payload in hexadecimal",
+    "copied_code": "six hexadecimal characters from a selected module",
+    "default_code_source": {
+      "x": 0,
+      "y": 0
+    },
+    "code_source_options": [
+      "first module",
+      "last module",
+      "coordinates"
+    ],
+    "selection_highlight_ms": 2500,
+    "clipboard_cleanup_after_ms": 30000,
+    "clipboard_cleanup": "best effort; compare current text before clearing",
     "state_count": 16,
     "authentication_status": "discussion only"
   }

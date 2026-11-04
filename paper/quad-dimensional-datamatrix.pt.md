@@ -303,7 +303,7 @@ $$
 c=g(D_{i_c}).
 $$
 
-O visualizador local de estudo usa a string hexadecimal canônica do payload do estado como $g$. Inicia com $\Delta=60$ segundos. Um ciclo de 64 estados dura, então, 64 minutos. O exemplo de transporte a 8 fps e a interação de um frame por minuto são dois usos dos mesmos estados ordenados.
+O visualizador local de estudo define $g$ como o valor hexadecimal da paleta do módulo selecionado, escrito com seis caracteres maiúsculos sem cerquilha inicial. Usa o primeiro módulo como padrão e oferece o último ou coordenadas explícitas como alternativas. Inicia com $\Delta=60$ segundos. Um ciclo de 64 estados dura, então, 64 minutos. O exemplo de transporte a 8 fps e a interação de um frame por minuto são dois usos dos mesmos estados ordenados.
 
 | Evento | Ação do app | Lado receptor |
 |---|---|---|
@@ -445,7 +445,7 @@ A suíte de testes verifica:
 - Rejeição de contêiner truncado e de módulo inconsistente.
 - Inversão dos endereços de quatro coordenadas e fronteiras dos escalares Unicode.
 
-O visualizador local inicia em inglês, oferece português e pausa antes de copiar o estado atual. Inclui cópia manual quando a operação direta da área de transferência está indisponível. O código completo copiado no exemplo contém 6.144 dígitos hexadecimais para um estado de 3 KiB.
+O visualizador local inicia em inglês, oferece português e pausa antes de copiar uma cor de seis caracteres. Uma borda de 2,5 segundos destaca a cor selecionada. Clicar no círculo receptor cola o código, preenche o círculo e confirma a correspondência com a seleção. Campos de cópia e colagem manual atendem à indisponibilidade das operações da área de transferência. Uma cópia bem-sucedida agenda uma tentativa condicional de limpeza após 30 segundos; uma nova cópia reinicia o intervalo.
 
 O repositório fornece o gerador do estudo, resultados, visualizador, fontes dos dois manuscritos e comandos de compilação.
 
@@ -461,7 +461,9 @@ Esta seção concentra a interpretação e as fronteiras do RfD.
 
 **Orçamentos e tempo.** Cabeçalhos, dicionários, dados de autenticação, redundância e armazenamento do contêiner exigem orçamentos separados. O exemplo de 8 fps descreve tempo nominal de reprodução; a cadência dos estados do app é independente. O estudo não mede velocidade de rede, vazão de modelos generativos nem captura física.
 
-**Autenticação.** O exemplo do app contém estados sintéticos públicos e demonstra seleção e cópia. Uma sequência finita repetida exige um projeto escolhido de provisionamento e renovação para uso em autenticação. Confidencialidade, vínculo com desafio, expiração, tratamento de replay e limitação de tentativas pertencem a esse projeto. [TOTP](https://www.rfc-editor.org/rfc/rfc6238.html) e [AEAD](https://www.rfc-editor.org/rfc/rfc5116.html) são referências para a discussão.
+**Autenticação.** O exemplo do app contém estados sintéticos públicos e demonstra seleção, cópia e uma comparação local de igualdade. A cor de seis caracteres é um formato de apresentação; a seleção na paleta de 64 entradas do estudo possui no máximo 64 alternativas por estado. Uma sequência finita repetida exige um projeto escolhido de provisionamento e renovação para uso em autenticação. Confidencialidade, vínculo com desafio, expiração, tratamento de replay e limitação de tentativas pertencem a esse projeto. [TOTP](https://www.rfc-editor.org/rfc/rfc6238.html) e [AEAD](https://www.rfc-editor.org/rfc/rfc5116.html) são referências para a discussão.
+
+**Retenção na área de transferência.** A limpeza automática depende da permissão do navegador e da página em foco. Confere o texto antes de tentar limpar o código do app e mantém conteúdos diferentes. A API não fornece uma operação atômica de comparar e limpar nem controle sobre o histórico da área de transferência. Essa política de retenção de 30 segundos é independente da expiração do código e da aceitação de autenticação. Consulte a [Clipboard API](https://www.w3.org/TR/clipboard-apis/).
 
 **Unicode e dicionários.** Valores escalares, caracteres atribuídos, clusters de grafemas, octetos UTF-8, entradas ativas de paleta e chaves possuem domínios diferentes. Os mapeamentos escalares preservam a identidade escalar; normalização, ordem, multiplicidade e armazenamento do dicionário exigem escolhas explícitas em um projeto de texto ou chave.
 

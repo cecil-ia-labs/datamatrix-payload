@@ -7,17 +7,38 @@ O **aplicativo mantém a sequência**. O usuário seleciona um estado e fornece 
 | Etapa | App | Usuário ou serviço receptor |
 |---|---|---|
 | Carregar | Carrega a sequência local e seu mapeamento de estados para códigos | Aguarda um código selecionado |
-| Avançar | Seleciona o próximo estado exibido na cadência escolhida | Observa ou solicita um estado |
-| Clicar | Interrompe o avanço e congela o estado exibido | Seleciona o estado atual |
-| Copiar | Escreve o código hexadecimal associado na área de transferência | Cola ou consome o código |
+| Avançar | Exibe o próximo estado na cadência escolhida | Observa ou solicita um estado |
+| Clicar | Congela o estado exibido e seleciona seu módulo | Seleciona o estado atual |
+| Copiar | Copia seis caracteres hexadecimais maiúsculos, sem `#` inicial | Recebe um valor como `F519DA` |
+| Destacar | Contorna a matriz com a cor escolhida durante 2,5 segundos | Identifica visualmente a cor selecionada |
+| Colar | Lê a área de transferência após clique ou toque no círculo receptor | Preenche o círculo com a cor correspondente e mostra sucesso |
 | Continuar | Retoma a sequência local quando solicitado | Escolhe outro estado posteriormente |
 
-O exemplo de transporte usa oito frames por segundo. O exemplo de interação usa um estado por minuto. São controles separados. Uma sequência de 64 estados leva oito segundos a 8 fps ou 64 minutos a um estado por minuto.
+O exemplo de transporte usa oito frames por segundo. O exemplo de interação inicia com um estado por minuto. Uma sequência de 64 estados leva oito segundos a 8 fps ou 64 minutos a um estado por minuto.
 
-O visualizador local inicia com um estado por minuto. Sua imagem é um GIF indexado independente para o estado selecionado; por isso, pausar não depende de interromper a animação nativa do navegador. No clique, o visualizador cancela o temporizador antes de copiar. Se o acesso direto à área de transferência estiver indisponível, seleciona o texto hexadecimal para cópia manual.
+## Escolha do código
 
-No exemplo sintético, o código copiado é o payload completo de 3 KiB do estado, escrito como 6.144 dígitos hexadecimais. Essa é uma convenção concreta do estudo. O tamanho do código oferecido ao serviço e sua relação com uma chave permanecem questões do RfD.
+O visualizador copia a entrada hexadecimal da paleta correspondente ao módulo selecionado. O estado completo continua disponível ao decoder de transporte; copiar uma cor não copia esse payload.
 
-A analogia com [TOTP, RFC 6238](https://www.rfc-editor.org/rfc/rfc6238.html) diz respeito a um estado evolutivo mantido no app e a um verificador receptor. A interação não exige que a sequência siga a derivação particular do TOTP.
+| Regra de seleção | Coordenadas | Status |
+|---|---|---|
+| Primeiro módulo | `(0, 0)` | Padrão no visualizador |
+| Último módulo | `(63, 63)` | Disponível em Origem do código |
+| Coordenadas explícitas | `(x, y)` escolhidas pelo usuário, ambas de 0 a 63 | Disponível em Origem do código |
+| Coordenadas declaradas no início da matriz | Por exemplo, os dois primeiros índices de dimension codificam `x` e `y` | Candidato do RfD; não implementado |
+
+As coordenadas se referem à grade efetiva de 64 × 64 módulos, com origem no canto superior esquerdo. O gerador registra os índices dos módulos e a paleta como valores hexadecimais; assim, o visualizador lê a mesma cor do GIF indexado.
+
+O visualizador renderiza cada estado como um GIF independente. O clique interrompe o temporizador do app antes de copiar. O console extenso do payload foi removido. Se a cópia direta estiver indisponível, um campo pequeno revela apenas o código de seis caracteres para cópia manual. Se a leitura da área de transferência for bloqueada, é oferecido um campo de colagem nativa/digitação. O círculo receptor aceita `#` inicial opcional e letras maiúsculas ou minúsculas, normaliza o texto e informa sucesso apenas quando ele corresponde à última seleção.
+
+## Retenção na área de transferência
+
+Uma cópia bem-sucedida agenda a limpeza para 30 segundos depois. Uma nova cópia reinicia esse intervalo. A limpeza confere o texto atual da área de transferência e tenta apagá-lo apenas quando ainda corresponde ao código escrito pelo app.
+
+A limpeza automática exige página visível e em foco, com permissão de leitura já concedida. O temporizador não abre uma solicitação de permissão. Se a página estiver em segundo plano, tenta novamente no retorno. Quando o navegador bloqueia a limpeza, é oferecida uma ação para limpar; ela também confere o conteúdo atual antes de escrever.
+
+Essa retenção é uma tentativa de limpeza, sem definir expiração do código ou regra de aceitação do serviço receptor. O navegador não fornece uma operação atômica de comparar e limpar; histórico da área de transferência e cópias em outros aplicativos ficam fora do controle da página. Essas fronteiras são reunidas em [Escopo e limitações](scope-and-limitations.md).
+
+A analogia com [TOTP, RFC 6238](https://www.rfc-editor.org/rfc/rfc6238.html) diz respeito a um estado evolutivo mantido no app e a um verificador receptor. Não exige que a sequência siga a derivação do TOTP.
 
 Referência da área de transferência: [W3C Clipboard API](https://www.w3.org/TR/clipboard-apis/).

@@ -303,7 +303,7 @@ $$
 c=g(D_{i_c}).
 $$
 
-The local study viewer uses the state payload's canonical hexadecimal string for $g$. It defaults to $\Delta=60$ seconds. A 64-state cycle then spans 64 minutes. The 8 fps transport example and the one-frame-per-minute interaction are two uses of the same ordered states.
+The local study viewer defines $g$ as the selected module's hexadecimal palette value, written as six uppercase characters without a leading hash sign. It defaults to the first module and offers the last module or explicit coordinates as alternatives. It defaults to $\Delta=60$ seconds. A 64-state cycle then spans 64 minutes. The 8 fps transport example and the one-frame-per-minute interaction are two uses of the same ordered states.
 
 | Event | App action | Receiving side |
 |---|---|---|
@@ -445,7 +445,7 @@ The test suite exercises:
 - Truncated-container rejection and inconsistent-module rejection.
 - Four-coordinate address inversion and Unicode scalar boundaries.
 
-The local viewer defaults to English, offers Portuguese, and pauses before copying the current state. It includes manual copying when the direct clipboard operation is unavailable. The complete copied example code contains 6,144 hexadecimal digits for one 3 KiB state.
+The local viewer defaults to English, offers Portuguese, and pauses before copying a six-character color. A 2.5-second border highlights the selected color. Clicking the receiving circle pastes the code, fills the circle, and confirms a match with the selection. Manual copy and paste fields cover unavailable clipboard operations. A successful copy schedules a conditional cleanup attempt after 30 seconds; a new copy restarts the interval.
 
 The repository provides the case-study generator, results, viewer, both manuscript sources, and build commands.
 
@@ -461,7 +461,9 @@ This section consolidates the interpretation and boundaries of the RfD.
 
 **Budgets and timing.** Header fields, dictionaries, authentication data, redundancy, and container storage require separate budgets. The 8 fps example states nominal playback timing; the app's state cadence is independent. The study does not measure network transfer speed, generative-model throughput, or physical capture.
 
-**Authentication.** The app example contains public synthetic states and demonstrates selection and copying. A repeated finite sequence needs a chosen provisioning and renewal design for authentication use. Confidentiality, challenge binding, expiry, replay handling, and rate limiting belong to that design. [TOTP](https://www.rfc-editor.org/rfc/rfc6238.html) and [AEAD](https://www.rfc-editor.org/rfc/rfc5116.html) are references for the discussion.
+**Authentication.** The app example contains public synthetic states and demonstrates selection, copying, and a local equality check. A six-character color is a presentation format; selection from the study's 64-entry palette has at most 64 alternatives per state. A repeated finite sequence needs a chosen provisioning and renewal design for authentication use. Confidentiality, challenge binding, expiry, replay handling, and rate limiting belong to that design. [TOTP](https://www.rfc-editor.org/rfc/rfc6238.html) and [AEAD](https://www.rfc-editor.org/rfc/rfc5116.html) are references for the discussion.
+
+**Clipboard retention.** Automatic cleanup depends on browser permission and a focused page. It compares the clipboard text before attempting to clear the app's code and retains different contents. The API does not provide an atomic compare-and-clear operation or control over clipboard history. This 30-second retention policy is separate from code expiry and authentication acceptance. See the [Clipboard API](https://www.w3.org/TR/clipboard-apis/).
 
 **Unicode and dictionaries.** Scalar values, assigned characters, grapheme clusters, UTF-8 octets, active palette entries, and keys have different domains. The scalar mappings preserve scalar identity; normalization, ordering, multiplicity, and dictionary storage require explicit choices in a text or key design.
 

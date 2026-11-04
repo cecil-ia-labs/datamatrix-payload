@@ -5,7 +5,25 @@ import subprocess
 
 ROOT = Path(__file__).resolve().parents[1]
 
+
+def check_pdf_tools() -> None:
+    missing = [tool for tool in ("pandoc", "pdflatex") if shutil.which(tool) is None]
+    if missing:
+        raise SystemExit(
+            "Cannot build the papers: missing executables on PATH: "
+            + ", ".join(missing)
+            + ".\nPDF builds require system tools in addition to the Python environment.\n"
+            "On Ubuntu/Debian, install them with:\n"
+            "  sudo apt update\n"
+            "  sudo apt install --no-install-recommends pandoc texlive-latex-extra "
+            "texlive-fonts-recommended texlive-lang-portuguese lmodern\n"
+            "Then rerun: make PYTHON=.venv/bin/python paper\n"
+            "See README.md or README.pt.md for the full PDF setup."
+        )
+
+
 def main():
+    check_pdf_tools()
     output = ROOT / "output/pdf"
     output.mkdir(parents=True, exist_ok=True)
     for language in ("en", "pt"):

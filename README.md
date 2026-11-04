@@ -71,17 +71,34 @@ python3 -m venv .venv
 .venv/bin/pip install --no-deps -e .
 make PYTHON=.venv/bin/python test
 make PYTHON=.venv/bin/python case-study
-make PYTHON=.venv/bin/python paper
-make PYTHON=.venv/bin/python verify
 ```
-
-PDF builds additionally require Pandoc, `pdflatex`, and the LaTeX packages used by the generated sources.
 
 The [16-state GIF](examples/quad-dimensional-datamatrix-16-states.gif) contains **48 KiB** of synthetic payload in a 256 × 256 pixel animation. The decoder recovers the original hexadecimal payload exactly. [Machine-readable results](results/hex-gif-case-study.json).
 
 The app event checks can be run with `make viewer-test` (Node.js).
 
 Tests also exercise the 64-frame boundary, repeated states, palette order, truncated input, inconsistent modules, one-frame-per-minute timing, catalogue addresses, and Unicode scalar mappings.
+
+### Build and verify the PDFs
+
+Both PDF editions are already available in `paper/`. Regenerating them additionally requires **Pandoc** and **pdfLaTeX (TeX Live)** as system tools, installed separately from the Python dependencies. On Ubuntu/Debian:
+
+```bash
+sudo apt update
+sudo apt install --no-install-recommends pandoc texlive-latex-extra \
+  texlive-fonts-recommended texlive-lang-portuguese lmodern poppler-utils
+```
+
+These packages provide the document converter, LaTeX engine, packages, fonts, and Portuguese language support. `poppler-utils` provides `pdftotext` for repository verification. See the [Pandoc installation guide](https://pandoc.org/installing.html).
+
+Then, from the repository root with the Python environment prepared above:
+
+```bash
+make PYTHON=.venv/bin/python paper
+make PYTHON=.venv/bin/python verify
+```
+
+The build checks that `pandoc` and `pdflatex` are on `PATH` before generating files. It builds both languages, writes compilation logs to `output/pdf/`, and copies the resulting PDFs to `paper/`.
 
 ## Discussion and papers
 

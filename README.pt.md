@@ -71,17 +71,34 @@ python3 -m venv .venv
 .venv/bin/pip install --no-deps -e .
 make PYTHON=.venv/bin/python test
 make PYTHON=.venv/bin/python case-study
-make PYTHON=.venv/bin/python paper
-make PYTHON=.venv/bin/python verify
 ```
-
-A compilação dos PDFs também requer Pandoc, `pdflatex` e os pacotes LaTeX utilizados pelas fontes geradas.
 
 O [GIF com 16 estados](examples/quad-dimensional-datamatrix-16-states.gif) contém **48 KiB** de payload sintético em uma animação de 256 × 256 pixels. O decoder recupera exatamente o payload hexadecimal original. [Resultados em formato legível por máquina](results/hex-gif-case-study.json).
 
 As verificações de eventos do app podem ser executadas com `make viewer-test` (Node.js).
 
 Os testes também verificam o limite de 64 frames, estados repetidos, ordem da paleta, entrada truncada, módulos inconsistentes, cadência de um frame por minuto, endereços do catálogo e mapeamentos de escalares Unicode.
+
+### Compilar e verificar os PDFs
+
+As duas edições em PDF já estão disponíveis em `paper/`. Para regenerá-las, também são necessários **Pandoc** e **pdfLaTeX (TeX Live)** como ferramentas do sistema, instaladas separadamente das dependências Python. No Ubuntu/Debian:
+
+```bash
+sudo apt update
+sudo apt install --no-install-recommends pandoc texlive-latex-extra \
+  texlive-fonts-recommended texlive-lang-portuguese lmodern poppler-utils
+```
+
+Esses pacotes fornecem o conversor de documentos, o compilador LaTeX, os pacotes, as fontes e o suporte ao português. `poppler-utils` fornece `pdftotext` para a verificação do repositório. Consulte o [guia de instalação do Pandoc](https://pandoc.org/installing.html).
+
+Depois, a partir da raiz do repositório, com o ambiente Python preparado acima:
+
+```bash
+make PYTHON=.venv/bin/python paper
+make PYTHON=.venv/bin/python verify
+```
+
+A compilação verifica se `pandoc` e `pdflatex` estão no `PATH` antes de gerar arquivos. Compila os dois idiomas, grava os logs em `output/pdf/` e copia os PDFs resultantes para `paper/`.
 
 ## Discussão e papers
 

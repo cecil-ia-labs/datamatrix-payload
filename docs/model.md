@@ -40,7 +40,7 @@ If “cps” is used in this discussion, it denotes **candidate tuples per secon
 
 ## Hexadecimal palette
 
-$P_t(d)$ is a six-digit hexadecimal entry, for example $\mathtt{\#12ABEF}$. The current palette contains at most 64 entries selected from $2^{24}$ possible hexadecimal values. Each module stores its palette index; the table supplies the corresponding value. A palette is a codebook.
+$P_t(d)$ is a six-digit hexadecimal entry, for example $\mathtt{0x12ABEF}$. The current palette contains at most 64 entries selected from $2^{24}$ possible hexadecimal values. Each module stores its palette index; the table supplies the corresponding value. A palette is a codebook.
 
 The stored image repeats each effective index across a $4\times4$ block. A frame has $256^2$ stored pixels and $64^2$ independent modules. Changing the repeated pixel count preserves the number of independent choices.
 

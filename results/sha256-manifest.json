@@ -1,15 +1,21 @@
 {
   ".gitignore": "e0f46b6e3fe226f7eb0f42f436a9f12577befc9489df5bdb84b355eb1513f181",
   "CITATION.cff": "a17afa081b5e4f8b0bd86ff53f18bf1195735c98206739f48d027d3b505a40c1",
+  "LICENSE": "58c2806ff0d890443e2ff9ba756ed7542c884d8973252f3eab72efbbd922bea8",
   "Makefile": "fedbce26c08591fc4fef0dfb897605d736391c51210b76431e6ab01a15e89cc0",
-  "README.md": "7a218c586f5a35c462972c3e434052bb9875d096ec5d690564e6904af38f84f9",
+  "README.md": "40f41bd11ac90daa8e83d09fdff03a136855652cd5ca189a5ab897ba336a18f8",
   "docs/evidence.md": "e0f079fb1f9b848bfb5946769afa36bed74dbc14668eab9b02cd1a1f2a38ca45",
   "docs/roadmap.md": "2b40f8f2ce89b1126c30facf8fa3bffe3ff0f82a7e6b9aced23da377e096e8c3",
-  "docs/technical-references.md": "0ac09e6f5a71075204de4a233ee8d1becc30fef31ee205e0ab156987951c050a",
+  "docs/technical-references.md": "fd70779741125123298560b21046156e02683017542b8e6aeb62614f4828ac1b",
   "experiments/baseline.py": "09ae9444c6abcca61937f3a7b185777a2c9f40773d07ca6ef01e3f6ef8d1c0f8",
   "experiments/build_markdown.py": "c9c98dae590aa2d094ed99e35ec1f017ef2651af9bcaae6462c231a2db54a97b",
   "experiments/build_tables.py": "b9609bd3c074c51ae6cbf2e2fee95353d8fb20dd64d5267bc9979257c1b82399",
   "experiments/extended.py": "34a563dbd68ac09f5a61522f3e989f79e58552c81892ac05c881cee55d09d9f7",
+  "experiments/gif-temporal-16/README.md": "ded8f0f55e02b13f425af787dd576d213076605a0ffc9154fde9a9256e4acb48",
+  "experiments/gif-temporal-16/datamatrix-16frames-32cores.gif": "8217572cd038e4b8eceda420e754abc39cac49d4dc3c3790e63776457e2dc836",
+  "experiments/gif-temporal-16/datamatrix-16frames-64cores.gif": "5d8f2b2feba89954d71ac2876365f2d737d89976f83d6a3425d96989df3e6d9a",
+  "experiments/gif-temporal-16/gif_temporal_16.py": "197143a1f48716035b43636a873eb2e577fb026bb3e3c79c360479d2a3a13c48",
+  "experiments/gif-temporal-16/resultados-16frames.json": "9cb612d40c7955fae9bfc1a8318ead61e59a800eec4a7aeac049c3bba33a7a17",
   "paper/datamatrix-payload-paper-v0.1.pdf": "bb895c101463c842ff44ef34d1367ce7ce8d9a725e62ac41c67c078b4db73b0e",
   "paper/figures/channel-errors.pdf": "e41e6850945fcaf2e50decde91e0a41dabdfda62136b5f3b3c26b90fc7478eb0",
   "paper/figures/channel-errors.png": "c2c6142f0fec299d5ad29cb5cd85104de9784174c334b7114cee9ef2413772b5",
@@ -42,6 +48,5 @@
   "src/datamatrix_payload/__init__.py": "1800e47e5c14f8d5c789a926ff2e0140df16483e97ade1e6d0b648464e69e5be",
   "src/datamatrix_payload/core.py": "83092d67c04bbc688b727090a0e1d9b26389f7a0fc0d07d905f40fcf247bc86e",
   "src/datamatrix_payload/rs32.py": "18452e56cf44f2da716328a83ff4d58963196c9a18470c96c7e83c646c59fc9b",
-  "tests/test_behaviors.py": "c1c95adf40ba7f0bd2e58240e47885d50a05cf30977c3457b707dd0c12b3cffa",
-  "LICENSE": "58c2806ff0d890443e2ff9ba756ed7542c884d8973252f3eab72efbbd922bea8"
+  "tests/test_behaviors.py": "c1c95adf40ba7f0bd2e58240e47885d50a05cf30977c3457b707dd0c12b3cffa"
 }

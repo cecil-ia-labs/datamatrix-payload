@@ -25,6 +25,21 @@ O projeto contém um manuscrito matemático em português, abstract em inglês, 
 
 Essas medições caracterizam simulações digitais. O decodificador RS implementado interpola apagamentos informados ao programa. Captura óptica, localização automática da grade, correção de erros desconhecidos e HPKE são próximos desenvolvimentos. Os testes de confidencialidade usam AES-GCM simétrico da biblioteca `cryptography`.
 
+## GIF temporal: estudo com 16 frames
+
+Extensão temporal discutida por **Juninho De Luca e Jorge**. O [estudo de caso](experiments/gif-temporal-16/README.md) distribui dados em 16 frames de 128 × 128 módulos, com uma paleta RGB diferente por frame e dois segundos nominais por ciclo.
+
+| Paleta | Payload recuperado | GIF |
+|---|---:|---|
+| 32 cores | 160 KiB | [Animação de 16 frames](experiments/gif-temporal-16/datamatrix-16frames-32cores.gif) |
+| 64 cores | 192 KiB | [Animação de 16 frames](experiments/gif-temporal-16/datamatrix-16frames-64cores.gif) |
+
+Os dois payloads foram recuperados byte a byte, com SHA-256 idêntico ao original. O diretório inclui o encoder/decoder, os resultados em JSON e as referências. Para reproduzir a partir da raiz, com as dependências instaladas:
+
+```bash
+python3 experiments/gif-temporal-16/gif_temporal_16.py
+```
+
 ## Reprodução
 
 Python 3.11 ou superior. Para reproduzir o ambiente registrado, usar Python 3.12.14 e `requirements.lock.txt`.

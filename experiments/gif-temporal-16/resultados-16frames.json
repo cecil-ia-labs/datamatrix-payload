@@ -1,0 +1,44 @@
+{
+  "seed": 20261104,
+  "python": "3.12.14",
+  "numpy": "2.3.5",
+  "Pillow": "13.0.0",
+  "modules": [
+    128,
+    128
+  ],
+  "cases": [
+    {
+      "filename": "datamatrix-16frames-32cores.gif",
+      "colors": 32,
+      "bits_per_module": 5,
+      "frames": 16,
+      "duration_ms": 2000,
+      "nominal_average_fps": 8.0,
+      "payload_bytes": 163840,
+      "gif_file_bytes": 213329,
+      "payload_sha256": "a8065b93fa25ae2f2a5d278ed916bc47919345e6d7844ee16d8d271a57938cde",
+      "restored_sha256": "a8065b93fa25ae2f2a5d278ed916bc47919345e6d7844ee16d8d271a57938cde",
+      "gif_sha256": "8217572cd038e4b8eceda420e754abc39cac49d4dc3c3790e63776457e2dc836",
+      "exact_recovery": true,
+      "palette_entries_per_frame": 32,
+      "local_color_tables": 15
+    },
+    {
+      "filename": "datamatrix-16frames-64cores.gif",
+      "colors": 64,
+      "bits_per_module": 6,
+      "frames": 16,
+      "duration_ms": 2000,
+      "nominal_average_fps": 8.0,
+      "payload_bytes": 196608,
+      "gif_file_bytes": 278783,
+      "payload_sha256": "7ab0488bbedf6eccc23ada11cc3b86fead4ca1ba04f8dfe2d7e667973f176892",
+      "restored_sha256": "7ab0488bbedf6eccc23ada11cc3b86fead4ca1ba04f8dfe2d7e667973f176892",
+      "gif_sha256": "5d8f2b2feba89954d71ac2876365f2d737d89976f83d6a3425d96989df3e6d9a",
+      "exact_recovery": true,
+      "palette_entries_per_frame": 64,
+      "local_color_tables": 15
+    }
+  ]
+}

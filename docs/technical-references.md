@@ -71,3 +71,16 @@ $$c_k=\operatorname{round}\left[\frac{255}{2}(r_k+1)\right].$$
 A associação é geométrica. Uma cor legível dentre 128 estados admite sete bits clássicos; a informação clássica comunicável por um qubit sem emaranhamento previamente compartilhado é limitada a um bit. A capacidade da imagem não recebe um fator quântico por usar três componentes.
 
 Fontes: [IBM Quantum, esfera de Bloch](https://quantum.cloud.ibm.com/learning/en/courses/general-formulation-of-quantum-information/density-matrices/bloch-sphere), [Holevo, artigo original de 1973](https://www.mathnet.ru/eng/ppi903) e [codificação superdensa e limite de Holevo](https://quantum.cloud.ibm.com/learning/en/courses/basics-of-quantum-information/entanglement-in-action/superdense-coding).
+
+## GIF e a dimensão temporal
+
+A extensão temporal foi discutida por **Juninho De Luca e Jorge**. A sequência usa índices $D[t,y,x]$ e uma paleta $P_t$ por frame: $RGB[t,y,x]=P_t(D[t,y,x])$. Para $W\times H$ módulos, $F$ frames e $K=2^b$ entradas, o payload bruto é $\lfloor WHF\log_2K/8\rfloor$ bytes. Os custos das paletas, do contêiner e do protocolo são contabilizados separadamente.
+
+O [estudo reproduzível de 16 frames](../experiments/gif-temporal-16/README.md) confirmou 160 KiB com 32 cores e 192 KiB com 64 cores, com recuperação exata. A rotação de paletas e a repetição da animação não fornecem, por si, sigilo nem expiração do arquivo.
+
+| Conceito | Relação | Fonte primária |
+|---|---|---|
+| GIF indexado e multiframe | Tabelas RGB globais/locais, LZW e delay em centésimos de segundo | [CompuServe GIF89a, W3C](https://www.w3.org/Graphics/GIF/spec-gif89a.txt) |
+| Encoder/decoder utilizado | Paletas, duração, transparência e disposição de frames | [Pillow, formatos de arquivo](https://pillow.readthedocs.io/en/stable/handbook/image-file-formats.html) |
+| Autenticação temporal | Segredo compartilhado, contador temporal e rejeição de reutilização | [RFC 6238, TOTP](https://www.rfc-editor.org/rfc/rfc6238.html) |
+| Autenticação do transporte | AEAD, dados associados e unicidade de nonce por chave | [RFC 5116](https://www.rfc-editor.org/rfc/rfc5116.html) |

@@ -12,8 +12,10 @@ date-released: 2026-11-04
 repository-code: "https://github.com/cecil-ia-labs/datamatrix-payload"
 abstract: "An exploratory four-coordinate catalogue and hexadecimal indexed-GIF transport model, with a 256 by 256 pixel working profile, 64 by 64 effective modules, up to 64 entries and up to 64 frames. English is the default language; Portuguese is the alternative."
 keywords:
-  - hexadecimal
-  - indexed GIF
+  - datamatrix
+  - data encoding
+  - data transport
+  - indexed color spectrum
   - temporal data
-  - Unicode
+  - unicode
   - request for discussion

@@ -2,12 +2,15 @@
 \PassOptionsToPackage{unicode}{hyperref}
 \PassOptionsToPackage{hyphens}{url}
 \PassOptionsToPackage{dvipsnames,svgnames,x11names}{xcolor}
-%
 \documentclass[
+  american,
   11pt,
   a4paper,
 ]{article}
+\usepackage{xcolor}
+\usepackage[margin=24mm]{geometry}
 \usepackage{amsmath,amssymb}
+\setcounter{secnumdepth}{5}
 \usepackage{iftex}
 \ifPDFTeX
   \usepackage[T1]{fontenc}
@@ -38,8 +41,6 @@
 }{% if KOMA class
   \KOMAoptions{parskip=half}}
 \makeatother
-\usepackage{xcolor}
-\usepackage[margin=24mm]{geometry}
 \usepackage{longtable,booktabs,array}
 \usepackage{calc} % for calculating minipage widths
 % Correct order of tables after \paragraph or \subparagraph
@@ -50,19 +51,17 @@
 % Allow footnotes in longtable head/foot
 \IfFileExists{footnotehyper.sty}{\usepackage{footnotehyper}}{\usepackage{footnote}}
 \makesavenoteenv{longtable}
+\ifLuaTeX
+\usepackage[bidi=basic,shorthands=off,]{babel}
+\else
+\usepackage[bidi=default,shorthands=off,]{babel}
+\fi
+\ifLuaTeX
+  \usepackage{selnolig} % disable illegal ligatures
+\fi
 \setlength{\emergencystretch}{3em} % prevent overfull lines
 \providecommand{\tightlist}{%
   \setlength{\itemsep}{0pt}\setlength{\parskip}{0pt}}
-\setcounter{secnumdepth}{5}
-\ifLuaTeX
-\usepackage[bidi=basic]{babel}
-\else
-\usepackage[bidi=default]{babel}
-\fi
-\babelprovide[main,import]{american}
-% get rid of language-specific shorthands (see #6817):
-\let\LanguageShortHands\languageshorthands
-\def\languageshorthands#1{}
 \usepackage[T1]{fontenc}
 \usepackage{lmodern}
 \usepackage{microtype}
@@ -79,10 +78,7 @@
 \setlength{\headheight}{15pt}
 \setlength{\emergencystretch}{3em}
 
-\ifLuaTeX
-  \usepackage{selnolig}  % disable illegal ligatures
-\fi
-\IfFileExists{bookmark.sty}{\usepackage{bookmark}}{\usepackage{hyperref}}
+\usepackage{bookmark}
 \IfFileExists{xurl.sty}{\usepackage{xurl}}{} % add URL line breaks if available
 \urlstyle{same}
 \hypersetup{
@@ -131,9 +127,8 @@ discussion. Scope and Limitations consolidates the qualifications. The
 document invites refinement before a specification is proposed.
 \end{abstract}
 
-\hypertarget{purpose-and-discussion-status}{%
 \section{Purpose and discussion
-status}\label{purpose-and-discussion-status}}
+status}\label{purpose-and-discussion-status}
 
 \textbf{Quad-Dimensional DataMatrix} is a Request for Discussion (RfD)
 by \textbf{João Paulo De Luca Jr and Jorge Luiz Espanhol}. It brings
@@ -167,17 +162,15 @@ Key & A dictionary entry or secret proposed for discussion \\
 
 English is the default language of the repository and manuscript. A
 complete Portuguese edition is maintained alongside it. The
-qualifications are collected in
-\protect\hyperlink{scope-and-limitations}{Scope and Limitations}; the
-argument below develops the working model directly.
+qualifications are collected in \hyperref[scope-and-limitations]{Scope
+and Limitations}; the argument below develops the working model
+directly.
 
-\hypertarget{working-gif-profile-and-hexadecimal-values}{%
 \section{Working GIF profile and hexadecimal
-values}\label{working-gif-profile-and-hexadecimal-values}}
+values}\label{working-gif-profile-and-hexadecimal-values}
 
-\hypertarget{geometry-and-active-entries}{%
 \subsection{Geometry and active
-entries}\label{geometry-and-active-entries}}
+entries}\label{geometry-and-active-entries}
 
 The current profile is described by
 
@@ -217,9 +210,8 @@ order can change between states while each entry remains a hexadecimal
 value. \href{https://www.w3.org/Graphics/GIF/spec-gif89a.txt}{GIF89a}
 supplies the indexed table and image-block container.
 
-\hypertarget{representation-and-table-cost}{%
 \subsection{Representation and table
-cost}\label{representation-and-table-cost}}
+cost}\label{representation-and-table-cost}
 
 A six-digit hexadecimal value has a 24-bit integer domain:
 
@@ -242,13 +234,11 @@ own table, the table allocation is \(3KF\) bytes. Textual hexadecimal
 descriptions and the encoded container have their own storage budgets.
 The model keeps these quantities separately observable.
 
-\hypertarget{the-four-coordinate-catalogue}{%
 \section{The four-coordinate
-catalogue}\label{the-four-coordinate-catalogue}}
+catalogue}\label{the-four-coordinate-catalogue}
 
-\hypertarget{cartesian-catalogue-and-selected-state}{%
 \subsection{Cartesian catalogue and selected
-state}\label{cartesian-catalogue-and-selected-state}}
+state}\label{cartesian-catalogue-and-selected-state}
 
 Let
 
@@ -299,9 +289,8 @@ The catalogue enumerates every candidate tuple; the dense sequence
 selects one dimension for each of its \(WHF\) positions. This gives a
 precise meaning to the project's four logical coordinates.
 
-\hypertarget{a-hexadecimal-catalogue-address}{%
 \subsection{A hexadecimal catalogue
-address}\label{a-hexadecimal-catalogue-address}}
+address}\label{a-hexadecimal-catalogue-address}
 
 With all four coordinate ranges bounded by 64, a row-major catalogue
 address can be written as
@@ -333,11 +322,9 @@ implementation exposes the address as a six-digit hexadecimal integer.
 This address is useful for discussing dictionaries, sparse events, and
 state-local references.
 
-\hypertarget{capacity-and-nominal-rates}{%
-\section{Capacity and nominal rates}\label{capacity-and-nominal-rates}}
+\section{Capacity and nominal rates}\label{capacity-and-nominal-rates}
 
-\hypertarget{from-choices-to-bits}{%
-\subsection{From choices to bits}\label{from-choices-to-bits}}
+\subsection{From choices to bits}\label{from-choices-to-bits}
 
 For \(N=WHF\) independently selectable modules, the number of dense
 sequences is
@@ -379,9 +366,8 @@ B_{\mathrm{state}}=\frac{64^2\cdot6}{8}
 The number of possible complete sequences is exponential in \(N\). The
 binary payload is its logarithm and grows proportionally to \(F\).
 
-\hypertarget{catalogue-rate-and-payload-rate}{%
 \subsection{Catalogue rate and payload
-rate}\label{catalogue-rate-and-payload-rate}}
+rate}\label{catalogue-rate-and-payload-rate}
 
 Let \(f\) be the nominal number of displayed states per second. A full
 cycle has duration
@@ -441,12 +427,10 @@ This expression assumes fixed per-state reservations followed by an
 aggregate code of rate \(r\). A different placement of reservations
 yields a different budget. The eventual layout is a discussion item.
 
-\hypertarget{time-in-the-container-and-time-in-the-app}{%
 \section{Time in the container and time in the
-app}\label{time-in-the-container-and-time-in-the-app}}
+app}\label{time-in-the-container-and-time-in-the-app}
 
-\hypertarget{transport-cadence}{%
-\subsection{Transport cadence}\label{transport-cadence}}
+\subsection{Transport cadence}\label{transport-cadence}
 
 GIF delays are stored in hundredths of a second. A nominal 125 ms state
 period can be represented by alternating 120 and 130 ms delays. For an
@@ -469,9 +453,8 @@ The prototype quantizes cumulative boundaries:
 where \(p\) is the requested period in milliseconds. At \(p=125\) and
 \(F=64\), the stored delays sum to 8,000 ms.
 
-\hypertarget{app-held-sequence-and-selection}{%
 \subsection{App-held sequence and
-selection}\label{app-held-sequence-and-selection}}
+selection}\label{app-held-sequence-and-selection}
 
 The proposed interaction places the sequence in the app. The user or a
 receiving service selects or consumes one state. The app can advance at
@@ -503,9 +486,9 @@ one-frame-per-minute interaction are two uses of the same ordered
 states.
 
 \begin{longtable}[]{@{}
-  >{\raggedright\arraybackslash}p{(\columnwidth - 4\tabcolsep) * \real{0.3333}}
-  >{\raggedright\arraybackslash}p{(\columnwidth - 4\tabcolsep) * \real{0.3333}}
-  >{\raggedright\arraybackslash}p{(\columnwidth - 4\tabcolsep) * \real{0.3333}}@{}}
+  >{\raggedright\arraybackslash}p{(\linewidth - 4\tabcolsep) * \real{0.3333}}
+  >{\raggedright\arraybackslash}p{(\linewidth - 4\tabcolsep) * \real{0.3333}}
+  >{\raggedright\arraybackslash}p{(\linewidth - 4\tabcolsep) * \real{0.3333}}@{}}
 \toprule\noalign{}
 \begin{minipage}[b]{\linewidth}\raggedright
 Event
@@ -531,8 +514,7 @@ The example renders each selected state as an independent GIF. Clicking
 clears the app timer before writing to the clipboard. This makes the
 selected image and copied code refer to the same state.
 
-\hypertarget{relationship-to-totp}{%
-\subsection{Relationship to TOTP}\label{relationship-to-totp}}
+\subsection{Relationship to TOTP}\label{relationship-to-totp}
 
 The comparison with
 \href{https://www.rfc-editor.org/rfc/rfc6238.html}{TOTP} concerns the
@@ -547,12 +529,10 @@ renewal, and acceptance rules should be chosen for this sequence-based
 model. The \href{https://www.w3.org/TR/clipboard-apis/}{Clipboard API}
 provides the user-triggered copy operation used by the local example.
 
-\hypertarget{unicode-and-one-to-one-hexadecimal-mappings}{%
 \section{Unicode and one-to-one hexadecimal
-mappings}\label{unicode-and-one-to-one-hexadecimal-mappings}}
+mappings}\label{unicode-and-one-to-one-hexadecimal-mappings}
 
-\hypertarget{the-scalar-domain}{%
-\subsection{The scalar domain}\label{the-scalar-domain}}
+\subsection{The scalar domain}\label{the-scalar-domain}
 
 The
 \href{https://www.unicode.org/versions/Unicode18.0.0/core-spec/chapter-3/}{Unicode
@@ -589,9 +569,8 @@ It is injective: \(h(u_1)=h(u_2)\) implies \(u_1=u_2\). The
 representation fits inside the 24-bit value domain already used by the
 catalogue and palette descriptions.
 
-\hypertarget{three-candidate-interpretations}{%
 \subsection{Three candidate
-interpretations}\label{three-candidate-interpretations}}
+interpretations}\label{three-candidate-interpretations}
 
 \textbf{Direct palette dictionary.} A scalar value can be associated
 with a six-digit hexadecimal entry. A frame may use at most \(K\)
@@ -631,10 +610,10 @@ also needs a representation of order and multiplicity; these become
 explicit design choices.
 
 \begin{longtable}[]{@{}
-  >{\raggedright\arraybackslash}p{(\columnwidth - 6\tabcolsep) * \real{0.2500}}
-  >{\raggedright\arraybackslash}p{(\columnwidth - 6\tabcolsep) * \real{0.2500}}
-  >{\raggedright\arraybackslash}p{(\columnwidth - 6\tabcolsep) * \real{0.2500}}
-  >{\raggedright\arraybackslash}p{(\columnwidth - 6\tabcolsep) * \real{0.2500}}@{}}
+  >{\raggedright\arraybackslash}p{(\linewidth - 6\tabcolsep) * \real{0.2500}}
+  >{\raggedright\arraybackslash}p{(\linewidth - 6\tabcolsep) * \real{0.2500}}
+  >{\raggedright\arraybackslash}p{(\linewidth - 6\tabcolsep) * \real{0.2500}}
+  >{\raggedright\arraybackslash}p{(\linewidth - 6\tabcolsep) * \real{0.2500}}@{}}
 \toprule\noalign{}
 \begin{minipage}[b]{\linewidth}\raggedright
 Scalar example
@@ -659,9 +638,8 @@ Grinning face & \texttt{0x01F600} & \texttt{F0\ 9F\ 98\ 80} &
 \texttt{00\ 1F\ 18\ 00} \\
 \end{longtable}
 
-\hypertarget{text-budget-and-the-eventual-key}{%
 \subsection{Text budget and the eventual
-key}\label{text-budget-and-the-eventual-key}}
+key}\label{text-budget-and-the-eventual-key}
 
 The four-dimension representation uses 24 bits per scalar:
 
@@ -684,12 +662,10 @@ external state, or an input to a cryptographic construction. The
 one-to-one mapping establishes a representation; its eventual role can
 be selected through discussion.
 
-\hypertarget{reproducible-case-study-and-app-example}{%
 \section{Reproducible case study and app
-example}\label{reproducible-case-study-and-app-example}}
+example}\label{reproducible-case-study-and-app-example}
 
-\hypertarget{the-16-state-study}{%
-\subsection{The 16-state study}\label{the-16-state-study}}
+\subsection{The 16-state study}\label{the-16-state-study}
 
 The published demonstration deliberately contains 16 states. Each state
 uses the current 256 × 256 pixel canvas, 64 × 64 effective modules, and
@@ -727,8 +703,7 @@ Recovery & Byte-exact \\
 The encoded file size is a measured container size. The gross payload
 count comes from the number of independent selected dimensions.
 
-\hypertarget{implementation-and-checks}{%
-\subsection{Implementation and checks}\label{implementation-and-checks}}
+\subsection{Implementation and checks}\label{implementation-and-checks}
 
 The code accepts hexadecimal payload octets and hexadecimal palette
 entries. It writes complete indexed frames, including repeated states,
@@ -766,8 +741,7 @@ code contains 6,144 hexadecimal digits for one 3 KiB state.
 The repository provides the case-study generator, results, viewer, both
 manuscript sources, and build commands.
 
-\hypertarget{scope-and-limitations}{%
-\section{Scope and Limitations}\label{scope-and-limitations}}
+\section{Scope and Limitations}\label{scope-and-limitations}
 
 This section consolidates the interpretation and boundaries of the RfD.
 
@@ -814,8 +788,7 @@ explicit choices in a text or key design.
 indexed-file path. They support the specified counting and recovery
 claims and do not establish the security of a later protocol.
 
-\hypertarget{questions-for-discussion}{%
-\section{Questions for discussion}\label{questions-for-discussion}}
+\section{Questions for discussion}\label{questions-for-discussion}
 
 \begin{enumerate}
 \def\labelenumi{\arabic{enumi}.}
@@ -841,8 +814,7 @@ claims and do not establish the security of a later protocol.
   Which fields are necessary before a specification can be proposed?
 \end{enumerate}
 
-\hypertarget{authorship-and-assistance}{%
-\section{Authorship and assistance}\label{authorship-and-assistance}}
+\section{Authorship and assistance}\label{authorship-and-assistance}
 
 \textbf{João Paulo De Luca Jr and Jorge Luiz Espanhol} are the
 co-authors of this RfD and the associated discussion proposal.
@@ -850,9 +822,7 @@ ChatGPT/Codex, OpenAI, assisted with mathematical exposition,
 translation, implementation, execution, and document preparation. The
 authors retain responsibility for the research direction and decisions.
 
-\hypertarget{linked-technical-references}{%
-\section{Linked technical
-references}\label{linked-technical-references}}
+\section{Linked technical references}\label{linked-technical-references}
 
 \begin{enumerate}
 \def\labelenumi{\arabic{enumi}.}

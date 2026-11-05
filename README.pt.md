@@ -6,7 +6,7 @@
 
 Cecil-IA Labs · 4 de novembro de 2026
 
-[English](README.md) · [Paper em inglês](paper/quad-dimensional-datamatrix.en.pdf) · [Paper em português](paper/quad-dimensional-datamatrix.pt.pdf)
+[English](README.md) · [Paper em inglês](paper/quad-dimensional-datamatrix.en.pdf) · [Paper em português](paper/quad-dimensional-datamatrix.pt.pdf) · [Preparação para o Zenodo](docs/pt/publication.md)
 
 Quad-Dimensional DataMatrix explora um catálogo com quatro coordenadas lógicas: posição horizontal, posição vertical, estado temporal e dimension hexadecimal. Um GIF indexado transporta a sequência correspondente. Inglês é o idioma padrão; português é a alternativa.
 
@@ -15,6 +15,8 @@ Quad-Dimensional DataMatrix explora um catálogo com quatro coordenadas lógicas
 ![Demonstração do app Quad-Dimensional DataMatrix](docs/media/quad-dimensional-datamatrix-poc.gif)
 
 [Assistir ou baixar WebM](docs/media/quad-dimensional-datamatrix-poc.webm) · [Notas da mídia e reprodução](docs/media/README.pt.md)
+
+A gravação mostra o app local bilíngue: avanço dos estados, pausa e cópia de uma cor selecionada e recepção no círculo. Seu GIF de apresentação e seu WebM de 960 × 900 são registros da interface. O exemplo que transporta dados é o [GIF indexado de 16 estados](examples/quad-dimensional-datamatrix-16-states.gif), distribuído separadamente; as animações possuem funções e paletas diferentes.
 
 ## Perfil de trabalho
 
@@ -83,6 +85,14 @@ O [GIF com 16 estados](examples/quad-dimensional-datamatrix-16-states.gif) cont�
 
 As verificações de eventos do app podem ser executadas com `make viewer-test` (Node.js).
 
+| Objeto reproduzido | Estados | Cadência | Ciclo | Payload bruto |
+|---|---:|---|---|---:|
+| Estudo de transporte de dados | 16 | 8 estados/s | 2 segundos | 48 KiB |
+| Visualizador local na configuração padrão | 16 | Um estado/minuto | 16 minutos | Copia uma cor selecionada de seis caracteres |
+| Perfil máximo de trabalho | 64 | 8 estados/s | 8 segundos | 192 KiB |
+
+O estudo é determinístico com a semente `20261104`, NumPy `2.3.5` e Pillow `13.0.0`. O [relatório](results/hex-gif-case-study.json) registra a versão do Python da reprodução mais recente. O GIF do estudo possui 383.644 bytes; seu SHA-256 é `637f84338d88121bd806e26234f941fde2f566c084c0b04468f891a32224cafe`. O payload recuperado exatamente, byte a byte, possui 49.152 bytes.
+
 Os testes também verificam o limite de 64 frames, estados repetidos, ordem da paleta, entrada truncada, módulos inconsistentes, cadência de um frame por minuto, endereços do catálogo e mapeamentos de escalares Unicode.
 
 ### Compilar e verificar os PDFs
@@ -107,6 +117,19 @@ make PYTHON=.venv/bin/python verify
 A compilação verifica se `pandoc` e `pdflatex` estão no `PATH` antes de gerar arquivos. Compila os dois idiomas, grava os logs em `output/pdf/` e copia os PDFs resultantes para `paper/`.
 
 Em um checkout Git, a verificação examina os arquivos listados no índice do Git, incluindo novas adições ao staging. Backups locais não versionados, como `.initial/`, ambientes virtuais e arquivos do editor ficam fora dessa varredura. Em um arquivo-fonte distribuído sem metadados Git, a verificação examina os arquivos visíveis e ignora diretórios ocultos e de compilação/cache.
+
+## Preparação do primeiro depósito no Zenodo
+
+O primeiro depósito está preparado como **RfD 0.2.0**, um relatório técnico com edições em PDF em inglês e português, código-fonte, estudo reproduzível e a gravação da PoC. A licença atual do projeto é MIT. [CITATION.cff](CITATION.cff) e [.zenodo.json](.zenodo.json) registram os mesmos autores e versão. Nenhum DOI é atribuído no repositório antes de sua reserva ou emissão pelo Zenodo.
+
+Após instalar o ambiente e as ferramentas de PDF:
+
+```bash
+make PYTHON=.venv/bin/python test viewer-test case-study paper verify
+make PYTHON=.venv/bin/python publication
+```
+
+O segundo comando valida novamente o repositório e cria `dist/zenodo-v0.2.0/` e `dist/quad-dimensional-datamatrix-0.2.0-zenodo.zip`. A pasta contém os dois PDFs, arquivo de fontes, WebM, notas bilíngues da versão, metadados do depósito, manifesto dos fontes e checksums SHA-256. O empacotamento prepara arquivos locais; salvar um rascunho no Zenodo, reservar um DOI e publicar são ações separadas. Consulte o [guia de depósito](docs/pt/publication.md) e as [notas da versão](docs/pt/release-notes.md).
 
 ## Discussão e papers
 

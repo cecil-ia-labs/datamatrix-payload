@@ -11,11 +11,15 @@ authors:
 version: "0.2.0"
 date-released: "2026-11-04"
 repository-code: "https://github.com/cecil-ia-labs/datamatrix-payload"
+url: "https://github.com/cecil-ia-labs/datamatrix-payload"
+license: MIT
 abstract: >-
   An exploratory four-coordinate catalogue and hexadecimal indexed-GIF
   transport model, with a 256 by 256 pixel working profile, 64 by 64 effective
   modules, up to 64 entries and up to 64 frames. English is the default
-  language; Portuguese is the alternative.
+  language; Portuguese is the alternative. A reproducible 16-state study
+  recovers 48 KiB exactly. A bilingual app demonstrates selected-module
+  color copying and reception, with recorded GIF and WebM walkthroughs.
 preferred-citation:
   type: report
   title: "Quad-Dimensional DataMatrix: Request for Discussion"
@@ -26,12 +30,16 @@ preferred-citation:
       given-names: "Jorge Luiz"
   year: 2026
   version: "0.2.0"
+  date-published: "2026-11-04"
+  publisher:
+    name: "Cecil-IA Labs"
   url: "https://github.com/cecil-ia-labs/datamatrix-payload"
 keywords:
   - datamatrix
   - data encoding
   - data transport
-  - indexed color spectrum
+  - indexed GIF
+  - hexadecimal encoding
   - temporal data
   - unicode
   - request for discussion

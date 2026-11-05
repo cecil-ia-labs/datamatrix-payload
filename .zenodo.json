@@ -1,0 +1,44 @@
+{
+  "title": "Quad-Dimensional DataMatrix: Request for Discussion",
+  "upload_type": "publication",
+  "publication_type": "report",
+  "publication_date": "2026-11-04",
+  "version": "0.2.0",
+  "language": "eng",
+  "imprint_publisher": "Cecil-IA Labs",
+  "description": "<p>Quad-Dimensional DataMatrix is a Request for Discussion by João Paulo De Luca Jr and Jorge Luiz Espanhol on a catalogue with four logical coordinates: horizontal position, vertical position, temporal state, and hexadecimal dimension. Its indexed-GIF working profile uses 256 by 256 stored pixels, 64 by 64 effective modules, up to 64 palette entries, and up to 64 states. The maximum catalogue contains 16,777,216 candidate tuples; the dense selected payload is 192 KiB per 64-state cycle, nominally eight seconds at 8 fps. These are distinct counting quantities.</p><p>A reproducible 16-state study recovers 49,152 bytes (48 KiB) exactly from an indexed GIF. A bilingual local app demonstrates pausing a state, copying a selected module's six-character hexadecimal color, receiving it through a local equality check, and conditional clipboard cleanup. A cropped GIF and WebM document the app interaction. Unicode scalar mappings are discussed as candidates for a future dictionary. The deposit includes equivalent English and Portuguese report editions, source code, study data, and demonstration media.</p><p><strong>Resumo em português.</strong> Quad-Dimensional DataMatrix é um Request for Discussion de João Paulo De Luca Jr e Jorge Luiz Espanhol sobre um catálogo de quatro coordenadas lógicas e transporte por estados GIF indexados. O perfil máximo contém 16.777.216 tuplas candidatas e comporta 192 KiB de payload bruto por ciclo de 64 estados. O estudo reproduzível de 16 estados recupera exatamente 48 KiB. Um app bilíngue demonstra seleção, cópia e recepção de uma cor hexadecimal, acompanhado de gravações em GIF e WebM. Os manuscritos discutem mapeamentos escalares Unicode e as escolhas ainda necessárias antes de uma especificação.</p>",
+  "notes": "RfD 0.2.0. English is the default language and a complete Portuguese edition is included. The 16-state case study, the 64-state maximum profile, and the recorded interface walkthrough are separate objects. The measurements establish byte-exact recovery for the stated digital profile. Authentication, framing, provisioning, state renewal, physical capture, and interoperability remain discussion topics. ChatGPT/Codex assisted with exposition, translation, implementation, execution, and document preparation; the two named human authors retain responsibility. The existing MIT license applies to this deposit.",
+  "method": "Explicit combinatorial derivation of catalogue cardinality and dense payload capacity; deterministic indexed-GIF encoding and decoding with seed 20261104, NumPy 2.3.5, and Pillow 13.0.0; SHA-256 comparison of original and recovered payloads; automated boundary and malformed-input checks; app event and clipboard-permission scenarios; bilingual manuscript generation with Pandoc and pdfLaTeX; recorded interface walkthrough with documented crop and media checksums. The machine-readable study report records the Python version used for reproduction.",
+  "creators": [
+    {"name": "De Luca Jr, João Paulo"},
+    {"name": "Espanhol, Jorge Luiz"}
+  ],
+  "keywords": [
+    "Quad-Dimensional DataMatrix",
+    "request for discussion",
+    "indexed GIF",
+    "hexadecimal encoding",
+    "temporal data",
+    "visual data transport",
+    "Unicode scalar values",
+    "reproducible research"
+  ],
+  "related_identifiers": [
+    {
+      "identifier": "https://github.com/cecil-ia-labs/datamatrix-payload",
+      "relation": "isSupplementedBy",
+      "resource_type": "software"
+    }
+  ],
+  "references": [
+    "CompuServe Incorporated. Graphics Interchange Format, Version 89a. https://www.w3.org/Graphics/GIF/spec-gif89a.txt",
+    "Pillow. Image file formats: GIF. Version 13.0.0. https://pillow.readthedocs.io/en/stable/handbook/image-file-formats.html#gif",
+    "The Unicode Consortium. The Unicode Standard, Version 18.0.0, Chapter 3, Section 3.9: Unicode Encoding Forms. https://www.unicode.org/versions/Unicode18.0.0/core-spec/chapter-3/",
+    "Yergeau, F. (2003). UTF-8, a transformation format of ISO 10646. RFC 3629. https://www.rfc-editor.org/rfc/rfc3629.html",
+    "M'Raihi, D.; Machani, S.; Pei, M.; Rydell, J. (2011). TOTP: Time-Based One-Time Password Algorithm. RFC 6238. https://www.rfc-editor.org/rfc/rfc6238.html",
+    "McGrew, D. (2008). An Interface and Algorithms for Authenticated Encryption. RFC 5116. https://www.rfc-editor.org/rfc/rfc5116.html",
+    "W3C. Clipboard API and events. Working Draft, 24 June 2026. https://www.w3.org/TR/2026/WD-clipboard-apis-20260624/"
+  ],
+  "access_right": "open",
+  "license": "mit"
+}

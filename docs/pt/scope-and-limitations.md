@@ -15,3 +15,7 @@ Esta seção reúne as qualificações do RfD. Assim, o argumento matemático e 
 9. **Evidência.** O estudo valida recuperação exata no perfil digital declarado. Não apresenta alegações de desempenho para modelos generativos nem captura física. A especificação posterior poderá adotar outro perfil após a discussão.
 
 Referências: [GIF89a](https://www.w3.org/Graphics/GIF/spec-gif89a.txt), [Unicode §3.9](https://www.unicode.org/versions/Unicode18.0.0/core-spec/chapter-3/), [RFC 3629](https://www.rfc-editor.org/rfc/rfc3629.html), [RFC 6238](https://www.rfc-editor.org/rfc/rfc6238.html), [RFC 5116](https://www.rfc-editor.org/rfc/rfc5116.html).
+
+## Leitura dos artefatos distribuídos
+
+O app atual contém 16 estados públicos, com ciclo padrão de interação de 16 minutos. O perfil de 64 estados é o máximo suportado. As gravações da interface usam paleta e geometria de apresentação próprias; as medidas de recuperação usam o arquivo indexado exato do estudo. As [notas da versão](release-notes.md) e o [guia de depósito](publication.md) preservam essas distinções.

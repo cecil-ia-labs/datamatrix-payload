@@ -1,5 +1,6 @@
 ---
 title: "Quad-Dimensional DataMatrix"
+title-meta: "Quad-Dimensional DataMatrix: Request for Discussion"
 subtitle: "Request for Discussion: Estados GIF Hexadecimais e Sequências Mantidas no App"
 author:
   - "João Paulo De Luca Jr"
@@ -10,12 +11,19 @@ fontsize: 11pt
 geometry: margin=24mm
 documentclass: article
 papersize: a4
-subject: "Request for Discussion: estados GIF indexados e valores hexadecimais"
+subject: "RfD 0.2.0: estados GIF hexadecimais e sequências mantidas no app"
+keywords:
+  - "Quad-Dimensional DataMatrix"
+  - "Request for Discussion"
+  - "GIF indexado"
+  - "codificação hexadecimal"
+  - "dados temporais"
+  - "valores escalares Unicode"
 colorlinks: true
 linkcolor: qddmink
 urlcolor: qddmink
 abstract: |
-  Quad-Dimensional DataMatrix é proposto como estrutura de discussão para dados hexadecimais representados por estados GIF indexados. O perfil de trabalho usa um canvas de 256 por 256 pixels, 64 por 64 módulos efetivos, até 64 entradas hexadecimais na paleta e até 64 frames. Quatro coordenadas lógicas identificam posição horizontal, posição vertical, estado temporal e dimension. Seu catálogo cartesiano máximo contém 16.777.216 tuplas candidatas. Uma sequência densa seleciona uma entre 64 alternativas em cada módulo e, assim, transporta até 192 KiB de payload bruto em um ciclo de 64 frames, nominalmente oito segundos a 8 fps. Uma sequência mantida no app oferece uma segunda interação: avançar na cadência escolhida, pausar por seleção do usuário e copiar o código hexadecimal do estado para um serviço receptor. O paper desenvolve o modelo de contagem, separa os dois papéis do tempo e examina mapeamentos um a um entre Unicode e hexadecimal como candidatos a um futuro dicionário ou chave. Um estudo de 16 frames e um visualizador local bilíngue acompanham a discussão. A seção Escopo e limitações concentra as qualificações. O documento convida ao refinamento antes da proposta de uma especificação.
+  Quad-Dimensional DataMatrix é proposto como estrutura de discussão para dados hexadecimais representados por estados GIF indexados. O perfil de trabalho usa um canvas de 256 por 256 pixels, 64 por 64 módulos efetivos, até 64 entradas hexadecimais na paleta e até 64 frames. Quatro coordenadas lógicas identificam posição horizontal, posição vertical, estado temporal e dimension. Seu catálogo cartesiano máximo contém 16.777.216 tuplas candidatas. Uma sequência densa seleciona uma entre 64 alternativas em cada módulo e, assim, transporta até 192 KiB de payload bruto em um ciclo de 64 frames, nominalmente oito segundos a 8 fps. Uma sequência mantida no app oferece uma segunda interação: avançar na cadência escolhida, pausar por seleção do usuário e copiar a cor hexadecimal de seis caracteres de um módulo selecionado para um serviço receptor. O paper desenvolve o modelo de contagem, separa os dois papéis do tempo e examina mapeamentos um a um entre Unicode e hexadecimal como candidatos a um futuro dicionário ou chave. Um estudo de 16 frames e 48 KiB com recuperação exata byte a byte, um visualizador local bilíngue e gravações em GIF e WebM acompanham a discussão. A seção Escopo e limitações concentra as qualificações. O documento convida ao refinamento antes da proposta de uma especificação.
 ---
 
 # Propósito e status da discussão
@@ -315,6 +323,8 @@ O visualizador local de estudo define $g$ como o valor hexadecimal da paleta do 
 
 O exemplo renderiza cada estado selecionado como um GIF independente. O clique cancela o temporizador do app antes de escrever na área de transferência. Assim, a imagem selecionada e o código copiado se referem ao mesmo estado.
 
+O visualizador distribuído contém 16 estados sintéticos. Na cadência padrão de um estado por minuto, seu ciclo dura 16 minutos. A 8 fps, os mesmos 16 estados duram dois segundos. O exemplo anterior de 64 estados e 64 minutos descreve o perfil máximo de trabalho.
+
 ## Relação com TOTP
 
 A comparação com [TOTP](https://www.rfc-editor.org/rfc/rfc6238.html) diz respeito à posse do estado evolutivo e ao papel do verificador receptor. No TOTP, um app mantém um segredo e calcula um código usando um contador temporal. Nesta proposta, o app mantém ou obtém uma sequência e expõe o código de um estado selecionado.
@@ -447,7 +457,36 @@ A suíte de testes verifica:
 
 O visualizador local inicia em inglês, oferece português e pausa antes de copiar uma cor de seis caracteres. Uma borda de 2,5 segundos destaca a cor selecionada. Clicar no círculo receptor cola o código, preenche o círculo e confirma a correspondência com a seleção. Campos de cópia e colagem manual atendem à indisponibilidade das operações da área de transferência. Uma cópia bem-sucedida agenda uma tentativa condicional de limpeza após 30 segundos; uma nova cópia reinicia o intervalo.
 
+## Demonstração gravada da interface
+
+O repositório inclui uma gravação recortada do avanço dos estados, pausa e cópia e recepção da cor. As duas versões mostram a área do app de 960 × 900 pixels a 8 fps nominais. O GIF de apresentação possui 292 frames, duração armazenada de 36,51 segundos e paleta gerada de até 256 entradas. O WebM VP9 possui 292 frames e duração de 36,50 segundos. Nenhum contém áudio. A gravação original é identificada por checksum no manifesto de mídia.
+
+![Imagem intermediária do app de conceito gravado. A matriz e o círculo receptor demonstram a seleção de estado e a recepção local de cor.](figures/concept-app.pdf){width=78%}
+
+| Artefato | Papel | Paleta ou payload |
+|---|---|---|
+| GIF indexado do estudo de 16 estados | Transporte digital exato de dados | 64 entradas por estado; 48 KiB recuperados |
+| Gravação do app em GIF | Demonstração da interface | Até 256 entradas de apresentação; 960 × 900 pixels |
+| Gravação do app em WebM | Demonstração reproduzível da interface | Vídeo VP9 da mesma gravação recortada |
+
+A gravação documenta a interação. A recuperação exata byte a byte é medida no GIF indexado separado do estudo, de 256 × 256 pixels. As [notas de mídia](https://github.com/cecil-ia-labs/datamatrix-payload/blob/main/docs/media/README.pt.md) fornecem coordenadas do recorte, checksums, versões das ferramentas e comandos de conversão.
+
 O repositório fornece o gerador do estudo, resultados, visualizador, fontes dos dois manuscritos e comandos de compilação.
+
+# Reprodução e preparação do arquivamento
+
+O [repositório dos fontes](https://github.com/cecil-ia-labs/datamatrix-payload) fornece os relatórios em inglês e português sob a licença MIT existente. O estudo determinístico usa a semente 20261104, NumPy 2.3.5 e Pillow 13.0.0. O relatório legível por máquina registra a versão do Python de sua execução mais recente. A geração dos PDFs também exige Pandoc, pdfLaTeX, fontes e suporte ao português. A verificação do repositório usa `pdftotext`; os testes de eventos do app usam Node.js.
+
+Após instalar as dependências documentadas no README, execute a partir da raiz do repositório:
+
+```bash
+make PYTHON=.venv/bin/python test viewer-test case-study paper verify
+make PYTHON=.venv/bin/python publication
+```
+
+O comando de preparação valida os metadados de citação e depósito, empacota os fontes e as gravações junto com os dois PDFs e fornece checksums SHA-256 e um manifesto dos fontes. O objeto preparado para o Zenodo é uma publicação/relatório, versão 0.2.0, com os dois coautores nomeados na ordem apresentada aqui e inglês como idioma principal. Uma edição completa em português o acompanha. Reserva do DOI e publicação são etapas separadas; nenhum identificador é inventado no manuscrito.
+
+O arquivo dos fontes mantém os scripts de reprodução, resultados do estudo, dados gerados do app, suítes de testes, documentação e checksums do manifesto. Em um checkout, a verificação examina o índice Git, excluindo backups locais não versionados, como `.initial/`; também funciona nos arquivos visíveis de uma distribuição extraída sem metadados Git. O [guia de depósito](https://github.com/cecil-ia-labs/datamatrix-payload/blob/main/docs/pt/publication.md) registra o procedimento de revisão e upload.
 
 # Escopo e limitações
 

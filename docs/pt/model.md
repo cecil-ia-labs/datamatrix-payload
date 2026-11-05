@@ -61,3 +61,7 @@ $$u=64^3d_0+64^2d_1+64d_2+d_3.$$
 Isso acomoda todos os escalares porque $0x10FFFF<64^4$. O protótipo oferece as duas funções reversíveis como instrumentos de discussão. O paper também discute o mapeamento de um escalar para um endereço do catálogo.
 
 Referências primárias: [GIF89a](https://www.w3.org/Graphics/GIF/spec-gif89a.txt), [Unicode §3.9](https://www.unicode.org/versions/Unicode18.0.0/core-spec/chapter-3/), [RFC 3629](https://www.rfc-editor.org/rfc/rfc3629.html).
+
+## Evidência reproduzível
+
+O estudo distribuído usa `F=16` e `K=64`: 65.536 módulos efetivos transportam 393.216 bits, ou 48 KiB. Seu ciclo armazenado dura dois segundos a 8 fps. Os [resultados](../../results/hex-gif-case-study.json) e as [notas da versão](release-notes.md) identificam o GIF exato e o payload recuperado. A [preparação do arquivamento](publication.md) preserva essas evidências junto com as duas edições linguísticas.

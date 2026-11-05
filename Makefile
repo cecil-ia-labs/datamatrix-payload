@@ -1,6 +1,6 @@
 PYTHON ?= python3
 
-.PHONY: test viewer-test case-study paper verify all
+.PHONY: test viewer-test case-study paper verify publication all
 test:
 	PYTHONPATH=src $(PYTHON) -m unittest discover -s tests -v
 
@@ -16,4 +16,7 @@ paper:
 verify:
 	$(PYTHON) scripts/verify_repository.py
 
-all: test case-study paper verify
+publication: verify
+	$(PYTHON) scripts/prepare_publication.py
+
+all: test viewer-test case-study paper verify

@@ -38,3 +38,7 @@ npm exec --yes --package=@cecilialabs/ffmpeg@2.0.0 -- \
   cecilia-ffmpeg convert file cropped.mp4 --to webm --fps 8 --width 960 \
   --output quad-dimensional-datamatrix-poc.webm
 ```
+
+## Papel no depósito da pesquisa
+
+Estes arquivos são gravações da interface. Sua geometria de apresentação de 960 × 900 e a paleta GIF de até 256 entradas são independentes do [GIF do estudo que transporta dados](../../examples/quad-dimensional-datamatrix-16-states.gif), de 256 × 256 e 64 entradas. A recuperação exata de 48 KiB pertence àquele estudo. O compilador dos PDFs extrai o frame intermediário do GIF gravado para `paper/figures/concept-app.pdf`, usado nos dois manuscritos. O [pacote de depósito](../pt/publication.md) inclui as gravações e este manifesto de origem; o `PoC.mp4` de entrada é identificado acima, mas não é incluído.

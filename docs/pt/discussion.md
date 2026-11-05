@@ -18,3 +18,5 @@ O RfD convida à discussão das escolhas abaixo. O protótipo fornece exemplos, 
 | Evidência | Quais experimentos posteriores permitiriam decidir entre os mapeamentos candidatos? |
 
 A proposta Unicode é particularmente concreta: cada escalar possui um inteiro hexadecimal único. Esse inteiro cabe no catálogo de quatro coordenadas de 24 bits ou em quatro identificadores de dimension de seis bits. O RfD pergunta qual interpretação é útil como entrada na eventual chave ou dicionário.
+
+As [notas da versão 0.2.0](release-notes.md) delimitam o estudo implementado e o comportamento do app. O [guia de depósito](publication.md) prepara este RfD como relatório técnico com material de apoio reproduzível; as questões de discussão continuam abertas.

@@ -1,5 +1,6 @@
 ---
 title: "Quad-Dimensional DataMatrix"
+title-meta: "Quad-Dimensional DataMatrix: Request for Discussion"
 subtitle: "Request for Discussion: Hexadecimal GIF States and App-Held Sequences"
 author:
   - "João Paulo De Luca Jr"
@@ -10,12 +11,19 @@ fontsize: 11pt
 geometry: margin=24mm
 documentclass: article
 papersize: a4
-subject: "Request for Discussion: hexadecimal indexed GIF states"
+subject: "RfD 0.2.0: hexadecimal indexed GIF states and app-held sequences"
+keywords:
+  - "Quad-Dimensional DataMatrix"
+  - "Request for Discussion"
+  - "indexed GIF"
+  - "hexadecimal encoding"
+  - "temporal data"
+  - "Unicode scalar values"
 colorlinks: true
 linkcolor: qddmink
 urlcolor: qddmink
 abstract: |
-  Quad-Dimensional DataMatrix is proposed as a discussion framework for hexadecimal data represented by indexed GIF states. The working profile uses a 256 by 256 pixel canvas, 64 by 64 effective modules, up to 64 hexadecimal palette entries, and up to 64 frames. Four logical coordinates identify horizontal position, vertical position, temporal state, and dimension. Their maximum Cartesian catalogue contains 16,777,216 candidate tuples. A dense sequence selects one of 64 alternatives at each module and therefore carries up to 192 KiB of gross payload in a 64-frame cycle, nominally eight seconds at 8 fps. An app-held sequence supports a second interaction: advance at a chosen cadence, pause on user selection, and copy the state's hexadecimal code for a receiving service. The paper develops the counting model, separates the two timing roles, and examines one-to-one Unicode-to-hexadecimal mappings as candidates for a future dictionary or key. A 16-frame case study and a local bilingual viewer accompany the discussion. Scope and Limitations consolidates the qualifications. The document invites refinement before a specification is proposed.
+  Quad-Dimensional DataMatrix is proposed as a discussion framework for hexadecimal data represented by indexed GIF states. The working profile uses a 256 by 256 pixel canvas, 64 by 64 effective modules, up to 64 hexadecimal palette entries, and up to 64 frames. Four logical coordinates identify horizontal position, vertical position, temporal state, and dimension. Their maximum Cartesian catalogue contains 16,777,216 candidate tuples. A dense sequence selects one of 64 alternatives at each module and therefore carries up to 192 KiB of gross payload in a 64-frame cycle, nominally eight seconds at 8 fps. An app-held sequence supports a second interaction: advance at a chosen cadence, pause on user selection, and copy a selected module's six-character hexadecimal color for a receiving service. The paper develops the counting model, separates the two timing roles, and examines one-to-one Unicode-to-hexadecimal mappings as candidates for a future dictionary or key. A byte-exact 16-frame, 48 KiB case study, a local bilingual viewer, and recorded GIF and WebM walkthroughs accompany the discussion. Scope and Limitations consolidates the qualifications. The document invites refinement before a specification is proposed.
 ---
 
 # Purpose and discussion status
@@ -315,6 +323,8 @@ The local study viewer defines $g$ as the selected module's hexadecimal palette 
 
 The example renders each selected state as an independent GIF. Clicking clears the app timer before writing to the clipboard. This makes the selected image and copied code refer to the same state.
 
+The distributed viewer contains 16 synthetic states. At its default one-state-per-minute cadence, its cycle takes 16 minutes. At 8 fps, the same 16 states take two seconds. The 64-state, 64-minute example above describes the maximum working profile.
+
 ## Relationship to TOTP
 
 The comparison with [TOTP](https://www.rfc-editor.org/rfc/rfc6238.html) concerns the ownership of evolving state and the role of the receiving verifier. In TOTP, an app holds a secret and computes a code using a temporal counter. In this proposal, the app holds or obtains a sequence and exposes a selected state's code.
@@ -447,7 +457,36 @@ The test suite exercises:
 
 The local viewer defaults to English, offers Portuguese, and pauses before copying a six-character color. A 2.5-second border highlights the selected color. Clicking the receiving circle pastes the code, fills the circle, and confirms a match with the selection. Manual copy and paste fields cover unavailable clipboard operations. A successful copy schedules a conditional cleanup attempt after 30 seconds; a new copy restarts the interval.
 
+## Recorded interface demonstration
+
+The repository includes a cropped walkthrough of state advancement, pause and copy, and color reception. Both renditions show a 960 × 900 pixel app area at a nominal 8 fps. The presentation GIF has 292 frames, a 36.51-second stored duration, and a generated palette of up to 256 entries. The VP9 WebM has 292 frames and a 36.50-second duration. Neither contains audio. The original recording is identified by checksum in the media manifest.
+
+![Midpoint still from the recorded concept app. The matrix and receiving circle demonstrate state selection and local color reception.](figures/concept-app.pdf){width=78%}
+
+| Artifact | Role | Palette or payload |
+|---|---|---|
+| 16-state indexed study GIF | Exact digital data transport | 64 entries per state; 48 KiB recovered |
+| GIF recording of the app | Interface walkthrough | Up to 256 presentation entries; 960 × 900 pixels |
+| WebM recording of the app | Playable interface walkthrough | VP9 video of the same cropped recording |
+
+The recording documents interaction. The byte-exact recovery result is measured from the separate 256 × 256 indexed study GIF. The [media notes](https://github.com/cecil-ia-labs/datamatrix-payload/tree/main/docs/media) provide crop coordinates, checksums, tool versions, and conversion commands.
+
 The repository provides the case-study generator, results, viewer, both manuscript sources, and build commands.
+
+# Reproduction and archive preparation
+
+The [source repository](https://github.com/cecil-ia-labs/datamatrix-payload) provides the English and Portuguese reports under the existing MIT license. The deterministic study uses seed 20261104, NumPy 2.3.5, and Pillow 13.0.0. The machine-readable report records the Python version used for its latest execution. PDF generation additionally requires Pandoc, pdfLaTeX, fonts, and Portuguese language support. Repository verification uses `pdftotext`; the app event checks use Node.js.
+
+After installing the dependencies documented in the README, run from the repository root:
+
+```bash
+make PYTHON=.venv/bin/python test viewer-test case-study paper verify
+make PYTHON=.venv/bin/python publication
+```
+
+The preparation command validates citation and deposit metadata, packages the source snapshot and recorded media with the two PDFs, and supplies SHA-256 checksums and a source manifest. The prepared Zenodo object is a publication/report, version 0.2.0, with the two named coauthors in the order shown here and English as the primary language. A complete Portuguese edition accompanies it. DOI reservation and publication are separate steps; no identifier is fabricated in the manuscript.
+
+The source archive retains the reproducibility scripts, study results, generated app data, test suites, documentation, and source-manifest checksums. Verification scans the Git index in a checkout, excluding untracked local backups such as `.initial/`; it also works on visible source files in an extracted archive without Git metadata. The [deposit guide](https://github.com/cecil-ia-labs/datamatrix-payload/blob/main/docs/publication.md) records the review and upload procedure.
 
 # Scope and Limitations
 

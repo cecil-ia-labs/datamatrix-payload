@@ -13,3 +13,7 @@
 | [W3C Clipboard API](https://www.w3.org/TR/clipboard-apis/) | User-triggered copying of the selected hexadecimal code |
 
 The elementary catalogue and payload counts are derived explicitly in the [model](model.md) and both papers. The project name, working profile, app flow, and candidate Unicode mappings are discussion proposals by **João Paulo De Luca Jr and Jorge Luiz Espanhol**.
+
+## Archival metadata references
+
+[Zenodo deposit metadata](https://developers.zenodo.org/#deposit-metadata) defines the publication/report fields used in [.zenodo.json](../.zenodo.json). [Zenodo metadata precedence](https://help.zenodo.org/docs/github/describe-software/) explains why that file takes precedence over `CITATION.cff` during GitHub release archiving. The [deposit guide](publication.md) records the project-specific fields and workflow. The Clipboard API reference above is a W3C Working Draft; the report metadata cites its [24 June 2026 edition](https://www.w3.org/TR/2026/WD-clipboard-apis-20260624/).

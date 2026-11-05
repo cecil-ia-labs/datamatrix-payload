@@ -61,3 +61,7 @@ $$u=64^3d_0+64^2d_1+64d_2+d_3.$$
 This accommodates every scalar value because $0x10FFFF<64^4$. The prototype supplies both reversible helper mappings as discussion tools. The paper also discusses mapping a scalar to a catalogue address.
 
 Primary references: [GIF89a](https://www.w3.org/Graphics/GIF/spec-gif89a.txt), [Unicode §3.9](https://www.unicode.org/versions/Unicode18.0.0/core-spec/chapter-3/), [RFC 3629](https://www.rfc-editor.org/rfc/rfc3629.html).
+
+## Reproducible evidence
+
+The distributed study selects `F=16` and `K=64`: 65,536 effective modules carry 393,216 bits, or 48 KiB. Its stored cycle is two seconds at 8 fps. The [results](../results/hex-gif-case-study.json) and [release notes](release-notes.md) identify the exact GIF and recovered payload. [Archive preparation](publication.md) preserves this evidence with the two language editions.

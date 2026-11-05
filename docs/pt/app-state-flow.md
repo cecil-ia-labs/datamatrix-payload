@@ -16,6 +16,8 @@ O **aplicativo mantém a sequência**. O usuário seleciona um estado e fornece 
 
 O exemplo de transporte usa oito frames por segundo. O exemplo de interação inicia com um estado por minuto. Uma sequência de 64 estados leva oito segundos a 8 fps ou 64 minutos a um estado por minuto.
 
+O visualizador distribuído carrega **16 estados sintéticos**. Seu ciclo real dura dois segundos a 8 fps ou 16 minutos na cadência padrão. O ciclo de 64 estados descreve o perfil máximo suportado. A [PoC gravada](../media/README.pt.md) mostra a interface, enquanto o [GIF do estudo](../../examples/quad-dimensional-datamatrix-16-states.gif) é o contêiner que transporta dados.
+
 ## Escolha do código
 
 O visualizador copia a entrada hexadecimal da paleta correspondente ao módulo selecionado. O estado completo continua disponível ao decoder de transporte; copiar uma cor não copia esse payload.

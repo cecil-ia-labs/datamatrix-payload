@@ -6,7 +6,7 @@
 
 Cecil-IA Labs · 4 November 2026
 
-[Português](README.pt.md) · [English paper](paper/quad-dimensional-datamatrix.en.pdf) · [Portuguese paper](paper/quad-dimensional-datamatrix.pt.pdf)
+[Português](README.pt.md) · [English paper](paper/quad-dimensional-datamatrix.en.pdf) · [Portuguese paper](paper/quad-dimensional-datamatrix.pt.pdf) · [Zenodo preparation](docs/publication.md)
 
 Quad-Dimensional DataMatrix explores a catalogue with four logical coordinates: horizontal position, vertical position, temporal state, and hexadecimal dimension. An indexed GIF carries the corresponding sequence. English is the default language; Portuguese is the alternative.
 
@@ -15,6 +15,8 @@ Quad-Dimensional DataMatrix explores a catalogue with four logical coordinates: 
 ![Quad-Dimensional DataMatrix app demonstration](docs/media/quad-dimensional-datamatrix-poc.gif)
 
 [Watch or download WebM](docs/media/quad-dimensional-datamatrix-poc.webm) · [Media notes and reproduction](docs/media/README.md)
+
+The recording shows the bilingual local app: advancing states, pausing and copying a selected color, then receiving it in the circle. Its 960 × 900 presentation GIF and WebM are recorded views of the interface. The data-bearing example is the separate [16-state indexed GIF](examples/quad-dimensional-datamatrix-16-states.gif); the two animations have different roles and palettes.
 
 ## Working profile
 
@@ -83,6 +85,14 @@ The [16-state GIF](examples/quad-dimensional-datamatrix-16-states.gif) contains 
 
 The app event checks can be run with `make viewer-test` (Node.js).
 
+| Reproduced object | States | Cadence | Cycle | Gross payload |
+|---|---:|---|---|---:|
+| Data-bearing case study | 16 | 8 states/s | 2 seconds | 48 KiB |
+| Local viewer at its default | 16 | One state/minute | 16 minutes | A selected six-character color is copied |
+| Maximum working profile | 64 | 8 states/s | 8 seconds | 192 KiB |
+
+The study is deterministic with seed `20261104`, NumPy `2.3.5`, and Pillow `13.0.0`. The [report](results/hex-gif-case-study.json) records the Python version of the latest reproduction. The encoded study GIF is 383,644 bytes; its SHA-256 is `637f84338d88121bd806e26234f941fde2f566c084c0b04468f891a32224cafe`. Its byte-exact recovered payload is 49,152 bytes.
+
 Tests also exercise the 64-frame boundary, repeated states, palette order, truncated input, inconsistent modules, one-frame-per-minute timing, catalogue addresses, and Unicode scalar mappings.
 
 ### Build and verify the PDFs
@@ -107,6 +117,19 @@ make PYTHON=.venv/bin/python verify
 The build checks that `pandoc` and `pdflatex` are on `PATH` before generating files. It builds both languages, writes compilation logs to `output/pdf/`, and copies the resulting PDFs to `paper/`.
 
 In a Git checkout, verification scans files listed in the Git index, including staged additions. Untracked local backups such as `.initial/`, virtual environments, and editor files are outside this scan. In a source archive without Git metadata, verification scans visible files and skips hidden directories and build/cache directories.
+
+## Prepare the first Zenodo deposit
+
+The first deposit is prepared as **RfD 0.2.0**, a technical report with English and Portuguese PDF editions, source code, a reproducible study, and the recorded PoC. The current project license is MIT. [CITATION.cff](CITATION.cff) and [.zenodo.json](.zenodo.json) carry the same authors and version. No DOI is assigned in the repository before one is reserved or issued by Zenodo.
+
+After the environment and PDF tools are installed:
+
+```bash
+make PYTHON=.venv/bin/python test viewer-test case-study paper verify
+make PYTHON=.venv/bin/python publication
+```
+
+The second command validates the repository again and creates `dist/zenodo-v0.2.0/` plus `dist/quad-dimensional-datamatrix-0.2.0-zenodo.zip`. The folder contains both PDFs, the source archive, WebM, bilingual release notes, deposit metadata, a source manifest, and SHA-256 checksums. Packaging prepares local files; saving a Zenodo draft, reserving a DOI, and publishing are separate actions. Follow the [deposit guide](docs/publication.md) and [release notes](docs/release-notes.md).
 
 ## Discussion and papers
 

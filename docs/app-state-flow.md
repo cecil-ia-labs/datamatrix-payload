@@ -16,6 +16,8 @@ The **application holds the sequence**. The user selects a state and supplies it
 
 The transport example uses eight frames per second. The interaction example defaults to one state per minute. A 64-state sequence takes eight seconds at 8 fps or 64 minutes at one state per minute.
 
+The distributed viewer loads **16 synthetic states**. Its actual cycle is two seconds at 8 fps or 16 minutes at the default cadence. The 64-state cycle describes the maximum supported profile. The [recorded PoC](media/README.md) shows the interface, while the [case-study GIF](../examples/quad-dimensional-datamatrix-16-states.gif) is the data-bearing container.
+
 ## Choosing the code
 
 The viewer copies the selected module's hexadecimal palette entry. The complete state remains available to the transport decoder; copying a color does not copy that payload.

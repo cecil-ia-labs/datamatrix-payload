@@ -15,3 +15,7 @@ This section collects the qualifications for the RfD. The mathematical argument 
 9. **Evidence.** The case study validates exact recovery in the stated digital profile. The work does not make performance claims for generative models or physical capture. The later specification may adopt a different profile after discussion.
 
 References: [GIF89a](https://www.w3.org/Graphics/GIF/spec-gif89a.txt), [Unicode §3.9](https://www.unicode.org/versions/Unicode18.0.0/core-spec/chapter-3/), [RFC 3629](https://www.rfc-editor.org/rfc/rfc3629.html), [RFC 6238](https://www.rfc-editor.org/rfc/rfc6238.html), [RFC 5116](https://www.rfc-editor.org/rfc/rfc5116.html).
+
+## Reading the distributed artifacts
+
+The current app contains 16 public states, giving a 16-minute default interaction cycle. The 64-state profile is the supported maximum. The interface recordings use a separate presentation palette and geometry; recovery measurements use the exact indexed case-study file. The [release notes](release-notes.md) and [deposit guide](publication.md) preserve these distinctions.

@@ -18,3 +18,5 @@ The RfD invites discussion of the following choices. The working prototype suppl
 | Evidence | Which later experiments would decide between candidate mappings? |
 
 The Unicode proposal is particularly concrete: every scalar has a unique hexadecimal integer. That integer fits into the 24-bit four-coordinate catalogue or four six-bit dimension identifiers. The RfD asks which interpretation is useful as an entry in the eventual key or dictionary.
+
+The [0.2.0 release notes](release-notes.md) delimit the implemented study and app behaviour. The [deposit guide](publication.md) prepares this RfD as a technical report with reproducible supporting material; the discussion questions remain open.

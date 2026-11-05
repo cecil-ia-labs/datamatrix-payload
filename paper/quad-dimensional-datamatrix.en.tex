@@ -2,15 +2,12 @@
 \PassOptionsToPackage{unicode}{hyperref}
 \PassOptionsToPackage{hyphens}{url}
 \PassOptionsToPackage{dvipsnames,svgnames,x11names}{xcolor}
+%
 \documentclass[
-  american,
   11pt,
   a4paper,
 ]{article}
-\usepackage{xcolor}
-\usepackage[margin=24mm]{geometry}
 \usepackage{amsmath,amssymb}
-\setcounter{secnumdepth}{5}
 \usepackage{iftex}
 \ifPDFTeX
   \usepackage[T1]{fontenc}
@@ -41,6 +38,8 @@
 }{% if KOMA class
   \KOMAoptions{parskip=half}}
 \makeatother
+\usepackage{xcolor}
+\usepackage[margin=24mm]{geometry}
 \usepackage{longtable,booktabs,array}
 \usepackage{calc} % for calculating minipage widths
 % Correct order of tables after \paragraph or \subparagraph
@@ -51,22 +50,39 @@
 % Allow footnotes in longtable head/foot
 \IfFileExists{footnotehyper.sty}{\usepackage{footnotehyper}}{\usepackage{footnote}}
 \makesavenoteenv{longtable}
-\ifLuaTeX
-\usepackage[bidi=basic,shorthands=off,]{babel}
-\else
-\usepackage[bidi=default,shorthands=off,]{babel}
-\fi
-\ifLuaTeX
-  \usepackage{selnolig} % disable illegal ligatures
-\fi
+\usepackage{graphicx}
+\makeatletter
+\def\maxwidth{\ifdim\Gin@nat@width>\linewidth\linewidth\else\Gin@nat@width\fi}
+\def\maxheight{\ifdim\Gin@nat@height>\textheight\textheight\else\Gin@nat@height\fi}
+\makeatother
+% Scale images if necessary, so that they will not overflow the page
+% margins by default, and it is still possible to overwrite the defaults
+% using explicit options in \includegraphics[width, height, ...]{}
+\setkeys{Gin}{width=\maxwidth,height=\maxheight,keepaspectratio}
+% Set default figure placement to htbp
+\makeatletter
+\def\fps@figure{htbp}
+\makeatother
 \setlength{\emergencystretch}{3em} % prevent overfull lines
 \providecommand{\tightlist}{%
   \setlength{\itemsep}{0pt}\setlength{\parskip}{0pt}}
+\setcounter{secnumdepth}{5}
+\ifLuaTeX
+\usepackage[bidi=basic]{babel}
+\else
+\usepackage[bidi=default]{babel}
+\fi
+\babelprovide[main,import]{american}
+% get rid of language-specific shorthands (see #6817):
+\let\LanguageShortHands\languageshorthands
+\def\languageshorthands#1{}
 \usepackage[T1]{fontenc}
 \usepackage{lmodern}
 \usepackage{microtype}
 \usepackage{xcolor}
 \usepackage{fancyhdr}
+\usepackage{float}
+\floatplacement{figure}{H}
 \usepackage{amsmath,amssymb}
 \usepackage{xurl}
 \definecolor{qddmink}{HTML}{17324D}
@@ -78,14 +94,21 @@
 \setlength{\headheight}{15pt}
 \setlength{\emergencystretch}{3em}
 
-\usepackage{bookmark}
+\ifLuaTeX
+  \usepackage{selnolig}  % disable illegal ligatures
+\fi
+\IfFileExists{bookmark.sty}{\usepackage{bookmark}}{\usepackage{hyperref}}
 \IfFileExists{xurl.sty}{\usepackage{xurl}}{} % add URL line breaks if available
 \urlstyle{same}
 \hypersetup{
-  pdftitle={Quad-Dimensional DataMatrix},
+  pdftitle={Quad-Dimensional DataMatrix: Request for Discussion},
   pdfauthor={João Paulo De Luca Jr; Jorge Luiz Espanhol},
   pdflang={en-US},
-  pdfsubject={Request for Discussion: hexadecimal indexed GIF states},
+  pdfsubject={RfD 0.2.0: hexadecimal indexed GIF states and app-held
+sequences},
+  pdfkeywords={Quad-Dimensional DataMatrix, Request for
+Discussion, indexed GIF, hexadecimal encoding, temporal data, Unicode
+scalar values},
   colorlinks=true,
   linkcolor={qddmink},
   filecolor={Maroon},
@@ -118,17 +141,19 @@ state, and dimension. Their maximum Cartesian catalogue contains
 alternatives at each module and therefore carries up to 192 KiB of gross
 payload in a 64-frame cycle, nominally eight seconds at 8 fps. An
 app-held sequence supports a second interaction: advance at a chosen
-cadence, pause on user selection, and copy the state's hexadecimal code
-for a receiving service. The paper develops the counting model,
-separates the two timing roles, and examines one-to-one
-Unicode-to-hexadecimal mappings as candidates for a future dictionary or
-key. A 16-frame case study and a local bilingual viewer accompany the
-discussion. Scope and Limitations consolidates the qualifications. The
-document invites refinement before a specification is proposed.
+cadence, pause on user selection, and copy a selected module's
+six-character hexadecimal color for a receiving service. The paper
+develops the counting model, separates the two timing roles, and
+examines one-to-one Unicode-to-hexadecimal mappings as candidates for a
+future dictionary or key. A byte-exact 16-frame, 48 KiB case study, a
+local bilingual viewer, and recorded GIF and WebM walkthroughs accompany
+the discussion. Scope and Limitations consolidates the qualifications.
+The document invites refinement before a specification is proposed.
 \end{abstract}
 
+\hypertarget{purpose-and-discussion-status}{%
 \section{Purpose and discussion
-status}\label{purpose-and-discussion-status}
+status}\label{purpose-and-discussion-status}}
 
 \textbf{Quad-Dimensional DataMatrix} is a Request for Discussion (RfD)
 by \textbf{João Paulo De Luca Jr and Jorge Luiz Espanhol}. It brings
@@ -162,15 +187,17 @@ Key & A dictionary entry or secret proposed for discussion \\
 
 English is the default language of the repository and manuscript. A
 complete Portuguese edition is maintained alongside it. The
-qualifications are collected in \hyperref[scope-and-limitations]{Scope
-and Limitations}; the argument below develops the working model
-directly.
+qualifications are collected in
+\protect\hyperlink{scope-and-limitations}{Scope and Limitations}; the
+argument below develops the working model directly.
 
+\hypertarget{working-gif-profile-and-hexadecimal-values}{%
 \section{Working GIF profile and hexadecimal
-values}\label{working-gif-profile-and-hexadecimal-values}
+values}\label{working-gif-profile-and-hexadecimal-values}}
 
+\hypertarget{geometry-and-active-entries}{%
 \subsection{Geometry and active
-entries}\label{geometry-and-active-entries}
+entries}\label{geometry-and-active-entries}}
 
 The current profile is described by
 
@@ -210,8 +237,9 @@ order can change between states while each entry remains a hexadecimal
 value. \href{https://www.w3.org/Graphics/GIF/spec-gif89a.txt}{GIF89a}
 supplies the indexed table and image-block container.
 
+\hypertarget{representation-and-table-cost}{%
 \subsection{Representation and table
-cost}\label{representation-and-table-cost}
+cost}\label{representation-and-table-cost}}
 
 A six-digit hexadecimal value has a 24-bit integer domain:
 
@@ -234,11 +262,13 @@ own table, the table allocation is \(3KF\) bytes. Textual hexadecimal
 descriptions and the encoded container have their own storage budgets.
 The model keeps these quantities separately observable.
 
+\hypertarget{the-four-coordinate-catalogue}{%
 \section{The four-coordinate
-catalogue}\label{the-four-coordinate-catalogue}
+catalogue}\label{the-four-coordinate-catalogue}}
 
+\hypertarget{cartesian-catalogue-and-selected-state}{%
 \subsection{Cartesian catalogue and selected
-state}\label{cartesian-catalogue-and-selected-state}
+state}\label{cartesian-catalogue-and-selected-state}}
 
 Let
 
@@ -289,8 +319,9 @@ The catalogue enumerates every candidate tuple; the dense sequence
 selects one dimension for each of its \(WHF\) positions. This gives a
 precise meaning to the project's four logical coordinates.
 
+\hypertarget{a-hexadecimal-catalogue-address}{%
 \subsection{A hexadecimal catalogue
-address}\label{a-hexadecimal-catalogue-address}
+address}\label{a-hexadecimal-catalogue-address}}
 
 With all four coordinate ranges bounded by 64, a row-major catalogue
 address can be written as
@@ -322,9 +353,11 @@ implementation exposes the address as a six-digit hexadecimal integer.
 This address is useful for discussing dictionaries, sparse events, and
 state-local references.
 
-\section{Capacity and nominal rates}\label{capacity-and-nominal-rates}
+\hypertarget{capacity-and-nominal-rates}{%
+\section{Capacity and nominal rates}\label{capacity-and-nominal-rates}}
 
-\subsection{From choices to bits}\label{from-choices-to-bits}
+\hypertarget{from-choices-to-bits}{%
+\subsection{From choices to bits}\label{from-choices-to-bits}}
 
 For \(N=WHF\) independently selectable modules, the number of dense
 sequences is
@@ -366,8 +399,9 @@ B_{\mathrm{state}}=\frac{64^2\cdot6}{8}
 The number of possible complete sequences is exponential in \(N\). The
 binary payload is its logarithm and grows proportionally to \(F\).
 
+\hypertarget{catalogue-rate-and-payload-rate}{%
 \subsection{Catalogue rate and payload
-rate}\label{catalogue-rate-and-payload-rate}
+rate}\label{catalogue-rate-and-payload-rate}}
 
 Let \(f\) be the nominal number of displayed states per second. A full
 cycle has duration
@@ -427,10 +461,12 @@ This expression assumes fixed per-state reservations followed by an
 aggregate code of rate \(r\). A different placement of reservations
 yields a different budget. The eventual layout is a discussion item.
 
+\hypertarget{time-in-the-container-and-time-in-the-app}{%
 \section{Time in the container and time in the
-app}\label{time-in-the-container-and-time-in-the-app}
+app}\label{time-in-the-container-and-time-in-the-app}}
 
-\subsection{Transport cadence}\label{transport-cadence}
+\hypertarget{transport-cadence}{%
+\subsection{Transport cadence}\label{transport-cadence}}
 
 GIF delays are stored in hundredths of a second. A nominal 125 ms state
 period can be represented by alternating 120 and 130 ms delays. For an
@@ -453,8 +489,9 @@ The prototype quantizes cumulative boundaries:
 where \(p\) is the requested period in milliseconds. At \(p=125\) and
 \(F=64\), the stored delays sum to 8,000 ms.
 
+\hypertarget{app-held-sequence-and-selection}{%
 \subsection{App-held sequence and
-selection}\label{app-held-sequence-and-selection}
+selection}\label{app-held-sequence-and-selection}}
 
 The proposed interaction places the sequence in the app. The user or a
 receiving service selects or consumes one state. The app can advance at
@@ -488,9 +525,9 @@ transport example and the one-frame-per-minute interaction are two uses
 of the same ordered states.
 
 \begin{longtable}[]{@{}
-  >{\raggedright\arraybackslash}p{(\linewidth - 4\tabcolsep) * \real{0.3333}}
-  >{\raggedright\arraybackslash}p{(\linewidth - 4\tabcolsep) * \real{0.3333}}
-  >{\raggedright\arraybackslash}p{(\linewidth - 4\tabcolsep) * \real{0.3333}}@{}}
+  >{\raggedright\arraybackslash}p{(\columnwidth - 4\tabcolsep) * \real{0.3333}}
+  >{\raggedright\arraybackslash}p{(\columnwidth - 4\tabcolsep) * \real{0.3333}}
+  >{\raggedright\arraybackslash}p{(\columnwidth - 4\tabcolsep) * \real{0.3333}}@{}}
 \toprule\noalign{}
 \begin{minipage}[b]{\linewidth}\raggedright
 Event
@@ -516,7 +553,13 @@ The example renders each selected state as an independent GIF. Clicking
 clears the app timer before writing to the clipboard. This makes the
 selected image and copied code refer to the same state.
 
-\subsection{Relationship to TOTP}\label{relationship-to-totp}
+The distributed viewer contains 16 synthetic states. At its default
+one-state-per-minute cadence, its cycle takes 16 minutes. At 8 fps, the
+same 16 states take two seconds. The 64-state, 64-minute example above
+describes the maximum working profile.
+
+\hypertarget{relationship-to-totp}{%
+\subsection{Relationship to TOTP}\label{relationship-to-totp}}
 
 The comparison with
 \href{https://www.rfc-editor.org/rfc/rfc6238.html}{TOTP} concerns the
@@ -531,10 +574,12 @@ renewal, and acceptance rules should be chosen for this sequence-based
 model. The \href{https://www.w3.org/TR/clipboard-apis/}{Clipboard API}
 provides the user-triggered copy operation used by the local example.
 
+\hypertarget{unicode-and-one-to-one-hexadecimal-mappings}{%
 \section{Unicode and one-to-one hexadecimal
-mappings}\label{unicode-and-one-to-one-hexadecimal-mappings}
+mappings}\label{unicode-and-one-to-one-hexadecimal-mappings}}
 
-\subsection{The scalar domain}\label{the-scalar-domain}
+\hypertarget{the-scalar-domain}{%
+\subsection{The scalar domain}\label{the-scalar-domain}}
 
 The
 \href{https://www.unicode.org/versions/Unicode18.0.0/core-spec/chapter-3/}{Unicode
@@ -571,8 +616,9 @@ It is injective: \(h(u_1)=h(u_2)\) implies \(u_1=u_2\). The
 representation fits inside the 24-bit value domain already used by the
 catalogue and palette descriptions.
 
+\hypertarget{three-candidate-interpretations}{%
 \subsection{Three candidate
-interpretations}\label{three-candidate-interpretations}
+interpretations}\label{three-candidate-interpretations}}
 
 \textbf{Direct palette dictionary.} A scalar value can be associated
 with a six-digit hexadecimal entry. A frame may use at most \(K\)
@@ -612,10 +658,10 @@ also needs a representation of order and multiplicity; these become
 explicit design choices.
 
 \begin{longtable}[]{@{}
-  >{\raggedright\arraybackslash}p{(\linewidth - 6\tabcolsep) * \real{0.2500}}
-  >{\raggedright\arraybackslash}p{(\linewidth - 6\tabcolsep) * \real{0.2500}}
-  >{\raggedright\arraybackslash}p{(\linewidth - 6\tabcolsep) * \real{0.2500}}
-  >{\raggedright\arraybackslash}p{(\linewidth - 6\tabcolsep) * \real{0.2500}}@{}}
+  >{\raggedright\arraybackslash}p{(\columnwidth - 6\tabcolsep) * \real{0.2500}}
+  >{\raggedright\arraybackslash}p{(\columnwidth - 6\tabcolsep) * \real{0.2500}}
+  >{\raggedright\arraybackslash}p{(\columnwidth - 6\tabcolsep) * \real{0.2500}}
+  >{\raggedright\arraybackslash}p{(\columnwidth - 6\tabcolsep) * \real{0.2500}}@{}}
 \toprule\noalign{}
 \begin{minipage}[b]{\linewidth}\raggedright
 Scalar example
@@ -640,8 +686,9 @@ Grinning face & \texttt{0x01F600} & \texttt{F0\ 9F\ 98\ 80} &
 \texttt{00\ 1F\ 18\ 00} \\
 \end{longtable}
 
+\hypertarget{text-budget-and-the-eventual-key}{%
 \subsection{Text budget and the eventual
-key}\label{text-budget-and-the-eventual-key}
+key}\label{text-budget-and-the-eventual-key}}
 
 The four-dimension representation uses 24 bits per scalar:
 
@@ -664,10 +711,12 @@ external state, or an input to a cryptographic construction. The
 one-to-one mapping establishes a representation; its eventual role can
 be selected through discussion.
 
+\hypertarget{reproducible-case-study-and-app-example}{%
 \section{Reproducible case study and app
-example}\label{reproducible-case-study-and-app-example}
+example}\label{reproducible-case-study-and-app-example}}
 
-\subsection{The 16-state study}\label{the-16-state-study}
+\hypertarget{the-16-state-study}{%
+\subsection{The 16-state study}\label{the-16-state-study}}
 
 The published demonstration deliberately contains 16 states. Each state
 uses the current 256 × 256 pixel canvas, 64 × 64 effective modules, and
@@ -705,7 +754,8 @@ Recovery & Byte-exact \\
 The encoded file size is a measured container size. The gross payload
 count comes from the number of independent selected dimensions.
 
-\subsection{Implementation and checks}\label{implementation-and-checks}
+\hypertarget{implementation-and-checks}{%
+\subsection{Implementation and checks}\label{implementation-and-checks}}
 
 The code accepts hexadecimal payload octets and hexadecimal palette
 entries. It writes complete indexed frames, including repeated states,
@@ -743,10 +793,98 @@ fields cover unavailable clipboard operations. A successful copy
 schedules a conditional cleanup attempt after 30 seconds; a new copy
 restarts the interval.
 
+\hypertarget{recorded-interface-demonstration}{%
+\subsection{Recorded interface
+demonstration}\label{recorded-interface-demonstration}}
+
+The repository includes a cropped walkthrough of state advancement,
+pause and copy, and color reception. Both renditions show a 960 × 900
+pixel app area at a nominal 8 fps. The presentation GIF has 292 frames,
+a 36.51-second stored duration, and a generated palette of up to 256
+entries. The VP9 WebM has 292 frames and a 36.50-second duration.
+Neither contains audio. The original recording is identified by checksum
+in the media manifest.
+
+\begin{figure}
+\centering
+\includegraphics[width=0.78\textwidth,height=\textheight]{figures/concept-app.pdf}
+\caption{Midpoint still from the recorded concept app. The matrix and
+receiving circle demonstrate state selection and local color reception.}
+\end{figure}
+
+\begin{longtable}[]{@{}
+  >{\raggedright\arraybackslash}p{(\columnwidth - 4\tabcolsep) * \real{0.3333}}
+  >{\raggedright\arraybackslash}p{(\columnwidth - 4\tabcolsep) * \real{0.3333}}
+  >{\raggedright\arraybackslash}p{(\columnwidth - 4\tabcolsep) * \real{0.3333}}@{}}
+\toprule\noalign{}
+\begin{minipage}[b]{\linewidth}\raggedright
+Artifact
+\end{minipage} & \begin{minipage}[b]{\linewidth}\raggedright
+Role
+\end{minipage} & \begin{minipage}[b]{\linewidth}\raggedright
+Palette or payload
+\end{minipage} \\
+\midrule\noalign{}
+\endhead
+\bottomrule\noalign{}
+\endlastfoot
+16-state indexed study GIF & Exact digital data transport & 64 entries
+per state; 48 KiB recovered \\
+GIF recording of the app & Interface walkthrough & Up to 256
+presentation entries; 960 × 900 pixels \\
+WebM recording of the app & Playable interface walkthrough & VP9 video
+of the same cropped recording \\
+\end{longtable}
+
+The recording documents interaction. The byte-exact recovery result is
+measured from the separate 256 × 256 indexed study GIF. The
+\href{https://github.com/cecil-ia-labs/datamatrix-payload/tree/main/docs/media}{media
+notes} provide crop coordinates, checksums, tool versions, and
+conversion commands.
+
 The repository provides the case-study generator, results, viewer, both
 manuscript sources, and build commands.
 
-\section{Scope and Limitations}\label{scope-and-limitations}
+\hypertarget{reproduction-and-archive-preparation}{%
+\section{Reproduction and archive
+preparation}\label{reproduction-and-archive-preparation}}
+
+The \href{https://github.com/cecil-ia-labs/datamatrix-payload}{source
+repository} provides the English and Portuguese reports under the
+existing MIT license. The deterministic study uses seed 20261104, NumPy
+2.3.5, and Pillow 13.0.0. The machine-readable report records the Python
+version used for its latest execution. PDF generation additionally
+requires Pandoc, pdfLaTeX, fonts, and Portuguese language support.
+Repository verification uses \texttt{pdftotext}; the app event checks
+use Node.js.
+
+After installing the dependencies documented in the README, run from the
+repository root:
+
+\begin{verbatim}
+make PYTHON=.venv/bin/python test viewer-test case-study paper verify
+make PYTHON=.venv/bin/python publication
+\end{verbatim}
+
+The preparation command validates citation and deposit metadata,
+packages the source snapshot and recorded media with the two PDFs, and
+supplies SHA-256 checksums and a source manifest. The prepared Zenodo
+object is a publication/report, version 0.2.0, with the two named
+coauthors in the order shown here and English as the primary language. A
+complete Portuguese edition accompanies it. DOI reservation and
+publication are separate steps; no identifier is fabricated in the
+manuscript.
+
+The source archive retains the reproducibility scripts, study results,
+generated app data, test suites, documentation, and source-manifest
+checksums. Verification scans the Git index in a checkout, excluding
+untracked local backups such as \texttt{.initial/}; it also works on
+visible source files in an extracted archive without Git metadata. The
+\href{https://github.com/cecil-ia-labs/datamatrix-payload/blob/main/docs/publication.md}{deposit
+guide} records the review and upload procedure.
+
+\hypertarget{scope-and-limitations}{%
+\section{Scope and Limitations}\label{scope-and-limitations}}
 
 This section consolidates the interpretation and boundaries of the RfD.
 
@@ -803,7 +941,8 @@ explicit choices in a text or key design.
 indexed-file path. They support the specified counting and recovery
 claims and do not establish the security of a later protocol.
 
-\section{Questions for discussion}\label{questions-for-discussion}
+\hypertarget{questions-for-discussion}{%
+\section{Questions for discussion}\label{questions-for-discussion}}
 
 \begin{enumerate}
 \def\labelenumi{\arabic{enumi}.}
@@ -829,7 +968,8 @@ claims and do not establish the security of a later protocol.
   Which fields are necessary before a specification can be proposed?
 \end{enumerate}
 
-\section{Authorship and assistance}\label{authorship-and-assistance}
+\hypertarget{authorship-and-assistance}{%
+\section{Authorship and assistance}\label{authorship-and-assistance}}
 
 \textbf{João Paulo De Luca Jr and Jorge Luiz Espanhol} are the
 co-authors of this RfD and the associated discussion proposal.
@@ -837,7 +977,9 @@ ChatGPT/Codex, OpenAI, assisted with mathematical exposition,
 translation, implementation, execution, and document preparation. The
 authors retain responsibility for the research direction and decisions.
 
-\section{Linked technical references}\label{linked-technical-references}
+\hypertarget{linked-technical-references}{%
+\section{Linked technical
+references}\label{linked-technical-references}}
 
 \begin{enumerate}
 \def\labelenumi{\arabic{enumi}.}

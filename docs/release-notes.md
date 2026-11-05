@@ -4,7 +4,7 @@
 
 **João Paulo De Luca Jr · Jorge Luiz Espanhol**
 
-Report date: 4 November 2026. Proposed first archive version: `0.2.0`.
+Report date: 4 November 2026. Archived version: [0.2.0](https://doi.org/10.5281/zenodo.23968974).
 
 This release brings together the four-coordinate catalogue, an indexed-GIF research implementation, a reproducible 16-state study, a bilingual selection-and-reception app, and English and Portuguese reports. It is a Request for Discussion.
 

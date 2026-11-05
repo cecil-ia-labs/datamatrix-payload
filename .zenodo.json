@@ -1,4 +1,5 @@
 {
+  "doi": "10.5281/zenodo.23968974",
   "title": "Quad-Dimensional DataMatrix: Request for Discussion",
   "upload_type": "publication",
   "publication_type": "report",
@@ -10,8 +11,12 @@
   "notes": "RfD 0.2.0. English is the default language and a complete Portuguese edition is included. The 16-state case study, the 64-state maximum profile, and the recorded interface walkthrough are separate objects. The measurements establish byte-exact recovery for the stated digital profile. Authentication, framing, provisioning, state renewal, physical capture, and interoperability remain discussion topics. ChatGPT/Codex assisted with exposition, translation, implementation, execution, and document preparation; the two named human authors retain responsibility. The existing MIT license applies to this deposit.",
   "method": "Explicit combinatorial derivation of catalogue cardinality and dense payload capacity; deterministic indexed-GIF encoding and decoding with seed 20261104, NumPy 2.3.5, and Pillow 13.0.0; SHA-256 comparison of original and recovered payloads; automated boundary and malformed-input checks; app event and clipboard-permission scenarios; bilingual manuscript generation with Pandoc and pdfLaTeX; recorded interface walkthrough with documented crop and media checksums. The machine-readable study report records the Python version used for reproduction.",
   "creators": [
-    {"name": "De Luca Jr, João Paulo"},
-    {"name": "Espanhol, Jorge Luiz"}
+    {
+      "name": "De Luca Jr, João Paulo"
+    },
+    {
+      "name": "Espanhol, Jorge Luiz"
+    }
   ],
   "keywords": [
     "Quad-Dimensional DataMatrix",

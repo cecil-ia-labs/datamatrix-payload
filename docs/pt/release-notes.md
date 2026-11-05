@@ -4,7 +4,7 @@
 
 **João Paulo De Luca Jr · Jorge Luiz Espanhol**
 
-Data do relatório: 4 de novembro de 2026. Primeira versão proposta para arquivamento: `0.2.0`.
+Data do relatório: 4 de novembro de 2026. Versão arquivada: [0.2.0](https://doi.org/10.5281/zenodo.23968974).
 
 Esta versão reúne o catálogo de quatro coordenadas, a implementação de pesquisa com GIF indexado, um estudo reproduzível de 16 estados, um app bilíngue de seleção e recepção e relatórios em inglês e português. Trata-se de um Request for Discussion.
 

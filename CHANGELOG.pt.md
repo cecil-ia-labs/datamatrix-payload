@@ -4,6 +4,8 @@
 
 ## 0.2.0 - 2026-11-04 - Request for Discussion
 
+- Publica o relatório bilíngue no Zenodo com DOI [10.5281/zenodo.23968974](https://doi.org/10.5281/zenodo.23968974) e atualiza os links de arquivamento e os metadados de citação.
+
 - Documenta o catálogo de quatro coordenadas, a dedução da capacidade, o perfil de GIF indexado, os mapeamentos Unicode candidatos e a seleção de estados mantidos no app em inglês e português.
 - Inclui o estudo determinístico de recuperação de 16 estados e 48 KiB e as verificações do limite de 64 estados e 192 KiB.
 - Descreve a cópia da cor de um módulo selecionado, o círculo receptor, o destaque visual e a limpeza condicional da área de transferência no app bilíngue.

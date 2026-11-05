@@ -6,6 +6,8 @@
 
 Cecil-IA Labs · 4 de novembro de 2026
 
+[Versão 0.2.0 no Zenodo](https://doi.org/10.5281/zenodo.23968974) · [DOI de todas as versões](https://doi.org/10.5281/zenodo.23968973)
+
 [English](README.md) · [Paper em inglês](paper/quad-dimensional-datamatrix.en.pdf) · [Paper em português](paper/quad-dimensional-datamatrix.pt.pdf) · [Preparação para o Zenodo](docs/pt/publication.md)
 
 Quad-Dimensional DataMatrix explora um catálogo com quatro coordenadas lógicas: posição horizontal, posição vertical, estado temporal e dimension hexadecimal. Um GIF indexado transporta a sequência correspondente. Inglês é o idioma padrão; português é a alternativa.
@@ -120,7 +122,7 @@ Em um checkout Git, a verificação examina os arquivos listados no índice do G
 
 ## Preparação do primeiro depósito no Zenodo
 
-O primeiro depósito está preparado como **RfD 0.2.0**, um relatório técnico com edições em PDF em inglês e português, código-fonte, estudo reproduzível e a gravação da PoC. A licença atual do projeto é MIT. [CITATION.cff](CITATION.cff) e [.zenodo.json](.zenodo.json) registram os mesmos autores e versão. Nenhum DOI é atribuído no repositório antes de sua reserva ou emissão pelo Zenodo.
+O primeiro depósito está publicado no Zenodo como **RfD 0.2.0**, um relatório técnico com edições em PDF em inglês e português, código-fonte, estudo reproduzível e a gravação da PoC. A licença atual do projeto é MIT. [CITATION.cff](CITATION.cff) e [.zenodo.json](.zenodo.json) registram os mesmos autores e versão. O DOI desta versão é [10.5281/zenodo.23968974](https://doi.org/10.5281/zenodo.23968974).
 
 Após instalar o ambiente e as ferramentas de PDF:
 

@@ -1,6 +1,6 @@
 ---
 cff-version: "1.2.0"
-message: "Please cite both authors when discussing or building on this RfD."
+message: "Please cite both authors and the archived RfD version using its DOI."
 type: software
 title: "Quad-Dimensional DataMatrix: Request for Discussion"
 authors:
@@ -10,8 +10,9 @@ authors:
     given-names: "Jorge Luiz"
 version: "0.2.0"
 date-released: "2026-11-04"
+doi: "10.5281/zenodo.23968974"
 repository-code: "https://github.com/cecil-ia-labs/datamatrix-payload"
-url: "https://github.com/cecil-ia-labs/datamatrix-payload"
+url: "https://doi.org/10.5281/zenodo.23968974"
 license: MIT
 abstract: >-
   An exploratory four-coordinate catalogue and hexadecimal indexed-GIF
@@ -31,9 +32,10 @@ preferred-citation:
   year: 2026
   version: "0.2.0"
   date-published: "2026-11-04"
+  doi: "10.5281/zenodo.23968974"
   publisher:
     name: "Cecil-IA Labs"
-  url: "https://github.com/cecil-ia-labs/datamatrix-payload"
+  url: "https://doi.org/10.5281/zenodo.23968974"
 keywords:
   - datamatrix
   - data encoding

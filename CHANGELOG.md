@@ -4,6 +4,8 @@
 
 ## 0.2.0 - 2026-11-04 - Request for Discussion
 
+- Archive the bilingual report on Zenodo with DOI [10.5281/zenodo.23968974](https://doi.org/10.5281/zenodo.23968974) and update archival links and citation metadata.
+
 - Document the four-coordinate catalogue, capacity derivation, indexed-GIF working profile, candidate Unicode mappings, and app-held state selection in English and Portuguese.
 - Include the deterministic 16-state, 48 KiB recovery study and the 64-state, 192 KiB boundary checks.
 - Describe the bilingual app's selected-module color copying, receiving circle, visual highlight, and conditional clipboard cleanup.

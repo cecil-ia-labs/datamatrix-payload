@@ -2,6 +2,8 @@
 
 [Português](pt/publication.md) · [Project](../README.md) · [Release notes](release-notes.md)
 
+**Published record:** [RfD 0.2.0](https://doi.org/10.5281/zenodo.23968974). Version DOI: `10.5281/zenodo.23968974`. All-version DOI: `10.5281/zenodo.23968973`. The steps below document the original preparation; updates to published files use a new Zenodo version. The deposited source archive preserves commit `b7d7ec5c93fc5445b49a40964ad4724244a6a6a4`. A package generated from the current checkout includes citation metadata added after publication; the exact archived files are available from the Zenodo record.
+
 ## Record identity
 
 The primary research object is **RfD 0.2.0**, a technical report accompanied by a working implementation and reproducible examples. Prepare one record containing the two language editions and supporting material.
@@ -18,7 +20,7 @@ The primary research object is **RfD 0.2.0**, a technical report accompanied by 
 | Report publisher | Cecil-IA Labs |
 | Access | Open |
 | License | MIT, as currently provided in the repository |
-| DOI | Omitted until Zenodo reserves or issues one for this object |
+| DOI | [10.5281/zenodo.23968974](https://doi.org/10.5281/zenodo.23968974) |
 | Source repository | [cecil-ia-labs/datamatrix-payload](https://github.com/cecil-ia-labs/datamatrix-payload) |
 
 No ORCID, ROR, funding, or individual institutional affiliation has been supplied in the project's citation metadata. Those optional fields are omitted. Cecil-IA Labs is the project and report-publisher identity shown in the manuscripts.

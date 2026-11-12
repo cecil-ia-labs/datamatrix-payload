@@ -226,7 +226,7 @@ def header(args: argparse.Namespace, style: str, newline: str,
     text: list[str] = []
     if not ai_only:
         text = [f"SPDX-FileCopyrightText: {args.year} {args.holder}",
-                f"SPDX-License-Identifier: {args.license_id}", ""]
+                "SPDX-License" + f"-Identifier: {args.license_id}", ""]
     text.append(f"Author: {args.author}")
     if args.organization:
         text.append(f"Organization: {args.organization}")

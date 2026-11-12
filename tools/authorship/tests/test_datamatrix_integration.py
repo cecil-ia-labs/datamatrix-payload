@@ -6,6 +6,7 @@
 
 """Integration checks for the DataMatrix attribution trial."""
 import json
+import re
 from pathlib import Path
 import sys
 import unittest
@@ -77,8 +78,15 @@ class DataMatrixIntegrationTests(unittest.TestCase):
 
     def test_original_coauthor_and_license_untouched(self):
         citation = (ROOT / "CITATION.cff").read_text(encoding="utf-8")
-        self.assertIn("João Paulo De Luca", citation)
-        self.assertIn("Jorge Luiz Espanhol", citation)
+        # CFF 1.2.0 stores given/family names as separate YAML fields.
+        # Validate both citation blocks and author order without rewriting CFF.
+        pairs = re.findall(
+            r'(?m)^\s*- family-names: "([^"]+)"\s*\n\s*given-names: "([^"]+)"',
+            citation,
+        )
+        expected = [("De Luca Jr", "João Paulo"), ("Espanhol", "Jorge Luiz")]
+        self.assertEqual(pairs, expected * 2)
+
         self.assertTrue((ROOT / "LICENSE").read_text(encoding="utf-8").startswith(
             "MIT License\n"
         ))

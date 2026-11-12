@@ -1,13 +1,16 @@
 # SPDX-FileCopyrightText: 2026 Cecil-IA Labs
 # SPDX-License-Identifier: MIT
 #
-# Automated checks for the experimental authorship branch only.
+# Validate SPDX attribution on pull requests and the default branch.
 
 name: Authorship and REUSE validation
 on:
   push:
     branches:
-      - chore/opensource-authorship-headers
+      - main
+  pull_request:
+    branches:
+      - main
   workflow_dispatch:
 
 permissions:

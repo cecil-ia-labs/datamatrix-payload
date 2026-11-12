@@ -23,6 +23,7 @@ from __future__ import annotations
 
 import argparse
 import fnmatch
+import json
 import os
 from pathlib import Path
 import re
@@ -56,7 +57,7 @@ IGNORE_DIRS = {
     ".git", ".hg", ".svn", ".venv", "venv", "env", "node_modules",
     "dist", "build", "coverage", ".next", ".nuxt", ".cache", ".tox",
     ".mypy_cache", "__pycache__", "vendor", "target", "out", ".turbo",
-    "generated", ".generated",
+    "generated", ".generated", "output", "tmp", ".initial",
 }
 SKIP_NAMES = {
     "package-lock.json", "pnpm-lock.yaml", "yarn.lock", "poetry.lock",
@@ -97,6 +98,8 @@ def parse_args(argv: list[str] | None = None) -> argparse.Namespace:
     p.add_argument("--project", default=None, help="Optional project label")
     p.add_argument("--exclude", action="append", default=[], metavar="GLOB",
                    help="Extra relative-path ignore glob; repeatable")
+    p.add_argument("--policy", type=Path, default=None,
+                   help="JSON file defining ordered per-path metadata/skip rules")
     p.add_argument("--all-files", action="store_true",
                    help="Walk filesystem instead of respecting Git ignored files")
     p.add_argument("--annotate-existing", action="store_true",
@@ -126,7 +129,51 @@ def parse_args(argv: list[str] | None = None) -> argparse.Namespace:
     if not args.root.exists() or not args.root.is_dir():
         p.error("root must be an existing directory")
     args.root = args.root.resolve()
+    args.policy_rules = []
+    if args.policy is not None:
+        policy_file = args.policy if args.policy.is_absolute() else args.root / args.policy
+        try:
+            policy = json.loads(policy_file.read_text(encoding="utf-8"))
+        except (OSError, UnicodeError, json.JSONDecodeError) as exc:
+            p.error(f"invalid --policy file: {exc}")
+        if not isinstance(policy, dict) or policy.get("version") != 1 or not isinstance(policy.get("rules"), list):
+            p.error("--policy must have version=1 and a rules array")
+        allowed = {"glob", "skip", "holder", "author", "organization", "project",
+                   "ai_tools", "license", "year"}
+        for i, rule in enumerate(policy["rules"]):
+            if not isinstance(rule, dict) or set(rule) - allowed:
+                p.error(f"invalid policy rule #{i + 1}: unsupported attributes")
+            if not isinstance(rule.get("glob"), str) or not rule["glob"]:
+                p.error(f"invalid policy rule #{i + 1}: glob is required")
+            if "skip" in rule and not isinstance(rule["skip"], bool):
+                p.error(f"invalid policy rule #{i + 1}: skip must be a boolean")
+            for key, value in rule.items():
+                if key in ("glob", "skip"):
+                    continue
+                if not isinstance(value, str) or "\\n" in value or "\\r" in value:
+                    p.error(f"invalid policy rule #{i + 1}: {key} must be single-line text")
+                if key == "license" and not SPDX_TOKEN.fullmatch(value):
+                    p.error(f"invalid policy rule #{i + 1}: invalid license ID")
+                if key == "year" and not re.fullmatch(r"\\d{4}(?:-\\d{4})?", value):
+                    p.error(f"invalid policy rule #{i + 1}: invalid year")
+        args.policy_rules = policy["rules"]
     return args
+
+
+def scoped_args(path: Path, args: argparse.Namespace) -> argparse.Namespace | None:
+    """Last matching policy rule wins per attribute; skip rules are explicit."""
+    scoped = argparse.Namespace(**vars(args))
+    relative = path.relative_to(args.root).as_posix()
+    skipped = False
+    for rule in args.policy_rules:
+        if fnmatch.fnmatchcase(relative, rule["glob"]):
+            if "skip" in rule:
+                skipped = rule["skip"]
+            for key, value in rule.items():
+                if key in ("glob", "skip"):
+                    continue
+                setattr(scoped, "license_id" if key == "license" else key, value)
+    return None if skipped else scoped
 
 
 def style_for(path: Path) -> str | None:
@@ -294,7 +341,12 @@ def main(argv: list[str] | None = None) -> int:
             continue
         relative = path.relative_to(args.root).as_posix()
         try:
-            update, reason = prepare(path, args)
+            effective = scoped_args(path, args)
+            if effective is None:
+                counts["skipped"] += 1
+                print(f"[SKIP] {relative}: policy marks path as external")
+                continue
+            update, reason = prepare(path, effective)
             if update is None:
                 counts["skipped"] += 1
                 print(f"[SKIP] {relative}: {reason}")

@@ -150,11 +150,11 @@ def parse_args(argv: list[str] | None = None) -> argparse.Namespace:
             for key, value in rule.items():
                 if key in ("glob", "skip"):
                     continue
-                if not isinstance(value, str) or "\\n" in value or "\\r" in value:
+                if not isinstance(value, str) or "\n" in value or "\r" in value:
                     p.error(f"invalid policy rule #{i + 1}: {key} must be single-line text")
                 if key == "license" and not SPDX_TOKEN.fullmatch(value):
                     p.error(f"invalid policy rule #{i + 1}: invalid license ID")
-                if key == "year" and not re.fullmatch(r"\\d{4}(?:-\\d{4})?", value):
+                if key == "year" and not re.fullmatch(r"\d{4}(?:-\d{4})?", value):
                     p.error(f"invalid policy rule #{i + 1}: invalid year")
         args.policy_rules = policy["rules"]
     return args

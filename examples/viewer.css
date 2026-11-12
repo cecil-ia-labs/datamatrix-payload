@@ -1,3 +1,19 @@
+/*
+ * SPDX-FileCopyrightText: 2026 Cecil-IA Labs
+ * SPDX-License-Identifier: MIT
+ *
+ * Author: João Paulo De Luca Jr.; Jorge Luiz Espanhol
+ * Organization: Cecil-IA Labs
+ * Project: Quad-Dimensional DataMatrix
+ *
+ * AI-assisted development:
+ * OpenAI ChatGPT and Codex were used as development tools.
+ * Human-directed development and integration.
+ * No OpenAI sponsorship, affiliation, or endorsement is implied.
+ *
+ * License: See the repository LICENSE file and SPDX identifier above.
+ */
+
 :root{color-scheme:dark;font-family:Inter,system-ui,sans-serif;background:#0C1522;color:#E6EFF8}
 *{box-sizing:border-box}[hidden]{display:none!important}body{margin:0}main{max-width:980px;margin:5vh auto;padding:28px}
 header{display:flex;justify-content:space-between;align-items:center;gap:20px}.eyebrow{font-size:12px;letter-spacing:2px;color:#8EAAC6}

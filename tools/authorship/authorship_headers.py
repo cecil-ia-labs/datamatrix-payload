@@ -63,6 +63,7 @@ SKIP_NAMES = {
     "package-lock.json", "pnpm-lock.yaml", "yarn.lock", "poetry.lock",
     "Cargo.lock", "LICENSE", "LICENSE.md", "LICENSE.txt", "COPYING",
     "COPYRIGHT", "NOTICE", "CHANGELOG.md", "AI_DEVELOPMENT.md",
+    "REUSE.toml",  # REUSE spec exempts its own machine-readable policy file.
 }
 COPYRIGHT_LINE = re.compile(
     r"(?im)^\s*(?:[#*/<!\- ]*)?(?:SPDX-FileCopyrightText:|"

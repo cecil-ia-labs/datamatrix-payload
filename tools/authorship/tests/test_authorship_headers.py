@@ -75,7 +75,7 @@ class HeaderTests(unittest.TestCase):
             self.assertEqual(reason, "annotate")
             self.assertEqual(result.count(b"SPDX-License-Identifier"), 1)
             self.assertIn(b"Apache-2.0", result)
-            self.assertNotIn(b"SPDX-License-Identifier: MIT", result)
+            self.assertNotIn(b"SPDX-License" + b"-Identifier: MIT", result)
             p.write_bytes(result)
             second, reason = mod.prepare(p, self.make_args(root, "--annotate-existing"))
             self.assertIsNone(second)

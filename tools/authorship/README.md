@@ -185,12 +185,21 @@ current project's MIT terms, **not a new license**.
 For local validation, install the independent REUSE command-line tool and run:
 
 ```bash
-python3 -m unittest discover -s tools/authorship/tests -v
-python3 -m pip install --user reuse
-reuse lint
+make authorship-test
+# Install REUSE inside the project's existing virtual environment:
+.venv/bin/python -m pip install reuse
+make reuse-check
 ```
 
-The package installation is optional for using the header script. The
+If .venv does not exist yet, run `python3 -m venv .venv` first.
+Ubuntu's system Python uses PEP 668, which blocks installing Python packages
+into the externally managed system environment. Do not use
+`--break-system-packages`. An alternative is `pipx install reuse`, followed
+by `make reuse-check` when `reuse` is available on PATH. The Makefile chooses
+`.venv/bin/reuse` automatically when present; override with
+`make reuse-check REUSE=/path/to/reuse` if needed.
+
+The REUSE installation is optional for using the header script. The
 branch's CI workflow runs the same lint and unit checks. The CI check
 does not replace review of rights, author lists or embedded third-party code.
 

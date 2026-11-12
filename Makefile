@@ -13,6 +13,8 @@
 # License: See the repository LICENSE file and SPDX identifier above.
 
 PYTHON ?= python3
+# Prefer the project's virtual environment for REUSE; fall back to PATH/pipx.
+REUSE ?= $(if $(wildcard .venv/bin/reuse),.venv/bin/reuse,reuse)
 
 .PHONY: test viewer-test case-study paper verify publication all authorship-test authorship-check reuse-check
 test:
@@ -49,6 +51,6 @@ authorship-check:
 		--license 'MIT' --project 'Quad-Dimensional DataMatrix' \
 		--policy tools/authorship/attribution-policy.json --check
 
-# Requires the optional REUSE CLI: python3 -m pip install reuse
+# Requires the optional REUSE CLI, installed in .venv or via pipx.
 reuse-check:
-	reuse lint
+	$(REUSE) lint

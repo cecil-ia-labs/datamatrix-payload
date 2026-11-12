@@ -25,6 +25,22 @@ urlcolor: qddmink
 abstract: |
   Quad-Dimensional DataMatrix é proposto como estrutura de discussão para dados hexadecimais representados por estados GIF indexados. O perfil de trabalho usa um canvas de 256 por 256 pixels, 64 por 64 módulos efetivos, até 64 entradas hexadecimais na paleta e até 64 frames. Quatro coordenadas lógicas identificam posição horizontal, posição vertical, estado temporal e dimension. Seu catálogo cartesiano máximo contém 16.777.216 tuplas candidatas. Uma sequência densa seleciona uma entre 64 alternativas em cada módulo e, assim, transporta até 192 KiB de payload bruto em um ciclo de 64 frames, nominalmente oito segundos a 8 fps. Uma sequência mantida no app oferece uma segunda interação: avançar na cadência escolhida, pausar por seleção do usuário e copiar a cor hexadecimal de seis caracteres de um módulo selecionado para um serviço receptor. O paper desenvolve o modelo de contagem, separa os dois papéis do tempo e examina mapeamentos um a um entre Unicode e hexadecimal como candidatos a um futuro dicionário ou chave. Um estudo de 16 frames e 48 KiB com recuperação exata byte a byte, um visualizador local bilíngue e gravações em GIF e WebM acompanham a discussão. A seção Escopo e limitações concentra as qualificações. O documento convida ao refinamento antes da proposta de uma especificação.
 ---
+<!--
+SPDX-FileCopyrightText: 2026 Cecil-IA Labs
+SPDX-License-Identifier: MIT
+
+Author: João Paulo De Luca Jr.; Jorge Luiz Espanhol
+Organization: Cecil-IA Labs
+Project: Quad-Dimensional DataMatrix
+
+AI-assisted development:
+OpenAI ChatGPT and Codex were used as development tools.
+Human-directed development and integration.
+No OpenAI sponsorship, affiliation, or endorsement is implied.
+
+License: See the repository LICENSE file and SPDX identifier above.
+-->
+
 
 # Propósito e status da discussão
 

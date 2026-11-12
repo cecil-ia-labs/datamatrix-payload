@@ -1,16 +1,25 @@
-# AI-assisted development disclosure
+# AI-assisted development disclosure (adapt before copying)
 
-This project is authored and maintained by **João Paulo De Luca**, through
-**Cecil-IA Labs**.
+**Project:** {{PROJECT_NAME}}
 
-OpenAI **ChatGPT** and **Codex** have been used as AI-assisted software
-development tools, including support for code generation, debugging,
-refactoring, documentation and/or tests, as applicable to the project.
+**Organization:** {{ORGANIZATION_NAME}}
 
-Project decisions, integration, maintenance, review and publication remain the
-responsibility of the human project maintainers. AI assistance does not change
-the existing open-source license or imply any sponsorship, affiliation or
-endorsement by OpenAI.
+**Human contributors and authors:** {{ACTUAL_CONTRIBUTORS}}
 
-The `LICENSE` file and per-file SPDX notices govern software permissions.
-Third-party code remains subject to its respective licenses and attribution.
+**License:** {{EXISTING_LICENSE_ID}}
+
+This project used **OpenAI ChatGPT and Codex** as AI-assisted development
+tools for tasks such as code generation, debugging, refactoring, documentation
+and tests, as applicable. Confirm which tools were used in the particular
+project before publishing this declaration.
+
+Research, authorship decisions, integration, review, maintenance and
+publication remain the responsibility of the people and organizations
+identified above. The tool names do not indicate sponsorship, affiliation,
+coauthorship, publishing, copyright ownership or endorsement by OpenAI.
+
+This is an attribution and process disclosure, **not an additional condition**
+on the existing open-source license. Keep the original contributors' notices
+and any third-party copyright and license declarations intact.
+
+See the actual repository `LICENSE` and file-level SPDX declarations.

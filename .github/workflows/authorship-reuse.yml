@@ -1,0 +1,29 @@
+# SPDX-FileCopyrightText: 2026 Cecil-IA Labs
+# SPDX-License-Identifier: MIT
+#
+# Automated checks for the experimental authorship branch only.
+
+name: Authorship and REUSE validation
+on:
+  push:
+    branches:
+      - chore/opensource-authorship-headers
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+jobs:
+  authorship:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.12'
+      - name: Unit and project attribution tests
+        run: python3 -m unittest discover -s tools/authorship/tests -v
+      - name: Install REUSE tool
+        run: python3 -m pip install reuse
+      - name: Check attribution coverage
+        run: reuse lint

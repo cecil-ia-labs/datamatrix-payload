@@ -9,7 +9,7 @@
   "language_default": "en",
   "language_alternative": "pt",
   "seed": 20261104,
-  "python": "3.12.14",
+  "python": "3.14.4",
   "numpy": "2.3.5",
   "Pillow": "13.0.0",
   "profile": {

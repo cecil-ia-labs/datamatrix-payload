@@ -25,6 +25,22 @@ urlcolor: qddmink
 abstract: |
   Quad-Dimensional DataMatrix is proposed as a discussion framework for hexadecimal data represented by indexed GIF states. The working profile uses a 256 by 256 pixel canvas, 64 by 64 effective modules, up to 64 hexadecimal palette entries, and up to 64 frames. Four logical coordinates identify horizontal position, vertical position, temporal state, and dimension. Their maximum Cartesian catalogue contains 16,777,216 candidate tuples. A dense sequence selects one of 64 alternatives at each module and therefore carries up to 192 KiB of gross payload in a 64-frame cycle, nominally eight seconds at 8 fps. An app-held sequence supports a second interaction: advance at a chosen cadence, pause on user selection, and copy a selected module's six-character hexadecimal color for a receiving service. The paper develops the counting model, separates the two timing roles, and examines one-to-one Unicode-to-hexadecimal mappings as candidates for a future dictionary or key. A byte-exact 16-frame, 48 KiB case study, a local bilingual viewer, and recorded GIF and WebM walkthroughs accompany the discussion. Scope and Limitations consolidates the qualifications. The document invites refinement before a specification is proposed.
 ---
+<!--
+SPDX-FileCopyrightText: 2026 Cecil-IA Labs
+SPDX-License-Identifier: MIT
+
+Author: João Paulo De Luca Jr.; Jorge Luiz Espanhol
+Organization: Cecil-IA Labs
+Project: Quad-Dimensional DataMatrix
+
+AI-assisted development:
+OpenAI ChatGPT and Codex were used as development tools.
+Human-directed development and integration.
+No OpenAI sponsorship, affiliation, or endorsement is implied.
+
+License: See the repository LICENSE file and SPDX identifier above.
+-->
+
 
 # Purpose and discussion status
 

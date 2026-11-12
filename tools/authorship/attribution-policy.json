@@ -1,0 +1,43 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "version": 1,
+  "notes": "First-party metadata defaults to the CLI. Ordered rules change only future insertions; pre-existing notices are never rewritten. Third-party code must keep original licensing.",
+  "rules": [
+    {
+      "glob": "paper/*.md",
+      "author": "João Paulo De Luca Jr.; Jorge Luiz Espanhol"
+    },
+    {
+      "glob": "docs/**",
+      "author": "João Paulo De Luca Jr.; Jorge Luiz Espanhol"
+    },
+    {
+      "glob": "src/**",
+      "author": "Cecil-IA Labs project contributors"
+    },
+    {
+      "glob": "tests/**",
+      "author": "Cecil-IA Labs project contributors"
+    },
+    {
+      "glob": "tools/authorship/**",
+      "author": "Cecil-IA Labs project contributors"
+    },
+    {
+      "glob": "examples/state-data.js",
+      "skip": true
+    },
+    {
+      "glob": "paper/*.tex",
+      "skip": true
+    },
+    {
+      "glob": "third_party/**",
+      "skip": true
+    },
+    {
+      "glob": "vendor/**",
+      "skip": true
+    }
+  ]
+}

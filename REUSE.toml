@@ -1,0 +1,46 @@
+version = 1
+
+# REUSE v3.3. These entries cover non-commentable files and source files
+# intentionally left unmodified (e.g. generated LaTeX / frozen metadata).
+# SPDX headers inside source files remain authoritative.
+
+[[annotations]]
+path = [
+  ".gitattributes",
+  ".gitignore",
+  ".zenodo.json",
+  "AI_DEVELOPMENT.md",
+  "CHANGELOG.md",
+  "CITATION.cff",
+  "requirements.lock.txt",
+  "docs/media/manifest.json",
+  "results/*.json",
+  "tools/authorship/attribution-policy.json",
+  "tools/authorship/templates/*.txt",
+  "tools/authorship/templates/AI_DEVELOPMENT.md",
+]
+SPDX-FileCopyrightText = "2026 Cecil-IA Labs"
+SPDX-License-Identifier = "MIT"
+
+# Machine-generated text is re-created during builds. License it outside the
+# generated file so that rebuilding does not overwrite author declarations.
+[[annotations]]
+path = [
+  "paper/quad-dimensional-datamatrix.en.tex",
+  "paper/quad-dimensional-datamatrix.pt.tex",
+]
+SPDX-FileCopyrightText = "2026 Cecil-IA Labs"
+SPDX-License-Identifier = "MIT"
+
+# Published data, media and PDFs cannot reliably carry SPDX source comments.
+[[annotations]]
+path = [
+  "examples/quad-dimensional-datamatrix-16-states.gif",
+  "docs/media/quad-dimensional-datamatrix-poc.gif",
+  "docs/media/quad-dimensional-datamatrix-poc.webm",
+  "paper/figures/concept-app.pdf",
+  "paper/quad-dimensional-datamatrix.en.pdf",
+  "paper/quad-dimensional-datamatrix.pt.pdf",
+]
+SPDX-FileCopyrightText = "2026 Cecil-IA Labs"
+SPDX-License-Identifier = "MIT"

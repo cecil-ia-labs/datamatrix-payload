@@ -16,6 +16,12 @@ License: See the repository LICENSE file and SPDX identifier above.
 
 # Quad-Dimensional DataMatrix
 
+**Idiomas:** [English](README.md) · [Português (Brasil)](README.pt.md) · [Italiano](README.it.md)
+
+**Explore quatro coordenadas na prática.** [Acesse o showroom científico interativo](https://cecil-ia-labs.github.io/datamatrix-payload/) — inspecione os 16 estados sintéticos reais do estudo, compreenda X/Y/paleta/tempo, experimente o visualizador original e confira a recuperação exata do payload publicado.
+
+Esta pesquisa é um **Request for Discussion**, não um protocolo de autenticação lançado nem comprovação de captura física. Os exemplos representam dois objetivos diferentes: seleção de estados no aplicativo e recuperação de dados codificados digitalmente.
+
 **Request for Discussion (RfD), versão 0.2.0.**
 
 **João Paulo De Luca Jr · Jorge Luiz Espanhol**

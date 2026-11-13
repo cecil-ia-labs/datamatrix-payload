@@ -1,3 +1,6 @@
+# SPDX-FileCopyrightText: 2026 Cecil-IA Labs
+# SPDX-License-Identifier: MIT
+
 User-agent: *
 Allow: /
 

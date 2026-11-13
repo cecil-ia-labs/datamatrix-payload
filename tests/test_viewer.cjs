@@ -23,7 +23,13 @@ const root=path.resolve(__dirname,"..");
 const html=fs.readFileSync(path.join(root,"examples/index.html"),"utf8");
 const data=fs.readFileSync(path.join(root,"examples/state-data.js"),"utf8");
 const states=JSON.parse(data.slice(data.indexOf("["),data.lastIndexOf("]")+1));
-const source=fs.readFileSync(path.join(root,"examples/viewer.js"),"utf8").replace(/^import .*;\s*/,"");
+const viewerSource=fs.readFileSync(path.join(root,"examples/viewer.js"),"utf8");
+// Strip only the static state-data import when evaluating this browser module
+// as a classic script in vm.runInContext(). The SPDX header precedes the import.
+const stateImport=/^import\s*\{\s*states\s*\}\s*from\s*["']\.\/state-data\.js["'];?[ \t]*$/m;
+assert.match(viewerSource,stateImport,"Viewer must import the expected state data");
+const source=viewerSource.replace(stateImport,"");
+assert.doesNotMatch(source,/^\s*(?:import|export)\s/m,"No ES module syntax may remain in the VM script");
 
 class Element {
   constructor(){

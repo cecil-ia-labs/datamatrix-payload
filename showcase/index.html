@@ -1,0 +1,97 @@
+<!--
+SPDX-FileCopyrightText: 2026 Cecil-IA Labs
+SPDX-License-Identifier: MIT
+Author: João Paulo De Luca Jr.; Jorge Luiz Espanhol
+Organization: Cecil-IA Labs
+Project: Quad-Dimensional DataMatrix
+AI-assisted development: OpenAI ChatGPT and Codex were used as development tools.
+Human-directed development and integration. No OpenAI endorsement is implied.
+-->
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<meta name="description" content="Quad-Dimensional DataMatrix research showroom: inspect genuine 16-state synthetic GIF data, explore X/Y/hexadecimal dimension/time coordinates, and try the original viewer.">
+<meta name="theme-color" content="#09121e">
+<link rel="canonical" href="https://cecil-ia-labs.github.io/datamatrix-payload/">
+<meta property="og:type" content="website">
+<meta property="og:title" content="Quad-Dimensional DataMatrix | Cecil-IA Labs">
+<meta property="og:description" content="A research showroom for four-coordinate indexed-GIF representation, state selection and exact synthetic payload recovery.">
+<meta property="og:url" content="https://cecil-ia-labs.github.io/datamatrix-payload/">
+<link rel="stylesheet" href="./showroom.css">
+<script type="module" src="./showroom.js"></script>
+<title>Quad-Dimensional DataMatrix · Research Observatory</title>
+<script type="application/ld+json">{"@context":"https://schema.org","@type":"ScholarlyArticle","headline":"Quad-Dimensional DataMatrix: Request for Discussion","author":[{"@type":"Person","name":"João Paulo De Luca Jr"},{"@type":"Person","name":"Jorge Luiz Espanhol"}],"publisher":{"@type":"Organization","name":"Cecil-IA Labs"},"identifier":"https://doi.org/10.5281/zenodo.23968974","isAccessibleForFree":true,"url":"https://zenodo.org/records/23968974"}</script>
+</head>
+<body>
+<a class="skip" href="#content">Skip to content</a>
+<header class="shell header">
+ <a class="identity" href="https://cecil-ia-labs.github.io/"><span class="identity-symbol">▦</span><span>CECIL-IA <small>RESEARCH OBSERVATORY</small></span></a>
+ <nav aria-label="Primary navigation"><a href="#idea">The idea</a><a href="#explorer">Explore</a><a href="#example">Use case</a><a href="#evidence">Evidence</a></nav>
+ <a class="source-link" href="https://github.com/cecil-ia-labs/datamatrix-payload">SOURCE ↗</a>
+</header>
+<main id="content">
+<section class="shell hero">
+ <div class="hero-content"><p class="eyebrow">OPEN RESEARCH / REQUEST FOR DISCUSSION · V0.2.0</p>
+ <h1>Information has<br><em>more than two</em><br>coordinates.</h1>
+ <p class="lead">What happens when a matrix gains a palette dimension and a sequence of states? Explore a proposed four-coordinate catalogue, the actual indexed data example and an interactive app-held state selector.</p>
+ <div class="actions"><a class="action-main" href="#explorer">Inspect the model ↘</a><a class="action-outline" href="https://zenodo.org/records/23968974">Read the archived paper ↗</a></div>
+ <p class="byline">Research by João Paulo De Luca Jr and Jorge Luiz Espanhol · Cecil-IA Labs</p>
+ </div>
+ <div class="hero-graphic" aria-hidden="true"><div class="matrix-art" id="hero-art"></div><span class="axis axis-x">X →</span><span class="axis axis-y">Y ↑</span><span class="orbit orbit-one">C / PALETTE</span><span class="orbit orbit-two">T / STATES</span></div>
+</section>
+<section class="premise" id="idea"><div class="shell">
+ <div class="section-label">01 · UNDERSTAND THE MODEL</div><div class="headline-row"><h2>Four logical coordinates.<br><em>One selected value.</em></h2><p>This is not a claim about four physical dimensions. It is a way to address candidate values in a catalogue, while an actual matrix selects just one palette entry for each position and state.</p></div>
+ <div class="dimensions">
+  <article><span class="dimension-mark">X</span><h3>Horizontal</h3><p>Column of the effective grid, from 0 to 63.</p></article>
+  <article><span class="dimension-mark">Y</span><h3>Vertical</h3><p>Row of the effective grid, from 0 to 63.</p></article>
+  <article><span class="dimension-mark">C</span><h3>Palette dimension</h3><p>One of at most 64 indexed hexadecimal entries.</p></article>
+  <article><span class="dimension-mark">T</span><h3>Temporal state</h3><p>One of up to 64 complete frames in the working profile.</p></article>
+ </div>
+ <p class="equation">Catalogue Ω = X × Y × T × C <span>→</span> 64⁴ = <strong>16,777,216 candidate tuples</strong></p>
+ <p class="qualifier">The catalogue count is not the amount of encoded payload. With 64 palette entries, each selected module carries 6 bits; the maximum profile stores 192 KiB of raw module selections per 64-frame cycle.</p>
+ </div></section>
+<section class="explorer shell" id="explorer">
+ <div class="section-label">02 · INSPECT THE ACTUAL STUDY</div>
+ <div class="headline-row"><h2>Turn the coordinates<br><em>into evidence.</em></h2><p>The grid below is generated from the repository's <strong>16 real synthetic example states</strong>, not from an invented diagram. Select a frame and click a module to inspect its dimension, colour and four-coordinate address.</p></div>
+ <div class="explorer-layout">
+  <section class="matrix-panel" aria-label="Data matrix explorer">
+   <div class="panel-title"><span>INDEXED MATRIX / 64 × 64 MODULES</span><span id="frame-indicator">STATE — / 16</span></div>
+   <div class="canvas-wrap"><canvas id="matrix" width="64" height="64" tabindex="0" role="img" aria-label="64 by 64 actual synthetic indexed state; use the position fields to inspect a coordinate"></canvas><div id="grid-loading" class="matrix-loading">Load the study to reveal its actual indexed frame.</div></div>
+   <div class="timeline"><button id="previous" type="button" disabled aria-label="Previous state">←</button><input id="frame" type="range" min="0" max="15" value="0" disabled aria-label="Temporal state"><button id="next" type="button" disabled aria-label="Next state">→</button><button id="play" type="button" disabled>Play</button></div>
+   <div class="timeline-foot"><span>T = <output id="t-output">—</output></span><span>16 states · study cadence 8/s</span></div>
+  </section>
+  <aside class="inspector">
+    <div class="panel-title"><span>COORDINATE INSPECTOR</span><span>6-BIT INDEX</span></div>
+    <p class="inspector-intro">Select a module in the matrix or enter its position. Each inspected result comes from the corresponding original synthetic state.</p>
+    <div class="coords"><label>X <input id="x" type="number" min="0" max="63" value="0" disabled></label><label>Y <input id="y" type="number" min="0" max="63" value="0" disabled></label></div>
+    <div class="value-strip"><span id="color-sample" class="color-sample" aria-hidden="true"></span><div><small>HEX VALUE</small><strong id="hex">———</strong></div></div>
+    <dl class="readout"><div><dt>Dimension C (palette index)</dt><dd id="dimension">—</dd></div><div><dt>State T</dt><dd id="state-readout">—</dd></div><div><dt>Address (24-bit catalogue)</dt><dd id="address">—</dd></div></dl>
+    <button id="load-study" class="load-btn" type="button">Load original 16-state dataset ↗</button>
+    <p class="tiny">Synthetic data are loaded directly from the original <code>examples/state-data.js</code> file. No backend or external request is needed.</p>
+  </aside>
+ </div>
+</section>
+<section class="usecase" id="example"><div class="shell">
+ <div class="section-label">03 · APPLICATION DEMONSTRATION</div>
+ <div class="headline-row"><h2>Choose a state.<br><em>Deliver a code.</em></h2><p>The repository already includes a working English/Portuguese local app. We preserve that original implementation and make its interaction understandable here.</p></div>
+ <div class="journey"><article><span>01</span><h3>Advance</h3><p>A local sequence cycles through 16 public synthetic states. The app interaction starts at one state per minute.</p></article><article><span>02</span><h3>Select</h3><p>Pause a state and choose a module by coordinates. Copy its six-character hexadecimal palette value.</p></article><article><span>03</span><h3>Receive</h3><p>Paste into the receiver circle. The example checks the selected code and responds visually.</p></article></div>
+ <div class="viewer-stage"><div class="stage-bar"><span>ORIGINAL WORKING VIEWER · EN / PT</span><a id="open-viewer" href="../examples/" target="_blank" rel="noopener noreferrer">Open full screen ↗</a></div><div id="viewer-placeholder" class="viewer-placeholder"><span class="icon-ring">↘</span><h3>Experience the original application</h3><p>Choose a state, copy its code, and test the receiving circle. Clipboard permissions depend on your browser's secure context.</p><button type="button" id="start-viewer">Launch live example</button></div><iframe id="original-viewer" title="Original bilingual Quad-Dimensional DataMatrix state selector" loading="lazy" hidden></iframe></div>
+ <p class="viewer-note">This app demonstrates state selection and clipboard transfer. Its public colour value is <strong>not a validated authentication credential</strong> and is not equivalent to the full indexed payload.</p>
+ </div></section>
+<section class="evidence shell" id="evidence">
+ <div class="section-label">04 · REPRODUCIBLE TRANSPORT EXAMPLE</div>
+ <div class="headline-row"><h2>From indexed frames<br><em>back to exact data.</em></h2><p>The repository also provides a separate data-bearing GIF. Its indexed modules were decoded into the original synthetic bytes and checked for exact recovery.</p></div>
+ <div class="results"><div class="proof"><div class="proof-top">RECORDED CASE STUDY <span>TESTED PROFILE</span></div>
+  <div class="stat-grid"><div><strong>16</strong><span>frames</span></div><div><strong>64</strong><span>palette entries</span></div><div><strong>48 KiB</strong><span>raw payload</span></div><div><strong>2 s</strong><span>@ 8 frames/s</span></div></div>
+  <div class="recovery"><span class="tick">✓</span><div><b>Byte-exact recovery: confirmed</b><p>Original and recovered SHA-256 digests match in the published JSON report.</p></div></div>
+  <div class="proof-links"><a href="./results/hex-gif-case-study.json">Inspect machine-readable result ↗</a><a href="https://github.com/cecil-ia-labs/datamatrix-payload/blob/main/experiments/case_study.py">Reproduce in Python ↗</a></div>
+ </div><div class="gif-case"><div class="frame-heading">DATA-BEARING INDEXED GIF · 256 × 256</div><img src="./examples/quad-dimensional-datamatrix-16-states.gif" alt="Actual indexed GIF from the 16-state synthetic data recovery study" width="256" height="256" loading="lazy"><p>Each effective 64 × 64 module repeats its palette index over a 4 × 4 block of stored pixels. This GIF is the data container, <strong>not</strong> a recording of the viewer interface.</p></div></div>
+</section>
+<section class="next-ideas"><div class="shell"><div class="section-label">05 · DIRECTIONS FOR DISCUSSION</div><h2>A representation model.<br><em>More ideas to explore.</em></h2><p>These are research directions, not implemented features or validated security claims. New use cases should be specified and evaluated against the actual encoding profile.</p>
+ <div class="idea-grid"><article><span>PROPOSAL</span><h3>State-aware interfaces</h3><p>Explore application-controlled changes in visible information over time.</p></article><article><span>PROPOSAL</span><h3>Structured data transport</h3><p>Study indexed temporal frames, decoding, metadata and error correction requirements.</p></article><article><span>PROPOSAL</span><h3>Unicode dictionaries</h3><p>Evaluate reversible mappings between scalar values, hexadecimal codes and palette indices.</p></article></div>
+ <div class="closing"><div><strong>Research is a conversation.</strong><p>Inspect the source, read the RfD, and contribute new hypotheses with testable constraints.</p></div><div><a href="https://zenodo.org/records/23968974">Read on Zenodo ↗</a><a href="https://github.com/cecil-ia-labs/datamatrix-payload">Explore the repository ↗</a></div></div>
+ </div></section>
+</main><footer class="shell footer"><span>© 2026 Cecil-IA Labs · João Paulo De Luca Jr · Jorge Luiz Espanhol</span><a href="https://cecil-ia-labs.github.io/">← Open Source Observatory</a></footer>
+</body>
+</html>

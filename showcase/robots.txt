@@ -1,0 +1,7 @@
+# SPDX-FileCopyrightText: 2026 Cecil-IA Labs
+# SPDX-License-Identifier: MIT
+
+User-agent: *
+Allow: /
+
+Sitemap: https://cecil-ia-labs.github.io/datamatrix-payload/sitemap.xml
